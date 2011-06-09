@@ -211,6 +211,25 @@ $(function(){
                 //Once the modal is in the DOM (but not visible)...
                 onLoad: function(modal){
                   
+                  
+                  if($('.item').length > 0){
+                    app().api({
+                      action:'get',
+                      type:'item',
+                      id:$('.item:last').attr('id').split('-')[1]
+                    },function(json){
+                      modal.find('[name=heading]').find('[value="'+json[0].heading+'"]').attr('selected','selected')
+                        
+                      for(b in json[0].bureaus){
+                        modal.find('[value="'+json[0].bureaus[b].name+'"]').attr('checked','checked');
+                      }
+                      
+                      for(o in json[0].owners){
+                        modal.find('[value="'+json[0].owners[o].name+'"]').attr('checked','checked');
+                      }
+                    });
+                  }
+                  
                   //Find the buttons
                   modal.find('a.button').click(function(){
                     //If they clicked cancel
@@ -511,6 +530,12 @@ $(function(){
         app().printAgenda(dataStore('active-agenda'));
       });
       
+      /**
+       * Allows you to double click on an item to edit it
+       */
+      $('body').delegate('.item','dblclick',function(){
+        actions.update('item',dataStore('active-item'));
+      });
       
       /**
        * Simple URL bookmarking function. If the hash is changed (like, going back/forward, entering in a URL manually, etc)

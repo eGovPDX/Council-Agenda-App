@@ -115,16 +115,15 @@ var app = function(){
 									for(z in theItems[y].owners){
 										var dash = ' - ';
 										if(z == 0){ dash = ''; }
-										tempOwnerHTML = dash+tempOwnerHTML+theItems[y].owners[z].name;
+										tempOwnerHTML = tempOwnerHTML+dash+theItems[y].owners[z].name;
 									}
 									tempOwnerHTML = tempOwnerHTML+'</h5>';
 								}
 								
-								if(tempOwnerHTML !== itemBureau){
-									itemBureau = tempOwnerHTML;
-									newHTML = newHTML+itemBureau;
+								if(tempOwnerHTML !== itemOwner){
+									itemOwner = tempOwnerHTML;
+									newHTML = newHTML+itemOwner;
 								}
-								
 								
 								var tempBureauHTML = '';
 								if(theItems[y].bureaus.length > 0){
@@ -132,7 +131,7 @@ var app = function(){
 									for(z in theItems[y].bureaus){
 										var dash = ' - ';
 										if(z == 0){ dash = ''; }
-										tempBureauHTML = dash+tempBureauHTML+theItems[y].bureaus[z].name;
+										tempBureauHTML = tempBureauHTML+dash+theItems[y].bureaus[z].name;
 									}
 									tempBureauHTML = tempBureauHTML+'</h6>';
 								}
