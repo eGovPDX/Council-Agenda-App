@@ -1,0 +1,43 @@
+<div class="tab">
+  <h2 class="tab-heading">General</h2>
+  <form>
+    <label>Item Heading</label>
+    <select name="heading">
+      <option value="Regular Agenda">Regular Agenda</option>
+      <option value="Communications">Communications</option>
+      <option value="Times Certain">Times Certain</option>
+      <option value="Consent Agenda - No Discussion">Consent Agenda - No Discussion</option>
+      <option value="Four-Fifths Agenda">Four-Fifths Agenda</option>
+      <option value="Executive Order">Executive Order</option>
+    </select>
+    <input name="emergency-item" type="checkbox" value="1"> <label>Emergency Item</label>
+    <div class="clear"></div>
+    <div class="col1">
+      <label>Bureaus</label>
+      {{bureaus}}
+    </div>
+    <div class="col2">
+      <label>Elected Officials</label>
+      {{owners}}
+    </div>
+    <div class="clear"></div>
+    <label>Item Text</label>
+    <textarea name="topic"></textarea>
+  </form>
+</div>
+<div class="tab">
+  <h2 class="tab-heading">Disposition</h2>
+  <p>Stuff goes here!</p>
+</div>
+<div class="tab">
+  <h2 class="tab-heading">Attachments</h2>
+    <form>
+    <label>Attachments</label>
+    <input type="file">
+    <!--<a class="button" href="#!/edit/upload">Upload</a>-->
+  </form>
+</div>
+<br>
+<a class="button" href="#!/edit/save">Save</a>
+<a class="button" href="#!/edit/cancel">Cancel</a>
+<br class="clear">

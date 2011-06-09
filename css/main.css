@@ -1,0 +1,245 @@
+@import 'resets.css';
+/* @import 'jquery.jscrollpane.css'; */
+/**
+ * The app is defined into 5 places:
+ * Header, Footer, Content, Sidebar, and Modal
+ * You can find these places by searching for something like "@location Header"
+ */
+
+/**
+ * Global element styles
+ */
+body {font-family:helvetica,arial,sans-serif;background:url(../images/grid.png);}
+
+a { color:#7C8487; }
+
+a:focus { outline:1px dotted #5AD7FF; }
+
+/**
+ * Global classes for specific uses, e.g., .clear to clear floats, .bold to bold, etc
+ */
+.clear {clear:both;}
+
+/**
+ * Add a selector to the list to add a gradient with the apps default colors
+ */
+header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
+  background: #7C8487; /* old browsers */
+  background: -moz-linear-gradient(top, #7C8487 0%, #51595C 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7C8487), color-stop(100%,#51595C)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7C8487', endColorstr='#51595C',GradientType=0 ); /* ie */
+}
+
+/**
+ * Add selector the list to add a gradient with the apps secondary colors
+ */
+#menu ol ol li a.active, #menu ol ol li a:hover,#menu > ol > li.active,.rightClickMenu li:hover {
+  background: #C7D3DC; /* old browsers */
+  background: -moz-linear-gradient(top, #C7D3DC 0%, #A4B8C4 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C7D3DC), color-stop(100%,#A4B8C4)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C7D3DC', endColorstr='#A4B8C4',GradientType=0 ); /* ie */
+}
+
+/**
+ * Add selector the list to add a gradient with the gray gradient
+ */
+#modal-wrapper a.button {
+  background: #C7D3DC; /* old browsers */
+  background: -moz-linear-gradient(top, #f8f8f8 0%, #d4d4d4 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#d4d4d4)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#d4d4d4',GradientType=0 ); /* ie */
+}
+#modal-wrapper a.button:active {
+  background: #C7D3DC; /* old browsers */
+  background: -moz-linear-gradient(top, #d4d4d4 0%, #f8f8f8 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d4d4d4), color-stop(100%,#f8f8f8)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4d4d4', endColorstr='#f8f8f8',GradientType=0 ); /* ie */
+}
+
+/**
+ * radial black to white gradient (for the modal overlay)
+ */
+#modal-overlay {
+  background:#ccc; /* old browsers */
+  background: -moz-radial-gradient(top, #000 50%, #fff 50%); /* firefox */
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#FFFFFF), to(#000000)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C7D3DC', endColorstr='#A4B8C4',GradientType=0 ); /* ie */
+}
+
+/**
+ * @location Header
+ */
+header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
+  #logo {float:left;margin:4px 0 0 0;}
+  #menu {margin:0 0 0 53px;float:left;}
+  #menu > ol > li{float:left;font-size:14px;position:relative;}
+  #menu > ol > li > a {padding:9px 9px 11px 9px;}
+  #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.9;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
+  #menu ol ol li a{padding:5px;width:190px}
+  #menu a{display:block;color:#d7d7d7;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0;}
+  #menu .active a,#menu ol ol li a:hover {color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
+  #menu .new-nav-group { border-top:1px dotted #C7D3DC }
+
+/**
+ * @location Sidebar
+ */
+#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#c9dde5;border-right:1px solid #90979e;color:#03313e;text-shadow:#fff 0 -1px 0;}
+    #inner-sidebar {padding:25px 0 0 0;}
+    #sidebar h2 {text-transform:uppercase;font-weight:bold;padding:0 10px;font-size:15px;}
+    #sidebar ol {margin:0 0 20px 0;}
+      #sidebar li {cursor:pointer;font-size:14px;padding-left:3px;padding:4px 10px 5px;margin:10px 0;}
+      #sidebar li.active {color:#d7d7d7;text-shadow:#000 0 -1px 0;}
+
+/**
+ * @location Content
+ */
+#editor {font-family:times,"Times New Roman",georgia,serif;}
+  #inner-editor{padding:0 0 0 223px;} /* sidebar width + sidebar border + sidebar padding (outerwidth)*/
+  #preview {padding:55px 0 0 0;}
+  #preview h1,#preview h2,#preview h3,#preview h4,#preview h5,#preview h6 {text-align:center;font-weight:bold;text-transform:uppercase;}
+  #preview h1 {font-size:18px;padding:0 0 3px;}
+  #preview h2 {text-transform:none;font-size:16px;padding:0 0 3px;}
+  #preview h3 {font-size:17px;}
+    #preview h3 span{border-bottom:2px solid #000;}
+  #preview h4 {padding:25px 0 10px;font-size:17px;}
+  #preview h5 {font-size:18px;padding:20px 0 10px 0;}
+  #preview h6 {font-size:16px;text-transform: none;padding:20px 0 10px 0;}
+  #preview .session {}
+  #preview .item {padding:15px 48px 15px;border-bottom:1px solid #000;margin:0 10px 0 5px;cursor:default;}
+  #preview .item p {line-height:21px;}
+  #preview .item.active {background:url(../images/right-arrow.png) no-repeat left center;}
+  #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75) }
+
+/**
+ * @location Footer
+ */
+footer {height:25px;position:fixed;bottom:0;width:100%;}
+  #inner-footer {color:#d7d7d7;text-shadow:#000 0 -1px 0;font-size:12px;padding:5px;}
+
+/**
+ * @location Modal
+ * @note: lock scroll setting, absolute or fixed setting
+ */
+#modal-wrapper {
+  width:560px;
+  position:absolute;
+  border-radius:5px;
+  z-index:999;
+  display:none;
+  z-index:1001;
+  -webkit-box-shadow:rgba(0,0,0,0.5) 0 0 5px;
+  border:2px solid #fff;
+  background:#51595C;
+}
+#modal-wrapper h1 {
+  padding:10px 0 10px;
+  text-align:center;
+  color:#fff;
+  border-radius:5px;
+  font-size:15px;
+  font-weight:bold;
+  text-shadow:#000 0 -1px 0;
+  box-shadow:rgba(0,0,0,0.25) 0 0 3px;
+}
+
+#modal-wrapper p {
+  margin-bottom:12px;
+  color:#313131;
+  text-shadow:#fff 0 -1px 0;
+  font-size:15px;
+}
+
+#modal-wrapper .tab-container {
+  font-size:12px;
+  margin:10px 5px 0;
+}
+  #modal-wrapper .tab-container li {
+    float:left;
+    background:#BABABA;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    border-bottom:none;
+    padding:10px 10px 7px 10px !important;
+    margin:0 3px 0 0;
+    cursor:pointer;
+  }
+  #modal-wrapper .tab-container li.active-tab {
+    background:#f3f3f3;
+  }
+  
+  
+#modal-content {
+  border-radius:5px;
+  margin:0 5px 5px 5px;
+  padding:15px;
+  background:#f3f3f3;
+  overflow:auto;
+}
+
+#modal-wrapper .tab-container + #modal-content {
+  border-top-left-radius:0;
+}
+
+#modal-overlay {position:fixed;width:100%;z-index:1000;top:0;display:none;opacity:0.3;}
+#modal-buttons {display:none;}
+#modal-wrapper label {
+  display:block;
+  color:#555555;
+  text-shadow:#fff 0 -1px 0;
+  font-weight:bold;
+  font-size:14px;
+}
+#modal-wrapper input,#modal-wrapper textarea, #modal-wrapper select {
+  font-size:12px;
+  width:100%;
+  font-family:inherit;
+  margin:5px 0 18px;
+}
+#modal-wrapper input[type=checkbox]{width:auto;margin:0;}
+#modal-wrapper input[type=checkbox]+label{display:inline;}
+
+#modal-wrapper .col1 input,#modal-wrapper .col2 input{}
+#modal-wrapper .col1,#modal-wrapper .col2 {width:250px;float:left;font-size:12px;margin:10px 0 0 0;}
+#modal-wrapper .col1 {margin:10px 10px 0 0;}
+#modal-wrapper ul {margin:0 0 10px 0;}
+#modal-wrapper li {padding:5px 0;}
+#modal-wrapper textarea {
+  height:125px;
+}
+#modal-wrapper .e404 {color:#8C0101;line-height:21px;padding:0 0 15px 0;}
+#modal-wrapper a.button{
+  width:77px;
+  padding:6px 10px 8px;
+  color:#424242;
+  border:1px solid #ababab;
+  border-radius:3px;
+  text-shadow:#fff 0 1px 0;
+  font-size:14px;
+  margin:0 0 5px 10px;
+  float:right;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+
+
+#owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
+
+/**
+ * @location Right Click Menu
+ */
+.rightClickMenu {
+  background:rgba(250,250,250,0.95);
+  padding:1px 1px;
+  border-radius:3px;
+  -webkit-box-shadow:rgba(0,0,0,0.25) 0 0 5px;
+  -moz-box-shadow:rgba(0,0,0,0.25) 0 0 5px;
+  font-size:12px;
+  border:1px solid #ccc;
+}
+.rightClickMenu li {
+  padding:5px 10px 5px 25px;
+  cursor:pointer;
+  position:relative;
+}
+.rightClickMenu li img,.rightClickMenu li span {position:relative;padding:0 5px 0 0;top:3px;margin:0;position:absolute;left:5px;}
