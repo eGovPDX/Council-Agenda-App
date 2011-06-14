@@ -69,8 +69,8 @@ header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
 /**
  * @location Header
  */
-header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
-  #logo {float:left;margin:3px 0 0 0;height:24px;color:#d7d7d7;text-shadow:#000 0 -1px 0;padding:8px 0 0 37px;background:url(../images/logo.png) no-repeat;}
+header {padding:0 10px 0 0;position:fixed;top:0;width:100%;}
+  #logo {float:left; height:34px; width: 206px;background:url('../images/pdx-cc-logo.png'); margin: 2px;}
   #menu {margin:0 0 0 53px;float:left;}
   #menu > ol > li{float:left;font-size:14px;position:relative;}
   /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
