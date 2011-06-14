@@ -70,10 +70,11 @@ header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
  * @location Header
  */
 header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
-  #logo {float:left;margin:4px 0 0 0;}
+  #logo {float:left;margin:3px 0 0 0;height:24px;color:#d7d7d7;text-shadow:#000 0 -1px 0;padding:8px 0 0 37px;background:url(../images/logo.png) no-repeat;}
   #menu {margin:0 0 0 53px;float:left;}
   #menu > ol > li{float:left;font-size:14px;position:relative;}
-  #menu > ol > li > a {padding:9px 9px 11px 9px;}
+  /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
+  #menu > ol > li > a {padding:12px 9px 13px 9px;}
   #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.9;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
   #menu ol ol li a{padding:5px;width:190px}
   #menu a{display:block;color:#d7d7d7;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0;}
@@ -83,7 +84,7 @@ header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
 /**
  * @location Sidebar
  */
-#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#c9dde5;border-right:1px solid #90979e;color:#03313e;text-shadow:#fff 0 -1px 0;}
+#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#c9dde5;border-right:1px solid #90979e;color:#03313e;text-shadow:#fff 0 -1px 0;overflow-y:auto;}
     #inner-sidebar {padding:25px 0 0 0;}
     #sidebar h2 {text-transform:uppercase;font-weight:bold;padding:0 10px;font-size:15px;}
     #sidebar ol {margin:0 0 20px 0;}
@@ -95,7 +96,7 @@ header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
  */
 #editor {font-family:times,"Times New Roman",georgia,serif;}
   #inner-editor{padding:0 0 0 223px;} /* sidebar width + sidebar border + sidebar padding (outerwidth)*/
-  #preview {padding:55px 0 0 0;}
+  #preview {padding:63px 0 0 0;}
   #preview h1,#preview h2,#preview h3,#preview h4,#preview h5,#preview h6 {text-align:center;font-weight:bold;text-transform:uppercase;}
   #preview h1 {font-size:18px;padding:0 0 3px;}
   #preview h2 {text-transform:none;font-size:16px;padding:0 0 3px;}
@@ -195,6 +196,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
   font-family:inherit;
   margin:5px 0 18px;
 }
+#modal-wrapper select { padding:1px 0; }
 #modal-wrapper input[type=checkbox]{width:auto;margin:0;}
 #modal-wrapper input[type=checkbox]+label{display:inline;}
 
@@ -209,7 +211,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
 #modal-wrapper .e404 {color:#8C0101;line-height:21px;padding:0 0 15px 0;}
 #modal-wrapper a.button{
   width:77px;
-  padding:6px 10px 8px;
+  padding:8px 10px;
   color:#424242;
   border:1px solid #ababab;
   border-radius:3px;
@@ -224,6 +226,18 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
 
 
 #owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
+
+#item-file-upload-form [type=file] { width:200px; }
+
+.button.upload { font-size:12px !important; padding:5px 0px 4px !important; float:none !important; margin:0 0 5px 0 !important; }
+
+#item-file-list { font-size:13px; list-style:disc; padding:0 0 0 12px; color:#313131; text-shadow:#fff 0 -1px 0; }
+
+  #item-file-list li {  }
+    #item-file-list li span { color:#E47566; cursor:pointer; }
+    #item-file-list li span:hover { color:#E42014; }
+    #item-file-list li a { text-decoration:none; color:#51595c; }
+    #item-file-list li a:hover { text-decoration:underline; }
 
 /**
  * @location Right Click Menu

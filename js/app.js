@@ -504,6 +504,76 @@ var app = function(){
 				});
 			}
 			
+			else if(settings.type == 'file'){
+				//FIX ACTION TO ACCEPT GET OF FILE
+				var defaultFileData = {
+					"action":'updateitemfile',
+					"item_id":settings.id
+				}
+				
+				if(settings.action == 'delete'){
+					delete defaultFileData.item_id;
+					defaultFileData.item_file_id = settings.id;
+					defaultFileData['delete'] = 'yes';
+					
+					$.ajax({
+						type:'POST',
+						url:settings.baseURL,
+						cache:false,
+						dataType:'json',
+						data:defaultFileData,
+						complete:function(json){
+							callback.call(this,JSON.parse(json.responseText));
+						}
+					});
+					
+				}
+				else{
+					$(settings.selector) //This makes sure the form is setup correctly
+						.find('[type=file]').attr('name','binary')
+					.end()
+					.attr('enctype','multipart/form-data')
+					.attr('method','post')
+					.attr('ACTION',settings.baseURL+'action='+defaultFileData.action+'&item_id='+defaultFileData.item_id)
+					.attr('target','item-file-uploader-frame')
+					.append('<iframe src="" style="display:none" id="item-file-uploader-temp-frame" name="item-file-uploader-frame">')
+					.submit();
+					
+					
+					$('[name=item-file-uploader-frame]').one('load',function(){
+						app().api({
+							action:'get',
+							type:'item',
+							id:settings.id
+						},function(json){
+							callback.call(this,json[0].files);
+							$('#item-file-uploader-temp-frame').remove();
+							$(settings.selector).find('[type=file]').val('');
+						});
+						
+					});
+				}
+				
+				
+			}
+			//Files (plural) is much different than file!
+			//There is no specific way to get all files for an item without grabbing the item.
+			//This is really just an alias
+			else if(settings.type == 'files'){
+				app().api({
+					action:'get',
+					type:'item',
+					id:settings.id
+				},function(json){
+					if(typeof json[0].files == 'string'){
+						callback.call(this,[]);
+					}
+					else{
+						callback.call(this,json[0].files);
+					}
+				});
+			}
+			
 			else{
 				console.error('Wrong type specified')
 			}

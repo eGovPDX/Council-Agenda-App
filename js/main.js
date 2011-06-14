@@ -6,6 +6,7 @@ $(function(){
   
   //GLOBAL VARS!
   var TEMPLATE_PATH = 'templates/';
+  var API_PATH = 'io.cfm';
   
   var dataStore = function(key,value){
     key = key || '';
@@ -386,6 +387,19 @@ $(function(){
                       if(json[0].emergency == 1){
                         modal.find('[name=emergency-item]').attr('checked','checked');
                       }
+                      
+                      
+                      app().api({
+                        action:'get',
+                        type:'files',
+                        id:dataStore('active-item')
+                      },function(json){
+                        for(x in json){
+                          var itemHTML = $.template($('#item-file-list-template').html(),{ id: json[x].item_file_id, name: json[x].file_name})
+                          $('#item-file-list').append(itemHTML);
+                        }
+                      });
+                      
                     }
                     
                     
@@ -538,6 +552,40 @@ $(function(){
       });
       
       /**
+       * The uploader
+       */
+      $('body').delegate('[href^="#!/edit/upload"]','click',function(){
+        app().api({
+          action:'create',
+          type:'file',
+          selector:'#item-file-upload-form',
+          id:dataStore('active-item')
+        },function(json){
+          $('#item-file-list').empty();
+          for(x in json){
+            var itemHTML = $.template($('#item-file-list-template').html(),{ id: json[x].item_file_id, name: json[x].file_name})
+            $('#item-file-list').append(itemHTML);
+          }
+        });
+      });
+      
+      /**
+       * Triggers delete of file
+       */
+      $('body').delegate('.delete-item','click',function(){
+        var $this = $(this);
+        if(confirm("Are you sure you want to delete this file?")){
+          app().api({
+            type:'file',
+            action:'delete',
+            id:$this.parent().attr('id').split('-')[1]
+          },function(){
+            $this.parent().fadeOut(150,function(){ $this.parent().remove() });
+          });
+        }
+      });
+      
+      /**
        * Simple URL bookmarking function. If the hash is changed (like, going back/forward, entering in a URL manually, etc)
        * First checks for a hash containing agenda, if so, checks that the ID following isnt blank then lastly checks
        * to make sure the current agenda displayed isn't the same as the one in the URL
@@ -561,7 +609,7 @@ $(function(){
           content:html,
           onLoad:function(modal){
             setTimeout(function(){
-              window.location = 'http://dev.portlandonline.com?login=1&c=53490';
+              window.location = 'http://dev.portlandonline.com/apps/external/redir.cfm?sendTo=dev.portlandonline.com/councilagenda';
             },2000)
           }
         });
