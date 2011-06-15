@@ -9,11 +9,11 @@
   </head>
   <body>
     <header>
-      <h1 id="logo">PDXCouncilConnect</h1>
+      <h1 id="logo"></h1>
       <nav id="menu">
         <ol>
           <li>
-            <a href="#!/file" class="button-file">File</a>
+            <a href="#!/file" class="button file">File</a>
             <ol>
             	<li><a class="test" href="#!/file/new-agenda">New Agenda</a></li>
             	<li><a href="#!/file/new-session">New Session</a></li>
@@ -22,7 +22,7 @@
             </ol>
           </li>
           <li>
-            <a href="#!/edit" class="button-edit">Edit</a>
+            <a href="#!/edit" class="button edit">Edit</a>
             <ol>
 				<li><a href="#!/edit/edit-item">Edit Item</a></li>
 				<li><a href="#!/edit/edit-session">Edit Session</a></li>
