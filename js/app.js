@@ -10,7 +10,6 @@
  * makeActive (makes the current item have a "active" state)
  * debug (easy way to call an alert or console log)
  */
-
 var app = function(){
   var _settings = {
     templatePath: 'templates/'
@@ -56,7 +55,8 @@ var app = function(){
 		 * @returns N/A
 		 */
 		generateAgendaHTML: function(agenda_id,callback){
-			$.get('io.cfm?action=getagenda&agenda_id='+agenda_id+'&include_items=1',function(json){
+			//The Math.random() and uID is to make sure IE doesn't cache anything!
+			$.get('io.cfm?action=getagenda&agenda_id='+agenda_id+'&include_items=1&uID='+Math.round(Math.random()*1000),function(json){
 				//Save "json" to be worked with in any sub scope
 				//var json = json;
 				console.log('Main JSON loaded...');
@@ -218,7 +218,7 @@ var app = function(){
 							.css({
 								height:$(window).height()+'px'
 							})
-							.fadeIn(settings.animationSpeed)
+							.fadeTo(settings.animationSpeed,0.3)
 							
             .siblings(modalWrapper)
 							.find('#modal-content')
@@ -231,11 +231,10 @@ var app = function(){
 								top:(($(window).height()/2-$(modalWrapper).outerHeight()/2)+$(window).scrollTop())+'px'
 							})
 							.delay(settings.animationSpeed).fadeIn(settings.animationSpeed,function(){
-								
-								$(window).bind('keyup.modal',function(e){
+								$(document).bind('keyup.modal',function(e){
 									if(e.keyCode == 27){
 										app().modal('close');
-										$(window).unbind('keyup.modal');
+										$(document).unbind('keyup.modal');
 									}
 								});
 								
@@ -536,7 +535,7 @@ var app = function(){
 					.attr('method','post')
 					.attr('ACTION',settings.baseURL+'action='+defaultFileData.action+'&item_id='+defaultFileData.item_id)
 					.attr('target','item-file-uploader-frame')
-					.append('<iframe src="" style="display:none" id="item-file-uploader-temp-frame" name="item-file-uploader-frame">')
+					.append('<iframe src="" style="display:none;" id="item-file-uploader-temp-frame" name="item-file-uploader-frame">')
 					.submit();
 					
 					
