@@ -68,17 +68,23 @@ header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
 /**
  * @location Header
  */
-header {padding:0 10px 0 10px;position:fixed;top:0;width:100%;}
-  #logo {float:left;margin:3px 0 0 0;height:24px;color:#d7d7d7;text-shadow:#000 0 -1px 0;padding:8px 0 0 37px;background:url(../images/logo.png) no-repeat;}
+header {padding:0 10px 0 0;position:fixed;top:0;width:100%;}
+  #logo {float:left; height:34px; width: 206px;background:url('../images/pdx-cc-logo.png'); margin: 2px;}
   #menu {margin:0 0 0 53px;float:left;}
   #menu > ol > li{float:left;font-size:14px;position:relative;}
   /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
   #menu > ol > li > a {padding:12px 9px 13px 9px;}
   #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.9;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
   #menu ol ol li a{padding:5px;width:190px}
-  #menu a{display:block;color:#d7d7d7;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0;}
+  #menu a{display:block;color:#d7d7d7;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0; border-left: 1px solid #666;}
   #menu .active a,#menu ol ol li a:hover {color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
   #menu .new-nav-group { border-top:1px dotted #C7D3DC }
+
+  /* UI Tweaks */
+  #menu a{cursor:pointer;}
+  #menu a:hover{background-color: #666;}
+  #menu a.button.file{}
+  #menu a.button.edit{border-right: 1px solid #666;}
 
 /**
  * @location Sidebar

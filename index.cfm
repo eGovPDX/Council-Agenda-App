@@ -13,24 +13,24 @@
       <nav id="menu">
         <ol>
           <li>
-            <a href="#!/file">File</a>
+            <a href="#!/file" class="button-file">File</a>
             <ol>
-              <li><a class="test" href="#!/file/new-agenda">New Agenda</a></li>
-              <li><a href="#!/file/new-session">New Session</a></li>
-              <li><a href="#!/file/new-item">New Item</a></li>
-							<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
+            	<li><a class="test" href="#!/file/new-agenda">New Agenda</a></li>
+            	<li><a href="#!/file/new-session">New Session</a></li>
+            	<li><a href="#!/file/new-item">New Item</a></li>
+				<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
             </ol>
           </li>
           <li>
-            <a href="#!/edit">Edit</a>
+            <a href="#!/edit" class="button-edit">Edit</a>
             <ol>
-							 <li><a href="#!/edit/edit-item">Edit Item</a></li>
-							 <li><a href="#!/edit/edit-session">Edit Session</a></li>
-							 <li><a href="#!/edit/edit-agenda">Edit Agenda</a></li>
-							 <li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
-							 <li><a href="#!/edit/delete-session">Delete Session</a></li>
-							 <li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
-							 <li class="new-nav-group"><a href="#!/menu/edit/unpublish-agenda">Unpublish Agenda</a></li>
+				<li><a href="#!/edit/edit-item">Edit Item</a></li>
+				<li><a href="#!/edit/edit-session">Edit Session</a></li>
+				<li><a href="#!/edit/edit-agenda">Edit Agenda</a></li>
+				<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
+				<li><a href="#!/edit/delete-session">Delete Session</a></li>
+				<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
+				<li class="new-nav-group"><a href="#!/menu/edit/unpublish-agenda">Unpublish Agenda</a></li>
             </ol>
           </li>
         </ol>
