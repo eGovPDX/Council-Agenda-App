@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h1 id="logo">PDXCouncilConnect</h1>
+      <h1 id="logo"></h1>
       <nav id="menu">
         <ol>
           <li>
