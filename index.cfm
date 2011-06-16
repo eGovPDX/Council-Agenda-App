@@ -1,3 +1,5 @@
+<cfset Request.css = "/4c.css">
+<cfmodule name="4C.screenLogin" datasource="4C" force="yes" nt_tip="no">
 <cfsetting showdebugoutput="no">
 <!DOCTYPE html>
 <html>
@@ -36,8 +38,8 @@
 					<li>
 						<a href="#!/help" class="button help">Help</a>
 						<ol>
-							 <li><a href="#!/help/docs">Documentation</a></li>
-							 <li class="new-nav-group"><a href="#!/help/report">Report an Issue</a></li>
+							 <li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
+							 <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
 						</ol>
 					</li>
 					<li><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
@@ -49,17 +51,18 @@
       <div id="inner-sidebar">
         <h2>Drafts</h2>
         <ol id="draft-agendas">
-          
+
         </ol>
         <h2>Published</h2>
         <ol id="published-agendas">
-          
+
         </ol>
       </div>
     </section>
     <section id="editor">
       <div id="inner-editor"> <!-- extra div to get rid of the scrollbars when the outermost element is 100% of the window + padding -->
 				 <div id="preview">
+
 						<!--
 						 <h1>Portland City Council Agenda</h1>
 						 <h2>City Hall - 1221 SW Fourth Avenue</h2>
@@ -81,23 +84,24 @@
         <p>Information would go down here...</p>
       </div>
     </footer>
-		
+
 		<!-- This script includes code so the rest of the code works on older browsers -->
 		<script src="js/legacy-patches.js"></script>
-		
+
 		<!-- Below are some mini JS templates that are too small to be considered an include -->
 		<script type="js-template" id="sidebar-item-template">
 			<li id="agendaNav-{{agendaID}}">{{createdDate}}</li>
 		</script>
-		
+
 		<script type="js-template" id="item-file-list-template">
 			<li id="item-{{id}}">
 				 <a target="_blank" href="io.cfm?action=getitemfile&item_file_id={{id}}">{{name}}</a> <span class="delete-item">[x]</span>
 			</li>
 		</script>
-		
+
     <script src="js/jquery-1.4.4.js"></script>
     <script src="js/jquery.rightclick.js"></script>
+		<script src="js/date.format.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
