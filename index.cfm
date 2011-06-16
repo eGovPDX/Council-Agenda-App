@@ -1,4 +1,4 @@
-<cfset Request.css = "/4c.css">
+<cfset Request.css = "css/login.css">
 <cfmodule name="4C.screenLogin" datasource="4C" force="yes" nt_tip="no">
 <cfsetting showdebugoutput="no">
 <!DOCTYPE html>
