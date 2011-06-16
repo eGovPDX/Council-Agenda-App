@@ -123,10 +123,10 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
 #sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#565656;border-top:1px solid #898989;border-right:1px solid #000000;color:#EFEFEF;text-shadow:#000000 0 -1px 0;overflow-y:auto;}
     #inner-sidebar {padding:25px 0 0 0;}
     #sidebar h2 {text-transform:uppercase;font-weight:bold;padding:0 10px;font-size:15px;}
-    #sidebar ol {margin:0 0 20px 0;}
-      #sidebar li {cursor:pointer;font-size:14px;padding-left:3px;padding:4px 10px 5px;margin:10px 0;}
+    #sidebar ol {margin:0 0 25px 0;}
+      #sidebar li {cursor:pointer;font-size:14px;padding-left:3px;padding:4px 22px 5px;margin:10px 0;}
       #sidebar li.active {color:#fff;text-shadow:#000 0 -1px 0;}
-
+      
 /**
  * @location Content
  */
