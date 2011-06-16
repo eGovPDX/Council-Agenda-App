@@ -49,7 +49,7 @@ header,footer, nav ol ol,#modal-wrapper h1{
 }
 
 /**
- * Add selector the list to add a gradient with the gray gradient
+ * Add selector the list to add a gradient with the gray gradient 
  */
 #modal-wrapper a.button {
   background: #C7D3DC; /* old browsers */
