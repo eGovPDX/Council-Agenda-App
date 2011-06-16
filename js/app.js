@@ -665,6 +665,9 @@ Object.size = function(obj) {
     return size;
 };
 
+/**
+ * Proxy function to make dateFormat work in IE8 and also with Coldfusion dates
+ */
 var formatDate = function(date,mask){
 	return dateFormat(new Date(date.split('.')[0].replace(/-/g,'/')),mask);
 }
