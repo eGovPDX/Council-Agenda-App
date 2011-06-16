@@ -152,6 +152,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
  */
 footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000;}
   #inner-footer {color:#d7d7d7;text-shadow:#000 0 -1px 0;font-size:12px;padding:5px;}
+  #inner-footer .small-loader { position:relative;top:2px; }
 
 /**
  * @location Modal
@@ -230,10 +231,12 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 }
 #modal-wrapper input,#modal-wrapper textarea, #modal-wrapper select {
   font-size:12px;
-  width:100%;
   font-family:inherit;
   margin:5px 0 18px;
 }
+
+#modal-wrapper [name=heading],#modal-wrapper textarea,.disposition-title{ width:100%; }
+
 #modal-wrapper select { padding:1px 0; }
 #modal-wrapper input[type=checkbox]{width:auto;margin:0;}
 #modal-wrapper input[type=checkbox]+label{display:inline;}
@@ -276,6 +279,8 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
     #item-file-list li span:hover { color:#E42014; }
     #item-file-list li a { text-decoration:none; color:#51595c; }
     #item-file-list li a:hover { text-decoration:underline; }
+
+.motion-status {display:none !important;}
 
 /**
  * @location Right Click Menu

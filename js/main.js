@@ -6,6 +6,7 @@ $(function(){
   
   //GLOBAL VARS!
   var TEMPLATE_PATH = 'templates/';
+  var BASE_URL = window.location.href.split('/#!/')[0];
   var API_PATH = 'io.cfm';
   
   var dataStore = function(key,value){
@@ -60,7 +61,7 @@ $(function(){
       }
       
       var displayAgenda = function(agendaID){
-        app().messageBar('Loading agenda... '+agendaID).generateAgendaHTML(agendaID,function(html){
+        app().messageBar('Loading agenda '+agendaID+' <img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">').generateAgendaHTML(agendaID,function(html){
           if(html.error !== '404'){
             
             app().updateURL('agenda/'+agendaID);
@@ -349,6 +350,7 @@ $(function(){
           });
         },
         "update"  : function(type,id){
+          app().messageBar('Opening '+type+' '+id+' <img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">');
           $.get(TEMPLATE_PATH+'new-'+type+'.html',function(html){
             var initModal = function(){
               app().api({
@@ -361,6 +363,8 @@ $(function(){
                   content:html,
                   title:'Edit '+type.capitalize(),
                   onLoad:function(modal){
+                    
+                    app().messageBar('Finished loading '+type+' '+id);
                     
                     if(type == 'agenda'){
                       modal.find('[name=title]').val(json[0].title);
@@ -497,6 +501,16 @@ $(function(){
         app().makeActive($(this),$('#editor'));
         dataStore('active-item',$('.item.active').attr('id').split('-')[1]);
         dataStore('active-session',$('.item.active').closest('.session').attr('id').split('-')[1]);
+      });
+      
+      
+      $('body').delegate('select.motion-type','change',function(){
+        if($(this).val() == 'Vote on Motion'){
+          $('.motion-status').css({display:'block !important'});
+        }
+        else{
+          $('.motion-status').css({display:'none !important'});
+        }
       });
       
       /**
