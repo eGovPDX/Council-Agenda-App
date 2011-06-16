@@ -1,6 +1,11 @@
-<cfset Request.css = "/4c.css">
+<cfset Request.css = "css/login.css">
 <cfmodule name="4C.screenLogin" datasource="4C" force="yes" nt_tip="no">
 <cfsetting showdebugoutput="no">
+<!--- Force POL Login --->
+<cf_udf_isUserAuthenticated>
+<cfif not Request.udf_isUserAuthenticated()>
+	<cf_polwrapper site_id="7" c="25777" force="yes" nt_tip="no"></cf_polwrapper>
+</cfif>
 <!DOCTYPE html>
 <html>
   <head>
