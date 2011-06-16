@@ -23,15 +23,28 @@ a:focus { outline:1px dotted #5AD7FF; }
 /**
  * Add a selector to the list to add a gradient with the apps default colors
  */
-header,footer, nav ol ol,#modal-wrapper h1{
+header, nav ol ol{
   background: #2c2d2f; /* Old browsers */
   background: -moz-linear-gradient(top, #2c2d2f 0%, #3e3f42 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c2d2f), color-stop(100%,#3e3f42)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* Opera11.10+ */
   background: -ms-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c2d2f', endColorstr='#3e3f42',GradientType=0 ); /* IE6-9 */
   background: linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* W3C */
+}
+
+/**
+ * Add a selector to the list to add a gradient with the apps reverse gradient of previous
+ */
+#modal-wrapper h1,footer {
+  background: #3e3f42; /* Old browsers */
+  background: -moz-linear-gradient(top, #3e3f42 0%, #2c2d2f 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3e3f42), color-stop(100%,#2c2d2f)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e3f42', endColorstr='#2c2d2f',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* W3C */
 }
 
 /**
@@ -52,16 +65,24 @@ header,footer, nav ol ol,#modal-wrapper h1{
  * Add selector the list to add a gradient with the gray gradient
  */
 #modal-wrapper a.button {
-  background: #C7D3DC; /* old browsers */
-  background: -moz-linear-gradient(top, #f8f8f8 0%, #d4d4d4 100%); /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#d4d4d4)); /* webkit */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#d4d4d4',GradientType=0 ); /* ie */
+  background: #5b5b5b; /* Old browsers */
+  background: -moz-linear-gradient(top, #5b5b5b 0%, #2c2d2f 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5b5b5b), color-stop(100%,#2c2d2f)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b5b5b', endColorstr='#2c2d2f',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* W3C */
 }
 #modal-wrapper a.button:active {
-  background: #C7D3DC; /* old browsers */
-  background: -moz-linear-gradient(top, #d4d4d4 0%, #f8f8f8 100%); /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d4d4d4), color-stop(100%,#f8f8f8)); /* webkit */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4d4d4', endColorstr='#f8f8f8',GradientType=0 ); /* ie */
+  background: #2c2d2f; /* Old browsers */
+  background: -moz-linear-gradient(top, #2c2d2f 0%, #5b5b5b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c2d2f), color-stop(100%,#5b5b5b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c2d2f', endColorstr='#5b5b5b',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* W3C */
 }
 
 /**
@@ -229,10 +250,10 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 #modal-wrapper a.button{
   width:77px;
   padding:8px 10px;
-  color:#424242;
-  border:1px solid #ababab;
+  color:#fff;
+  border:1px solid #000;
   border-radius:3px;
-  text-shadow:#fff 0 1px 0;
+  text-shadow:#000 0 1px 0;
   font-size:14px;
   margin:0 0 5px 10px;
   float:right;

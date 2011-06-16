@@ -31,6 +31,7 @@ $(function(){
           var agendaID
           ,   itemHTML = '';
           $('#draft-agendas,#published-agendas').empty();
+          json.reverse();
           for(x in json){
             var selector = '#draft-agendas';
             if(json[x].status == 2){
@@ -39,7 +40,7 @@ $(function(){
             agendaID = json[x].agenda_id;
             itemHTML = $.template($('#sidebar-item-template').html(),{
               "agendaID":agendaID,
-              "createdDate":json[x].created_date
+              "createdDate":dateFormat(json[x].created_date,"mmmm dd, yyyy")
             })
             $(selector).append(itemHTML);
             
