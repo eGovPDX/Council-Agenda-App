@@ -23,21 +23,29 @@ a:focus { outline:1px dotted #5AD7FF; }
 /**
  * Add a selector to the list to add a gradient with the apps default colors
  */
-header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
-  background: #7C8487; /* old browsers */
-  background: -moz-linear-gradient(top, #7C8487 0%, #51595C 100%); /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7C8487), color-stop(100%,#51595C)); /* webkit */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7C8487', endColorstr='#51595C',GradientType=0 ); /* ie */
+header,footer, nav ol ol,#modal-wrapper h1{
+  background: #2c2d2f; /* Old browsers */
+  background: -moz-linear-gradient(top, #2c2d2f 0%, #3e3f42 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c2d2f), color-stop(100%,#3e3f42)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c2d2f', endColorstr='#3e3f42',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* W3C */
 }
 
 /**
  * Add selector the list to add a gradient with the apps secondary colors
  */
-#menu ol ol li a.active, #menu ol ol li a:hover,#menu > ol > li.active,.rightClickMenu li:hover {
-  background: #C7D3DC; /* old browsers */
-  background: -moz-linear-gradient(top, #C7D3DC 0%, #A4B8C4 100%); /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C7D3DC), color-stop(100%,#A4B8C4)); /* webkit */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C7D3DC', endColorstr='#A4B8C4',GradientType=0 ); /* ie */
+#menu ol ol li a.active, #menu ol .active a:hover, #menu ol ol li a:hover,#menu > ol > li.active,.rightClickMenu li:hover,#sidebar li.active {
+  background: #499bea !important; /* Old browsers */
+  background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%) !important; /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)) !important; /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ) !important; /* IE6-9 */
+  background: linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* W3C */
 }
 
 /**
@@ -60,42 +68,43 @@ header,footer, #sidebar li.active,nav ol ol,#modal-wrapper h1{
  * radial black to white gradient (for the modal overlay)
  */
 #modal-overlay {
-  background:#ccc; /* old browsers */
-  background: -moz-radial-gradient(top, #000 50%, #fff 50%); /* firefox */
+  background:#000; /* old browsers */
+  background: -moz-radial-gradient(center 45deg, circle closest-side, #fff 0%, #000 100%);
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#FFFFFF), to(#000000)); /* webkit */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C7D3DC', endColorstr='#A4B8C4',GradientType=0 ); /* ie */
 }
 
 /**
  * @location Header
  */
-header {padding:0 10px 0 0;position:fixed;top:0;width:100%;}
-  #logo {float:left; height:34px; width: 206px;background:url('../images/pdx-cc-logo.png'); margin: 2px;}
-  #menu {margin:0 0 0 53px;float:left;}
-  #menu > ol > li{float:left;font-size:14px;position:relative;}
+header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px solid #000;}
+  #logo {float:right; height:31px; width: 206px;background:url('../images/pdx-cc-logo.png'); margin: 2px;}
+  #menu {margin:0 0 0 5px;float:left;}
+  #menu > ol > li{float:left;font-size:13px;position:relative;}
   /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
-  #menu > ol > li > a {padding:12px 9px 13px 9px;}
-  #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.9;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
+  #menu > ol > li > a {padding:11px 9px 11px 9px;}
+  #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.95;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
   #menu ol ol li a{padding:5px;width:190px}
-  #menu a{display:block;color:#d7d7d7;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0; border-left: 1px solid #666;}
-  #menu .active a,#menu ol ol li a:hover {color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
+  #menu a{display:block;color:#fff;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0; /*border-left: 1px solid #666;*/}
+  #menu .active a,#menu ol ol .active a:hover { color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
   #menu .new-nav-group { border-top:1px dotted #C7D3DC }
+  #menu img { position:relative;width:24px;height:auto;top:5px;margin:0 0 0 10px; }
+  #menu .active img { background:none !important; }
 
   /* UI Tweaks */
   #menu a{cursor:pointer;}
-  #menu a:hover{background-color: #666;}
+  #menu a:hover{background: #333;}
   #menu a.button.file{}
-  #menu a.button.edit{border-right: 1px solid #666;}
+  /*#menu a.button.edit{border-right: 1px solid #666;}*/
 
 /**
  * @location Sidebar
  */
-#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#c9dde5;border-right:1px solid #90979e;color:#03313e;text-shadow:#fff 0 -1px 0;overflow-y:auto;}
+#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#565656;border-top:1px solid #898989;border-right:1px solid #000000;color:#EFEFEF;text-shadow:#000000 0 -1px 0;overflow-y:auto;}
     #inner-sidebar {padding:25px 0 0 0;}
     #sidebar h2 {text-transform:uppercase;font-weight:bold;padding:0 10px;font-size:15px;}
     #sidebar ol {margin:0 0 20px 0;}
       #sidebar li {cursor:pointer;font-size:14px;padding-left:3px;padding:4px 10px 5px;margin:10px 0;}
-      #sidebar li.active {color:#d7d7d7;text-shadow:#000 0 -1px 0;}
+      #sidebar li.active {color:#fff;text-shadow:#000 0 -1px 0;}
 
 /**
  * @location Content
@@ -120,7 +129,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;}
 /**
  * @location Footer
  */
-footer {height:25px;position:fixed;bottom:0;width:100%;}
+footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000;}
   #inner-footer {color:#d7d7d7;text-shadow:#000 0 -1px 0;font-size:12px;padding:5px;}
 
 /**
@@ -136,7 +145,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
   z-index:1001;
   -webkit-box-shadow:rgba(0,0,0,0.5) 0 0 5px;
   border:2px solid #fff;
-  background:#51595C;
+  background:#2D2D2D;
 }
 #modal-wrapper h1 {
   padding:10px 0 10px;
@@ -144,7 +153,9 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
   color:#fff;
   border-radius:5px;
   font-size:15px;
+  font-size:17px\9;
   font-weight:bold;
+  font-weight:normal\9;
   text-shadow:#000 0 -1px 0;
   box-shadow:rgba(0,0,0,0.25) 0 0 3px;
 }
@@ -187,7 +198,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;}
   border-top-left-radius:0;
 }
 
-#modal-overlay {position:fixed;width:100%;z-index:1000;top:0;display:none;opacity:0.3;}
+#modal-overlay {position:fixed;width:100%;z-index:1000;top:0;display:none;/*opacity:0.3;filter:alpha(opacity=30)*/}
 #modal-buttons {display:none;}
 #modal-wrapper label {
   display:block;
