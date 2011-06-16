@@ -36,8 +36,8 @@
 					<li>
 						<a href="#!/help" class="button help">Help</a>
 						<ol>
-							 <li><a href="#!/help/docs">Documentation</a></li>
-							 <li class="new-nav-group"><a href="#!/help/report">Report an Issue</a></li>
+							 <li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
+							 <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
 						</ol>
 					</li>
 					<li><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
@@ -98,6 +98,7 @@
 		
     <script src="js/jquery-1.4.4.js"></script>
     <script src="js/jquery.rightclick.js"></script>
+		<script src="js/date.format.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>

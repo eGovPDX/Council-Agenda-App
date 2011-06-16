@@ -84,7 +84,7 @@ var app = function(){
 								newHTML = newHTML+'<h2>'+sessionLocation+'</h2>';
 							}
 							if(sessionTime !== theSessions[x].start_date){
-								sessionTime = theSessions[x].start_date;
+								sessionTime = dateFormat(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
 								newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
 							}
 							
