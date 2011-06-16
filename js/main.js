@@ -609,7 +609,7 @@ $(function(){
           content:html,
           onLoad:function(modal){
             setTimeout(function(){
-              window.location = 'http://dev.portlandonline.com/apps/external/redir.cfm?sendTo=dev.portlandonline.com/councilagenda';
+              window.location = 'http://dev.portlandonline.com?login=1&c=53490';
             },2000)
           }
         });

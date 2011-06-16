@@ -531,8 +531,8 @@ var app = function(){
 					$(settings.selector) //This makes sure the form is setup correctly
 						.find('[type=file]').attr('name','binary')
 					.end()
-					.attr('enctype','multipart/form-data')
-					.attr('method','post')
+					//.attr('enctype','multipart/form-data')
+					//.attr('method','post')
 					.attr('ACTION',settings.baseURL+'action='+defaultFileData.action+'&item_id='+defaultFileData.item_id)
 					.attr('target','item-file-uploader-frame')
 					.append('<iframe src="" style="display:none;" id="item-file-uploader-temp-frame" name="item-file-uploader-frame">')
