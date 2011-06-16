@@ -40,7 +40,7 @@ $(function(){
             agendaID = json[x].agenda_id;
             itemHTML = $.template($('#sidebar-item-template').html(),{
               "agendaID":agendaID,
-              "createdDate":dateFormat(json[x].created_date,"mmmm dd, yyyy")
+              "createdDate":formatDate(json[x].created_date,"mmmm dd, yyyy")
             })
             $(selector).append(itemHTML);
             

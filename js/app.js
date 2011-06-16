@@ -84,7 +84,7 @@ var app = function(){
 								newHTML = newHTML+'<h2>'+sessionLocation+'</h2>';
 							}
 							if(sessionTime !== theSessions[x].start_date){
-								sessionTime = dateFormat(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
+								sessionTime = formatDate(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
 								newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
 							}
 							
@@ -665,33 +665,6 @@ Object.size = function(obj) {
     return size;
 };
 
-var formatDate = function(date,type){
-	/**
-	 * TEMPLATING API
-	 *
-	 * Time:
-	 * {{hour(military|long|short)}} = 13 | 01 | 1
-	 * {{min}}
-	 * {{sec}}
-	 * {{ampm(long|short)}} = AM/PM | A.M./P.M.
-	 *
-	 * Date:
-	 * {{year(long|short)}}
-	 * {{month(long|short)}}
-	 * {{day}}
-	 * {{weekday(long|short)}}
-	 */
-	defaulTemplate = '{{weekday(long)}}, {{hour(long)}}:{{min}} {{ampm(short)}}, {{month(long)}} {{day}}, {{year(long)}}'
-	type = type||"short";
-	month = {'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'}
-	//var dates = date.match(/([\d])+/g);
-	if(type == "short"){
-		//return month[dates[1]]+' '+dates[2];
-	}
-	else{
-		//Wednesday, 09:30 AM, September 29, 2010
-		//return month[dates[1]]+' '+dates[2]+', '+dates[0];
-		return date;
-	}
-	
+var formatDate = function(date,mask){
+	return dateFormat(new Date(date.split('.')[0].replace(/-/g,'/')),mask);
 }
