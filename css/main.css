@@ -98,7 +98,7 @@ header, nav ol ol{
  * @location Header
  */
 header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px solid #000;}
-  #logo {float:right; height:31px; width: 206px;background:url('../images/pdx-cc-logo.png'); margin: 2px;}
+  #logo {float:right; height:31px; width: 206px;background:url('../images/pdx-cc-logo-dark.png'); margin: 2px;}
   #menu {margin:0 0 0 5px;float:left;}
   #menu > ol > li{float:left;font-size:13px;position:relative;}
   /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
