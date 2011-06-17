@@ -6,7 +6,7 @@ $(function(){
   
   //GLOBAL VARS!
   var TEMPLATE_PATH = 'templates/'
-  ,   BASE_URL = window.location.href.replace('index.cfm?','').split('#!')[0]
+  ,   BASE_URL = window.location.href.split('#!')[0]
   ,   API_PATH = 'io.cfm'
   ,   SMALL_LOADER = '<img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">';
   

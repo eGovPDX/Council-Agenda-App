@@ -13,6 +13,12 @@
 	  <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
     <title>Agenditor - Alpha</title>
     <link rel="stylesheet" href="css/main.css">
+		<script>
+			//Removes the ugly index.cfm? in the URL that doesn't need to be there. 
+			if(window.location.href.indexOf('index.cfm?') > -1){
+				window.location = window.location.href.replace('index.cfm?','');
+			}
+		</script>
   </head>
   <body>
     <header>

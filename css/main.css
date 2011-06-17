@@ -112,7 +112,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #menu .active img { background:none !important; }
   #menu > ol > li:first-child  { font-weight:bold; }
   #menu > ol > li li {font-weight:normal;}
-
+  
   /* UI Tweaks */
   #menu a{cursor:pointer;}
   #menu a:hover{background: #333;}
@@ -235,12 +235,24 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
   font-size:12px;
   font-family:inherit;
   margin:5px 0 18px;
+  width:100%;
 }
 
-#modal-wrapper [name=heading],#modal-wrapper textarea,.disposition-title{ width:100%; }
+#modal-wrapper input,#modal-wrapper textarea {
+  padding:5px;
+  border-radius:3px;
+  border:1px solid #D1D1D1;
+  -webkit-box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
+  width:518px; /* modalWidth - (left - right modalPadding) - (left + right inputPadding) - (left+right border) */
+}
+
+#modal-wrapper input:focus,#modal-wrapper textarea:focus {
+  border:1px solid #84BEFF;
+  -webkit-box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
+}
 
 #modal-wrapper select { padding:1px 0; }
-#modal-wrapper input[type=checkbox]{width:auto;margin:0;}
+#modal-wrapper input[type=checkbox]{width:auto;margin:0;border:none;}
 #modal-wrapper input[type=checkbox]+label{display:inline;}
 
 #modal-wrapper .col1 input,#modal-wrapper .col2 input{}
