@@ -198,6 +198,7 @@ var app = function(){
         settings = $.extend({},defaults,oldSettings);
         if(options == 'close'){
           $('*').unbind('click.modalClose');
+					window.onbeforeunload = null;
           settings.onClose.call(this,$(modalWrapper))
           $(modalWrapper).fadeOut(settings.animationSpeed,function(){
 						$(modalOverlay).fadeOut(settings.animationSpeed,function(){
@@ -210,6 +211,9 @@ var app = function(){
       else{
         settings = $.extend({},defaults,options);
         settings.beforeLoad();
+				window.onbeforeunload = function(){
+					return "Looks like you're in the middle of editing something.\nAre you sure you want to leave?";
+				}
 				//adding getTime() so that the modal isn't cached during development, REMOVE BEFORE PRODUCTION
         $.get(_settings.templatePath+'modal.html?'+new Date().getTime(),function(html){
           var newHTML = $.template(html,{"title":settings.title,"content":settings.content});

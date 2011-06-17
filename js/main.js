@@ -5,9 +5,10 @@
 $(function(){
   
   //GLOBAL VARS!
-  var TEMPLATE_PATH = 'templates/';
-  var BASE_URL = window.location.href.split('/#!/')[0];
-  var API_PATH = 'io.cfm';
+  var TEMPLATE_PATH = 'templates/'
+  ,   BASE_URL = window.location.href.replace('index.cfm?','').split('#!')[0]
+  ,   API_PATH = 'io.cfm'
+  ,   SMALL_LOADER = '<img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">';
   
   var dataStore = function(key,value){
     key = key || '';
@@ -61,7 +62,7 @@ $(function(){
       }
       
       var displayAgenda = function(agendaID){
-        app().messageBar('Loading agenda '+agendaID+' <img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">').generateAgendaHTML(agendaID,function(html){
+        app().messageBar('Loading agenda '+agendaID+' '+SMALL_LOADER).generateAgendaHTML(agendaID,function(html){
           if(html.error !== '404'){
             
             app().updateURL('agenda/'+agendaID);
@@ -350,7 +351,7 @@ $(function(){
           });
         },
         "update"  : function(type,id){
-          app().messageBar('Opening '+type+' '+id+' <img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">');
+          app().messageBar('Opening '+type+' '+id+' '+SMALL_LOADER);
           $.get(TEMPLATE_PATH+'new-'+type+'.html',function(html){
             var initModal = function(){
               app().api({
@@ -557,6 +558,26 @@ $(function(){
        */
       $('[href^="#!/file/print"]').click(function(){
         app().printAgenda(dataStore('active-agenda'));
+      });
+      
+      $('[href="#!/councilconnect/about"]').click(function(){
+        app().messageBar('Getting build information '+SMALL_LOADER);
+        $.get(TEMPLATE_PATH+'about.html',function(html){
+          $.getJSON('https://github.com/api/v2/json/commits/list/egovpdx/council-agenda-app/master?callback=?',function(json){
+            app().messageBar('Finished loading build information');
+            var newHTML = $.template(html,{
+              name:json.commits[0].committer.name,
+              sha:json.commits[0].id,
+              url:json.commits[0].url,
+              date:dateFormat(json.commits[0].committed_date.split('T')[0].replace(/-/g,'/'),dateFormat.masks.fullDate)
+            });
+            app().modal({
+              title:'About CouncilConnect',
+              content:newHTML,
+              onLoad:function(modal){ modal.find('.button').click(function(){ app().modal('close'); }); }
+            })
+          });
+        });
       });
       
       /**

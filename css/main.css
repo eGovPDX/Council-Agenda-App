@@ -110,6 +110,8 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #menu .new-nav-group { border-top:1px dotted #C7D3DC }
   #menu img { position:relative;width:24px;height:auto;top:5px;margin:0 0 0 10px; }
   #menu .active img { background:none !important; }
+  #menu > ol > li:first-child  { font-weight:bold; }
+  #menu > ol > li li {font-weight:normal;}
 
   /* UI Tweaks */
   #menu a{cursor:pointer;}
@@ -281,6 +283,9 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
     #item-file-list li a:hover { text-decoration:underline; }
 
 .motion-status {display:none !important;}
+
+.about-modal img { display:block;margin:10px auto; }
+.about-modal li {font-size:14px;}
 
 /**
  * @location Right Click Menu

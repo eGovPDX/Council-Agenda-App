@@ -19,6 +19,13 @@
       <h1 id="logo"></h1>
       <nav id="menu">
         <ol>
+					<li><a href="#!/file" class="button file">CouncilConnect</a>
+            <ol>
+            	<li><a href="#!/councilconnect/about">About CouncilConnect</a></li>
+            	<!--<li><a href="#!/councilconnect/preferences" class="new-nav-group">Preferences</a></li>-->
+            	<li><a href="/index.cfm?logoff=1" class="new-nav-group">Logout</a></li>
+            </ol>
+					</li>
           <li>
             <a href="#!/file" class="button file">File</a>
             <ol>
@@ -67,19 +74,6 @@
     <section id="editor">
       <div id="inner-editor"> <!-- extra div to get rid of the scrollbars when the outermost element is 100% of the window + padding -->
 				 <div id="preview">
-
-						<!--
-						 <h1>Portland City Council Agenda</h1>
-						 <h2>City Hall - 1221 SW Fourth Avenue</h2>
-						 <h3>Wednesday, 09:30 AM, September 29, 2010</h3>
-						 <div class="session">
-							 <h4>Communications</h4>
-							 <div class="item">
-								 <p>Request of Michael Van Kleeck to address Council regarding the role the City can play in improving Portland's education (Communication)</p>
-								 <p>Disposition:</p>
-							 </div>
-						 </div>
-						-->
 				 </div>
       </div>
     </section>
