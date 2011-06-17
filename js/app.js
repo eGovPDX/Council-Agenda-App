@@ -75,8 +75,6 @@ var app = function(){
 								sessionTime = ''; //same as the location var above. Only for display.
 						console.log('Looping through the sessions...')
 						
-						if(theSessions.length < 1){ console.warn('NO SESSIONS FOUND'); }
-						
 						for(x in theSessions){
 							newHTML = newHTML+'<div id="session-'+theSessions[x].session_id+'" class="session">';
 							if(sessionLocation !== theSessions[x].location){
@@ -95,7 +93,6 @@ var app = function(){
 									
 							
 							if(theSessions[x].items.length < 1){
-								console.warn('NO ITEMS FOUND');
 								newHTML = newHTML + '<div class="item no-items">'+theSessions[x].message+'</div>';
 							}
 							else{ console.log('Looping through the '+theSessions[x].items.length+' items...') }
@@ -153,7 +150,6 @@ var app = function(){
 					});
 				}
 				else{
-					console.warn('NO AGENDA FOUND');
 					callback.call(this,{"error":"404"});
 				}
 				
