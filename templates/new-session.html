@@ -1,6 +1,6 @@
 <form>
   <label>Session Date & Time</label>
-  <input name="datetime" value="2-9-2011 14:00">
+  <input name="datetime" value="2-29-2011 14:00">
     
   <label>Session Location</label>
   <input name="location" value="City Hall - 1221 SW Fourth Avenue">
@@ -13,3 +13,19 @@
   <a class="button" href="#!/edit/cancel">Cancel</a>
   <br class="clear">
 </form>
+
+<script type="text/javascript">
+	// Set up the date and time for the first session
+	var nextWednesday = nextSession();
+	
+	// Scour the HTML for any h3 tags, used to determine our session times
+	var sessionCount = $('h3.session').length;
+		
+	switch(sessionCount){
+		case 0: sessionTime = '09:30'; break;
+		case 1: sessionTime = '14:00'; break;
+	}
+	
+	// Write it to the input as a default value
+	$('input[name="datetime"]').val(nextWednesday.getMonth()+1 + '-' + nextWednesday.getDate() + '-' + nextWednesday.getFullYear()+ ' ' + sessionTime);
+</script>
