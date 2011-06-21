@@ -61,7 +61,14 @@ var app = function(){
 				//var json = json;
 				console.log('Main JSON loaded...');
 				console.log(json);
-								
+				
+				// Using settings.status to set body class
+				if(json[0].status == 2){
+					$('body').attr('class', 'published');
+				} else {
+					$('body').attr('class', 'preview');
+				}
+				
 				if(json.length > 0) {
 					//Grab the agenda Template 
 					$.get(_settings.templatePath+'agenda.html',function(html){
@@ -347,7 +354,6 @@ var app = function(){
 					"agenda_id" : settings.id,
 					"status"    : settings.status
 				}
-				
 				
 				if(defaultAgendaData.agenda_id == ""){ delete defaultAgendaData.agenda_id; }
 				

@@ -10,6 +10,7 @@
  * Global element styles
  */
 body {font-family:helvetica,arial,sans-serif;background:url(../images/grid.png);}
+body.published{background:url(../images/paper.png);}
 
 a { color:#7C8487; }
 
