@@ -10,6 +10,7 @@
       <option value="Four-Fifths Agenda">Four-Fifths Agenda</option>
       <option value="Executive Order">Executive Order</option>
     </select>
+    <br>
     <input name="emergency-item" type="checkbox" value="1"> <label>Emergency Item</label>
     <div class="clear"></div>
     <div class="col1">
@@ -32,17 +33,23 @@
   <input type="text" class="disposition-title" value="ACCEPTED PREPARE CONTRACT">
   
   <label class="motion-type">Type</label>
-  <select class="motion-type">
+  <select class="motion-type" name="motion-type">
+    <option value="">---</option>
     <option value="Vote on Item">Vote on Item</option>
     <option value="Vote on Motion">Vote on Motion</option>
   </select>
   
-  <label class="motion-status">Motion Status</label>
+  <label class="motion-status" name="motion-status">Motion Status</label>
   <select class="motion-status">
     <option>Passed</option>
     <option>Failed</option>
   </select>
   
+  <label class="voting">Voting</label>
+  <div id="owner-votes">
+    <label>All:</label><select name="all-votes"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select>
+    <hr>
+  </div>
 </div>
 <div class="tab">
   <h2 class="tab-heading">Attachments</h2>

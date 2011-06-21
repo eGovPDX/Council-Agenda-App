@@ -232,6 +232,9 @@ $(function(){
                         modal.find('[value="'+json[0].owners[o].name+'"]').attr('checked','checked');
                       }
                     });
+                    
+                    //Dispositions don't need to be there for new items!
+                    modal.find('.tab-1').hide();
                   }
                   
                   //Find the buttons
@@ -335,7 +338,12 @@ $(function(){
                   },function(json){
                     if(type == 'agenda'){
                       var sidebarAgendaLink = $('#inner-sidebar').find('#agendaNav-'+id);
-                      displayAgenda(sidebarAgendaLink.prev().attr('id').split('-')[1]);
+                      if(sidebarAgendaLink.prev().length > 0){
+                        displayAgenda(sidebarAgendaLink.prev().attr('id').split('-')[1]);
+                      }
+                      else{
+                        displayAgenda(sidebarAgendaLink.next().attr('id').split('-')[1]);
+                      }
                       sidebarAgendaLink.remove();
                     }
                     else{
@@ -394,6 +402,21 @@ $(function(){
                         modal.find('[name=emergency-item]').attr('checked','checked');
                       }
                       
+                      var votingHTML = '';
+                      app().api({
+                        action:'get',
+                        type:'owners'
+                      },function(json){
+                        for(x in json){
+                          votingHTML = votingHTML+'<label>'+json[x].name+'</label><select name="'+json[x].name.toLowerCase().replace(/ /g,'+')+'"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                        }
+                        modal.find('#owner-votes').append(votingHTML)
+                        .find('[name=all-votes]').change(function(){
+                          console.log($(this).val())
+                          modal.find('#owner-votes select').find('option[value="'+$(this).val()+'"]').attr('selected','selected');
+                        });
+                        
+                      });
                       
                       app().api({
                         action:'get',
@@ -401,13 +424,11 @@ $(function(){
                         id:dataStore('active-item')
                       },function(json){
                         for(x in json){
-                          var itemHTML = $.template($('#item-file-list-template').html(),{ id: json[x].item_file_id, name: json[x].file_name})
+                          var itemHTML = $.template($('#item-file-list-template').html(),{ id: json[x].item_file_id, name: json[x].file_name});
                           $('#item-file-list').append(itemHTML);
                         }
                       });
-                      
                     }
-                    
                     
                     modal.find('[href="#!/edit/save"]').click(function(){
                       if(type == 'agenda'){
