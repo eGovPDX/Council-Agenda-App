@@ -144,8 +144,9 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview h5 {font-size:18px;padding:20px 0 10px 0;}
   #preview h6 {font-size:16px;text-transform: none;padding:20px 0 10px 0;}
   #preview .session {}
-  #preview .item {padding:15px 48px 15px;border-bottom:1px solid #000;margin:0 10px 0 5px;cursor:default;}
+  #preview .item {padding:15px 48px 15px;border-bottom:1px solid #999;margin:0 10px 0 5px;cursor:default;}
   #preview .item p {line-height:21px;}
+  p.position{text-align: center; font-weight: bold; margin-bottom: 10px;}
   #preview .item.active {background:url(../images/right-arrow.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75) }
 

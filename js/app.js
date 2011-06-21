@@ -61,7 +61,7 @@ var app = function(){
 				//var json = json;
 				console.log('Main JSON loaded...');
 				console.log(json);
-				
+								
 				if(json.length > 0) {
 					//Grab the agenda Template 
 					$.get(_settings.templatePath+'agenda.html',function(html){
@@ -115,6 +115,11 @@ var app = function(){
 										tempOwnerHTML = tempOwnerHTML+dash+theItems[y].owners[z].name;
 									}
 									tempOwnerHTML = tempOwnerHTML+'</h5>';
+									
+									// Checking for owner, addding Position Number, excluding the Mayor.
+									if(theItems[y].owners[z].position_number != ''){
+										tempOwnerHTML = tempOwnerHTML + '<p class=\"position\">Position No. '+theItems[y].owners[z].position_number+'</p>';
+									}
 								}
 								
 								if(tempOwnerHTML !== itemOwner){
@@ -147,6 +152,7 @@ var app = function(){
 						}
 						console.log('Appending generated agenda HTML');
 						callback.call(this,newHTML);
+						
 					});
 				}
 				else{
@@ -474,7 +480,7 @@ var app = function(){
 					complete:function(json){
 						callback.call(this,JSON.parse(json.responseText));
 					}
-				});
+				});x
 			}
 			
 			else if(settings.type == 'bureau' || settings.type == 'bureaus'){
