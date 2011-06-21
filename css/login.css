@@ -10,7 +10,10 @@ table{
 	width: 580px;
 	height: 380px;
 	border: 1px solid #333;
-	border-radius: 8px;
+	-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
 	position: relative;
 	top: 170px;
 	background: url('../images/login-logo.png') no-repeat 80px 20px;
@@ -24,6 +27,7 @@ tbody{
 	width: 70%;
 	display: block !important;
 	position: relative;
+	position: absolute\9; /* IE Hack hack hack */
 	top: 177px;
 	left: 52px;
 }
@@ -43,12 +47,15 @@ td.formHeader{
 
 td.formLabel{
 	padding-left: 10px;
+	padding-right: 10px\9;
+	padding-bottom: 10px\9;
 	text-transform: uppercase;
 	color: #333;
 	text-align: right;
 	height: 30px;
 }
 
+td.formData{text-align: left;}
 
 td.formData input{
 	padding: 5px; 
