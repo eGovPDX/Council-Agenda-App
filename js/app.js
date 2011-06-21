@@ -90,7 +90,7 @@ var app = function(){
 							}
 							if(sessionTime !== theSessions[x].start_date){
 								sessionTime = formatDate(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
-								newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
+								newHTML = newHTML+'<h3 class="session"><span>'+sessionTime+'</span></h3>';
 							}
 							
 							var theItems = theSessions[x].items
@@ -682,4 +682,14 @@ Object.size = function(obj) {
  */
 var formatDate = function(date,mask){
 	return dateFormat(new Date(date.split('.')[0].replace(/-/g,'/')),mask);
+}
+
+/**
+ * Used to populate "Smart Dates" when adding new Sessions
+ */
+
+function nextSession(date) {
+    var ret = new Date(date||new Date());
+    ret.setDate(ret.getDate() + (3 - 1 - ret.getDay() + 7) % 7 + 1);
+    return ret;
 }
