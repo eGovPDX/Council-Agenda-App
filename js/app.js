@@ -359,7 +359,7 @@ var app = function(){
 				
 				switch(settings.action){
 					case 'create':
-						defaultAgendaData.agenda_id = 0;
+						delete defaultAgendaData.agenda_id;
 						break;
 					
 					case 'delete':
@@ -396,7 +396,7 @@ var app = function(){
 				switch(settings.action){
 					//If we are creating a session we dont want to use session_id, we want to use agenda as the id
 					case 'create':
-						defaultSessionData.session_id = 0;
+						delete defaultSessionData.session_id;
 						defaultSessionData.agenda_id = settings.id;
 						break;
 					
@@ -437,7 +437,7 @@ var app = function(){
 				
 				switch(settings.action){
 					case 'create':
-						defaultItemData.item_id = 0;
+						delete defaultItemData.item_id;
 						defaultItemData.session_id = settings.id;
 						break;
 					
