@@ -645,6 +645,49 @@ var app = function(){
 				newwindow.print();
 			});
 		},
+		
+		/**
+		 * Used to auto-populate "smart dates" for Add New Session
+		 */
+		getNextSession: function(sessionCount){		
+
+			// Set the session time.					
+			switch(sessionCount){
+		        case 0: sessionTime = '09:30'; break;
+		        case 1: sessionTime = '14:00'; break;
+		        default: sessionTime = '14:00'; 
+		    }
+			
+			// Find the date of the next session.
+			var sessionDay = 'wednesday'; // Default session day is Wednesday
+			
+			if(sessionCount > 1) {
+				sessionDay = 'thursday'; // If there are more than 2 sessions, move to Thursday
+			}			
+			
+		    switch(sessionDay){
+		    	case 'monday' : d = 1; break;
+		    	case 'tuesday' : d = 2; break;
+		    	case 'wednesday' : d = 3; break;
+		    	case 'thursday' : d = 4; break;
+		    	case 'friday' : d = 5; break;
+		    	case 'saturday' : d = 6; break;
+		    	case 'sunday' : d = 7; break;
+		    	default : d = 3;
+		    }
+			
+			var nextSession = new Date();
+			// Logic to add a week to the date if today is Wednesday
+			if(nextSession.getDay() == 3 && sessionDay == 'thursday'){
+				nextSession.setDate(nextSession.getDate()+7);
+			}
+			
+		    nextSession.setDate(nextSession.getDate() + (d - 1 - nextSession.getDay() + 7) % 7 + 1);
+		
+		    // Write it to the input as a default value
+		    return nextSession.getMonth()+1 + '-' + nextSession.getDate() + '-' + nextSession.getFullYear()+ ' ' + sessionTime;	
+  		},
+  		
     /**
      * debug simply returns "message" in either a console.log() or alert()
      * @param message {string} What message you want to return
@@ -705,14 +748,4 @@ Object.size = function(obj) {
  */
 var formatDate = function(date,mask){
 	return dateFormat(new Date(date.split('.')[0].replace(/-/g,'/')),mask);
-}
-
-/**
- * Used to populate "Smart Dates" when adding new Sessions
- */
-
-function nextSession(date) {
-    var ret = new Date(date||new Date());
-    ret.setDate(ret.getDate() + (3 - 1 - ret.getDay() + 7) % 7 + 1);
-    return ret;
 }
