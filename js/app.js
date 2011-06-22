@@ -665,7 +665,6 @@ var app = function(){
 				sessionDay = 'thursday'; // If there are more than 2 sessions, move to Thursday
 			}			
 			
-			var nextSession = new Date();
 		    switch(sessionDay){
 		    	case 'monday' : d = 1; break;
 		    	case 'tuesday' : d = 2; break;
@@ -673,9 +672,16 @@ var app = function(){
 		    	case 'thursday' : d = 4; break;
 		    	case 'friday' : d = 5; break;
 		    	case 'saturday' : d = 6; break;
-		    	case 'sunday' : d = 7; 
+		    	case 'sunday' : d = 7; break;
+		    	default : d = 3;
 		    }
-
+			
+			var nextSession = new Date();
+			// Logic to add a week to the date if today is Wednesday
+			if(nextSession.getDay() == 3 && sessionDay == 'thursday'){
+				nextSession.setDate(nextSession.getDate()+7);
+			}
+			
 		    nextSession.setDate(nextSession.getDate() + (d - 1 - nextSession.getDay() + 7) % 7 + 1);
 		
 		    // Write it to the input as a default value

@@ -2,6 +2,14 @@
 
 function nextSession(date) {
     var ret = new Date(date||new Date());
+    
+    if(ret.getDay() == 3){
+    
+    	console.log('Today is Wednesday');
+    	ret.setDate(ret.getDate()+7);
+    
+    }
+    
     ret.setDate(ret.getDate() + (4 - 1 - ret.getDay() + 7) % 7 + 1);
     return ret;
 }
