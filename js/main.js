@@ -91,6 +91,21 @@ $(function(){
               dataStore('active-session',-1);
             }
             
+            // Store sessionCount for use in "Smart Dates"
+            app().api({
+          		"action":'get',
+          		"type":'agenda',
+          		"id":agendaID
+          		},
+          		function(json){ 
+					sessionCount = json[0].sessions.length;
+					//console.log('Current number of sessions: ' + sessionCount);
+					dataStore('active-item-sessions', sessionCount);
+					var nextSession = app().getNextSession(sessionCount);
+					dataStore('next-session', nextSession);
+					//console.log('The next session is: '+nextSession);
+				}
+			);      
             
             if(!$('#agendaNav-'+agendaID).hasClass('active')){
               $('#inner-sidebar .active').removeClass('active');
@@ -214,8 +229,12 @@ $(function(){
                 content: html,
                 //Once the modal is in the DOM (but not visible)...
                 onLoad: function(modal){
-                  
-                  
+                
+                    // Handling for Session "Smart Dates"
+                	if(type=='session'){
+               		 	modal.find('[name=datetime]').val(dataStore('next-session'));
+               		}
+               		      
                   if($('.item').length > 0){
                     app().api({
                       action:'get',
@@ -233,7 +252,7 @@ $(function(){
                       }
                     });
                   }
-                  
+
                   //Find the buttons
                   modal.find('a.button').click(function(){
                     //If they clicked cancel
@@ -255,7 +274,7 @@ $(function(){
                           app().modal('close');
                         });
                       }
-                      else if(type == 'session'){
+                      else if(type == 'session'){                      
                         app().api({
                           "action":'create',
                           "type":type,
