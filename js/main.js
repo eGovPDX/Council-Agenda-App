@@ -10,6 +10,7 @@ $(function(){
   ,   API_PATH = 'io.cfm'
   ,   SMALL_LOADER = '<img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">';
   
+  //NOTE: see ticket #37
   var dataStore = function(key,value){
     key = key || '';
     if(value){
@@ -215,8 +216,9 @@ $(function(){
                 //Once the modal is in the DOM (but not visible)...
                 onLoad: function(modal){
                   
-                  
-                  if($('.item').length > 0){
+                  //If there are items, but not the dummy "Due to lack of an agenda there will be no meeting." item...
+                  //NOTE: needs to be changed as per ticket #37
+                  if($('.item').length > 0 && $('.no-items').length < 1){
                     app().api({
                       action:'get',
                       type:'item',
