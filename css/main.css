@@ -244,16 +244,20 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
   padding:5px;
   border-radius:3px;
   border:1px solid #D1D1D1;
+  -moz-box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
   -webkit-box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
+  box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
   width:518px; /* modalWidth - (left - right modalPadding) - (left + right inputPadding) - (left+right border) */
 }
 
 #modal-wrapper input:focus,#modal-wrapper textarea:focus {
   border:1px solid #84BEFF;
+  -moz-box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
   -webkit-box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
+  box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
 }
 
-#modal-wrapper select { padding:1px 0; }
+#modal-wrapper select { padding:1px 0; width:auto; }
 #modal-wrapper input[type=checkbox]{width:auto;margin:0;border:none;}
 #modal-wrapper input[type=checkbox]+label{display:inline;}
 
@@ -300,6 +304,11 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 
 .about-modal img { display:block;margin:10px auto; }
 .about-modal li {font-size:14px;}
+
+label.voting { margin-bottom:12px; }
+#owner-votes label { display:block; width:275px; float:left; color:#000; font-weight:normal; }
+#owner-votes select { float:left; top:-7px; position:relative; }
+#owner-votes hr { clear:both; position:relative; top:-7px; display:block; border:0; border-top:1px solid #fff;border-bottom:1px solid #333; }
 
 /**
  * @location Right Click Menu

@@ -450,6 +450,29 @@ var app = function(){
 				var newItemData = {}
 				,		itemData = $.extend({},defaultItemData,newItemData);
 				
+				
+				//if(settings.disposition)
+				
+				/**
+				 *
+				 *
+					app().api({
+					 action:'update',
+					 type:'item',
+					 id:12,
+					 disposition:{
+						type:'motion',
+						title:'',
+						status:'passed',
+						votes:[
+							{'owner':'Mayor Sam Adams','vote':'Yea'},
+							{'owner':'Commissioner Amanda Fritz','vote':'Nay'}
+						 ]
+					 }
+					});
+				 * 
+				 */
+				
 				$.ajax({
 					type:'POST',
 					url:settings.baseURL,
