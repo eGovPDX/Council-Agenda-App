@@ -140,7 +140,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview h2 {text-transform:none;font-size:16px;padding:0 0 3px;}
   #preview h3 {font-size:17px; padding-bottom: 10px !important;}
     #preview h3 span{border-bottom:2px solid #000;}
-  #preview h4 {background-color: #EBEBEB; padding-top: 5px; padding-bottom: 5px; margin-bottom: 15px;font-size:17px;}
+  #preview h4 {background-color: transparent; padding-top: 5px; padding-bottom: 5px; margin-bottom: 15px;font-size:17px;}
   	body.published #preview h4{background-color: #e4e4e4;}
   #preview h5 {font-size:18px;padding:10px 0 10px 0;}
   #preview h6 {font-size:16px;text-transform: none;padding:8px 0px 12px 0px;}
