@@ -75,7 +75,12 @@ var app = function(){
 						console.log('Agenda template HTML loaded...');
 						//newHTML starts with the modified agenda.html template and will be modified
 						//throughout the loops below
-						var newHTML = $.template(html,{"title":json[0].title});
+						
+						// Formatting the Session Date for the header
+						startDate = json[0].sessions[0].start_date;
+						startDate = formatDate(startDate,"mmmm dd, yyyy");
+						
+						var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_number});
 						//Session loop variables
 						var theSessions = json[0].sessions,
 								sessionLocation = '', //Used to check if the location is different than the last session (for display only)
@@ -111,7 +116,6 @@ var app = function(){
 									itemHeading = theItems[y].heading;
 									newHTML = newHTML+'<h4>'+itemHeading+'</h4>';
 								}
-								
 								
 								var tempOwnerHTML = '';
 								if(theItems[y].owners.length > 0){
@@ -152,14 +156,14 @@ var app = function(){
 								
 								if(theItems[y].emergency == 1){ e = '*'; }
 								
-								newHTML = newHTML+'<p>'+e+' '+theItems[y].topic+'</p><p class="disposition">Disposition: </p>';
+								newHTML = newHTML+'<p class="item-no">'+e+theItems[y].item_id+'</p><p class="item-text">'+theItems[y].topic+'</p><p class="disposition">Disposition: </p>';
 								newHTML = newHTML+'</div>'; //Closes <div class="item">
 							}
 							newHTML = newHTML+'</div>'; //Closes <div class="session">
 						}
+																		
 						console.log('Appending generated agenda HTML');
-						callback.call(this,newHTML);
-						
+						callback.call(this,newHTML);						
 					});
 				}
 				else{
