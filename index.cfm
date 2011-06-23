@@ -60,7 +60,7 @@
 							 <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
 						</ol>
 					</li>
-					<li><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
+					<li class="icon"><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
         </ol>
       </nav>
       <br class="clear">

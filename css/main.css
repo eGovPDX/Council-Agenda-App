@@ -109,10 +109,12 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #menu a{display:block;color:#fff;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0; /*border-left: 1px solid #666;*/}
   #menu .active a,#menu ol ol .active a:hover { color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
   #menu .new-nav-group { border-top:1px dotted #C7D3DC }
-  #menu img { position:relative;width:24px;height:auto;top:5px;margin:0 0 0 10px; }
+  #menu img { position:relative;width:24px;height:auto;top:5px;margin:0 0 0 10px; cursor: pointer}
   #menu .active img { background:none !important; }
   #menu > ol > li:first-child  { font-weight:bold; }
   #menu > ol > li li {font-weight:normal;}
+  
+  #menu > ol > li.icon.active, #menu > ol > li.icon.active a, #menu > ol > li.icon.active a:hover{background:none !important; cursor:pointer;}
   
   /* UI Tweaks */
   #menu a{cursor:pointer;}
@@ -152,14 +154,15 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .session {}
   #preview .item {padding:20px 0px 20px;border-bottom:1px solid #999;margin:0 10px 0 5px;cursor:default; min-width: 700px;}
   #preview .item.last{border-bottom: none;}
-	  #preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top;}
-	  #preview .item p.item-text{width: 65%; min-width: 450px;}
-	  #preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold;}
-	  #preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
-	  #preview .item p.position{text-align: center; font-weight: bold; margin-bottom: 10px; display: block; width: 100%;}
+	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top;}
+	#preview .item p.item-text{width: 65%; min-width: 450px;}
+	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold;}
+	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
+	#preview .item p.position{text-align: center; font-weight: bold; margin-bottom: 10px; display: block; width: 100%;}
   #preview .item.active {background:url(../images/right-arrow.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
-	#preview .item.regular-agenda{}
+  	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
+
 /**
  * @location Footer
  */
