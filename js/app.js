@@ -110,8 +110,17 @@ var app = function(){
 							else{ console.log('Looping through the '+theSessions[x].items.length+' items...') }
 							
 							for(y in theItems){
-								var e = ''; //Emergency item. If 1 will be replaced with *
-								newHTML = newHTML+'<div id="item-'+theItems[y].item_id+'" class="item '+theItems[y].heading.replace(/ /g,'-').replace(/---/g,'-').toLowerCase()+'">';
+								var e = '' //Emergency item. If 1 will be replaced with *
+								,		isLastClass = ' ';
+								
+								//If the upcoming item is the last of it's kind, mark the current item as the "last"
+								var n = parseInt(y) + 1;
+								if(typeof(theItems[n]) !== 'undefined' && theItems[n].heading !== theItems[y].heading){
+									isLastClass = ' last ';
+								}
+								
+								newHTML = newHTML+'<div id="item-'+theItems[y].item_id+'" class="item'+isLastClass+''+theItems[y].heading.replace(/ /g,'-').replace(/---/g,'-').toLowerCase()+'">';
+								
 								if(theItems[y].heading !== itemHeading){
 									itemHeading = theItems[y].heading;
 									newHTML = newHTML+'<h4>'+itemHeading+'</h4>';
@@ -127,8 +136,8 @@ var app = function(){
 									}
 									tempOwnerHTML = tempOwnerHTML+'</h5>';
 									
-									// Checking for owner, addding Position Number, excluding the Mayor.
-									if(theItems[y].owners[z].position_number != ''){
+									// Checking for owner, addding Position Number if it exists
+									if(theItems[y].owners[z].position_number !== ''){
 										tempOwnerHTML = tempOwnerHTML + '<p class=\"position\">Position No. '+theItems[y].owners[z].position_number+'</p>';
 									}
 								}
