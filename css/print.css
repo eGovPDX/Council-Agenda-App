@@ -1,0 +1,341 @@
+@import 'resets.css';
+
+/**
+ * Print element styles
+ */
+body{background:#fff;width:8.5in;margin:0.5in;}
+
+a { color:#7C8487; }
+
+a:focus { outline:1px dotted #5AD7FF; }
+
+/**
+ * Global classes for specific uses, e.g., .clear to clear floats, .bold to bold, etc
+ */
+.clear {clear:both;}
+
+/**
+ * Add a selector to the list to add a gradient with the apps default colors
+ */
+header, nav ol ol{
+  background: #2c2d2f; /* Old browsers */
+  background: -moz-linear-gradient(top, #2c2d2f 0%, #3e3f42 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c2d2f), color-stop(100%,#3e3f42)); /* Chrome,Safari4+ */
+  background: -o-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c2d2f', endColorstr='#3e3f42',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #2c2d2f 0%,#3e3f42 100%); /* W3C */
+}
+
+/**
+ * Add a selector to the list to add a gradient with the apps reverse gradient of previous
+ */
+#modal-wrapper h1,footer {
+  background: #3e3f42; /* Old browsers */
+  background: -moz-linear-gradient(top, #3e3f42 0%, #2c2d2f 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3e3f42), color-stop(100%,#2c2d2f)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e3f42', endColorstr='#2c2d2f',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #3e3f42 0%,#2c2d2f 100%); /* W3C */
+}
+
+/**
+ * Add selector the list to add a gradient with the apps secondary colors
+ */
+#menu ol ol li a.active, #menu ol .active a:hover, #menu ol ol li a:hover,#menu > ol > li.active,.rightClickMenu li:hover,#sidebar li.active {
+  background: #499bea !important; /* Old browsers */
+  background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%) !important; /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)) !important; /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ) !important; /* IE6-9 */
+  background: linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* W3C */
+}
+
+/**
+ * Add selector the list to add a gradient with the gray gradient 
+ */
+#modal-wrapper a.button {
+  background: #5b5b5b; /* Old browsers */
+  background: -moz-linear-gradient(top, #5b5b5b 0%, #2c2d2f 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5b5b5b), color-stop(100%,#2c2d2f)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b5b5b', endColorstr='#2c2d2f',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #5b5b5b 0%,#2c2d2f 100%); /* W3C */
+}
+#modal-wrapper a.button:active {
+  background: #2c2d2f; /* Old browsers */
+  background: -moz-linear-gradient(top, #2c2d2f 0%, #5b5b5b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c2d2f), color-stop(100%,#5b5b5b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c2d2f', endColorstr='#5b5b5b',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #2c2d2f 0%,#5b5b5b 100%); /* W3C */
+}
+
+/**
+ * radial black to white gradient (for the modal overlay)
+ */
+#modal-overlay {
+  background:#000; /* old browsers */
+  background: -moz-radial-gradient(center 45deg, circle closest-side, #fff 0%, #000 100%);
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#FFFFFF), to(#000000)); /* webkit */
+}
+
+/**
+ * @location Header
+ */
+header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px solid #000;}
+  #logo {float:right; height:20px; width: 212px;background:url('../images/pdx-cc-logo-dark.png'); background-repeat: no-repeat; margin: 6px 10px 0px 0px;}
+  #menu {margin:0 0 0 5px;float:left;}
+  #menu > ol > li{float:left;font-size:13px;position:relative;}
+  /** NOTE: Adjust height of menu bar by adding padding to the <a>s here **/
+  #menu > ol > li > a {padding:11px 9px 11px 9px;}
+  #menu ol ol {width:200px;display:none;position:absolute;z-index:999;margin:0 0 0 0;padding:2px 0 5px 0;opacity:0.95;border:1px solid #fff;border-top:0;-webkit-box-shadow:rgba(0,0,0,0.3) 0 0 10px;}
+  #menu ol ol li a{padding:5px;width:190px}
+  #menu a{display:block;color:#fff;text-decoration:none;cursor:default;text-shadow:#000 0 -1px 0; /*border-left: 1px solid #666;*/}
+  #menu .active a,#menu ol ol .active a:hover { color:#fff !important;text-shadow:#424A4F 0 -1px 0 !important;}
+  #menu .new-nav-group { border-top:1px dotted #C7D3DC }
+  #menu img { position:relative;width:24px;height:auto;top:5px;margin:0 0 0 10px; cursor: pointer}
+  #menu .active img { background:none !important; }
+  #menu > ol > li:first-child  { font-weight:bold; }
+  #menu > ol > li li {font-weight:normal;}
+  
+  #menu > ol > li.icon.active, #menu > ol > li.icon.active a, #menu > ol > li.icon.active a:hover{background:none !important; cursor:pointer;}
+  
+  /* UI Tweaks */
+  #menu a{cursor:pointer;}
+  #menu a:hover{background: #333;}
+  #menu a.button.file{}
+  /*#menu a.button.edit{border-right: 1px solid #666;}*/
+
+/**
+ * @location Sidebar
+ */
+#sidebar {width:207px;/* the top:x; is generated in ui.js */margin:0 15px 0 0;float:left;position:fixed;background:#565656;border-top:1px solid #898989;border-right:1px solid #000000;color:#EFEFEF;text-shadow:#000000 0 -1px 0;overflow-y:auto;}
+    #inner-sidebar {padding:25px 0 0 0;}
+    #sidebar h2 {text-transform:uppercase;font-weight:bold;padding:0 10px;font-size:15px;}
+    #sidebar ol {margin:0 0 25px 0;}
+      #sidebar li {cursor:pointer;font-size:14px;padding-left:3px;padding:4px 22px 5px;margin:10px 0;}
+      #sidebar li.active {color:#fff;text-shadow:#000 0 -1px 0;}
+      
+/**
+ * @location Content
+ */
+#editor {font-family:Times,"Times New Roman",georgia,serif;}
+  #inner-editor{padding:0 0 0 223px;} /* sidebar width + sidebar border + sidebar padding (outerwidth)*/
+  #preview {padding:0px;}
+  #preview div#agenda-header{background:transparent; padding: 0px; margin: 0px; position: relative; width: 100%; border-bottom: 0px;}
+  	#preview div#agenda-header div#meta{width: 100%; height: 26px; border-bottom: 4px solid #333; font-family: 'Arial', sans-serif; font-weight: bold; font-size: 14px;}
+  	#preview div#agenda-header p#agenda-number{float: left;}
+  	#preview div#agenda-header p#agenda-date{float: right;}
+  #preview h1,#preview h2,#preview h3,#preview h4,#preview h5,#preview h6 {text-align:center;font-weight:bold;text-transform:uppercase;}
+  #preview h1 {font-size:18px;padding:20px 0px 4px 0px; border-top: 1px solid #333; margin-top: 2px;}
+  #preview h2 {text-transform:none;font-size:16px;padding:0 0 3px;}
+  #preview h3 {font-size:17px; padding-bottom: 10px !important;}
+    #preview h3 span{border-bottom:2px solid #000;}
+  #preview h4 {background-color: #EBEBEB; padding-top: 5px; padding-bottom: 5px; margin-bottom: 15px;font-size:17px;}
+  	body.published #preview h4{background-color: #e4e4e4;}
+  #preview h5 {font-size:18px;padding:10px 0 10px 0;}
+  #preview h6 {font-size:16px;text-transform: none;padding:8px 0px 12px 0px;}
+  #preview .session {}
+  #preview .item {padding:20px 0px 20px;border-bottom:1px solid #999;margin:0 10px 0 5px;cursor:default; min-width: 700px;}
+  #preview .item.last{border-bottom: none;}
+	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top;}
+	#preview .item p.item-text{width: 65%; min-width: 450px;}
+	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold;}
+	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
+	#preview .item p.position{text-align: center; font-weight: bold; margin-bottom: 10px; display: block; width: 100%;}
+  #preview .item.active {background:url(../images/right-arrow.png) no-repeat left center;}
+  #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
+  	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
+
+/**
+ * @location Footer
+ */
+footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000;}
+  #inner-footer {color:#d7d7d7;text-shadow:#000 0 -1px 0;font-size:12px;padding:5px;}
+  #inner-footer .small-loader { position:relative;top:2px; }
+
+/**
+ * @location Modal
+ * @note: lock scroll setting, absolute or fixed setting
+ */
+#modal-wrapper {
+  width:570px;
+  position:absolute;
+  border-radius:5px;
+  z-index:999;
+  display:none;
+  z-index:1001;
+  -webkit-box-shadow:rgba(0,0,0,0.5) 0 0 5px;
+  border:2px solid #fff;
+  background:#2D2D2D;
+}
+#modal-wrapper h1 {
+  padding:10px 0 10px;
+  text-align:center;
+  color:#fff;
+  border-radius:5px;
+  font-size:15px;
+  font-size:17px\9;
+  font-weight:bold;
+  font-weight:normal\9;
+  text-shadow:#000 0 -1px 0;
+  box-shadow:rgba(0,0,0,0.25) 0 0 3px;
+}
+
+#modal-wrapper p {
+  margin-bottom:12px;
+  color:#313131;
+  text-shadow:#fff 0 -1px 0;
+  font-size:15px;
+}
+
+#modal-wrapper .tab-container {
+  font-size:12px;
+  margin:10px 5px 0;
+}
+  #modal-wrapper .tab-container li {
+    float:left;
+    background:#BABABA;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    border-bottom:none;
+    padding:10px 10px 7px 10px !important;
+    margin:0 3px 0 0;
+    cursor:pointer;
+  }
+  #modal-wrapper .tab-container li.active-tab {
+    background:#f3f3f3;
+  }
+  
+  
+#modal-content {
+  border-radius:5px;
+  margin:0 5px 5px 5px;
+  padding:15px;
+  background:#f3f3f3;
+  overflow:auto;
+}
+
+#modal-wrapper .tab-container + #modal-content {
+  border-top-left-radius:0;
+}
+
+#modal-overlay {position:fixed;width:100%;z-index:1000;top:0;display:none;/*opacity:0.3;filter:alpha(opacity=30)*/}
+#modal-buttons {display:none;}
+#modal-wrapper label {
+  display:block;
+  color:#555555;
+  text-shadow:#fff 0 -1px 0;
+  font-weight:bold;
+  font-size:14px;
+}
+#modal-wrapper input,#modal-wrapper textarea, #modal-wrapper select {
+  font-size:12px;
+  font-family:inherit;
+  margin:5px 0 18px;
+  width:100%;
+}
+
+#modal-wrapper input,#modal-wrapper textarea {
+  padding:5px;
+  border-radius:3px;
+  border:1px solid #D1D1D1;
+  -moz-box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
+  -webkit-box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
+  box-shadow:#fff 0 0 1px inset,rgba(0,0,0,0.25) 0 0 5px inset;
+  width:518px; /* modalWidth - (left - right modalPadding) - (left + right inputPadding) - (left+right border) */
+}
+
+#modal-wrapper input:focus,#modal-wrapper textarea:focus {
+  border:1px solid #84BEFF;
+  -moz-box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
+  -webkit-box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
+  box-shadow:#fff 0 0 1px inset,#2d85e6 0 0 5px inset;
+}
+
+#modal-wrapper select { padding:1px 0; width:auto; }
+#modal-wrapper input[type=checkbox]{width:auto;margin:0;border:none;}
+#modal-wrapper input[type=checkbox]+label{display:inline;}
+
+#modal-wrapper .col1 input,#modal-wrapper .col2 input{}
+#modal-wrapper .col1,#modal-wrapper .col2 {width:250px;float:left;font-size:12px;margin:10px 0 0 0;}
+#modal-wrapper .col1 {margin:10px 10px 0 0;}
+#modal-wrapper ul {margin:0 0 10px 0;}
+#modal-wrapper li {padding:5px 0;}
+#modal-wrapper textarea {
+  height:125px;
+}
+#modal-wrapper .e404 {color:#8C0101;line-height:21px;padding:0 0 15px 0;}
+#modal-wrapper a.button{
+  width:77px;
+  padding:8px 10px;
+  color:#fff;
+  border:1px solid #000;
+  border-radius:3px;
+  text-shadow:#000 0 1px 0;
+  font-size:14px;
+  margin:0 0 5px 10px;
+  float:right;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+
+
+#owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
+
+#item-file-upload-form [type=file] { width:200px; }
+
+.button.upload { font-size:12px !important; padding:5px 0px 4px !important; float:none !important; margin:0 0 5px 0 !important; }
+
+#item-file-list { font-size:13px; list-style:disc; padding:0 0 0 12px; color:#313131; text-shadow:#fff 0 -1px 0; }
+
+  #item-file-list li {  }
+    #item-file-list li span { color:#E47566; cursor:pointer; }
+    #item-file-list li span:hover { color:#E42014; }
+    #item-file-list li a { text-decoration:none; color:#51595c; }
+    #item-file-list li a:hover { text-decoration:underline; }
+
+.motion-status {display:none !important;}
+
+/**
+ * @location About Modal
+ */
+.about-modal img { display:block;margin:10px auto; }
+.about-modal div.about-content{width: 450px; padding-left: 52px; margin-top: 25px;}
+	.about-modal div.about-content h2, .about-modal div.about-content h3{margin-bottom: 5px;}
+	#modal-wrapper .about-modal div.about-content p{margin-bottom: 20px;}
+.about-modal li {font-size:14px;}
+
+label.voting { margin-bottom:12px; }
+#owner-votes label { display:block; width:275px; float:left; color:#000; font-weight:normal; }
+#owner-votes select { float:left; top:-7px; position:relative; }
+#owner-votes hr { clear:both; position:relative; top:-7px; display:block; border:0; border-top:1px solid #fff;border-bottom:1px solid #333; }
+
+/**
+ * @location Right Click Menu
+ */
+.rightClickMenu {
+  background:rgba(250,250,250,0.95);
+  padding:1px 1px;
+  border-radius:3px;
+  -webkit-box-shadow:rgba(0,0,0,0.25) 0 0 5px;
+  -moz-box-shadow:rgba(0,0,0,0.25) 0 0 5px;
+  font-size:12px;
+  border:1px solid #ccc;
+}
+.rightClickMenu li {
+  padding:5px 10px 5px 25px;
+  cursor:pointer;
+  position:relative;
+}
+.rightClickMenu li img,.rightClickMenu li span {position:relative;padding:0 5px 0 0;top:3px;margin:0;position:absolute;left:5px;}

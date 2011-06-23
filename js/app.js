@@ -649,7 +649,6 @@ var app = function(){
 					<style>\
 						@import "http://dev.portlandonline.com/councilagenda/css/resets.css";\
 						@import "http://dev.portlandonline.com/councilagenda/css/print.css";\
-						body {background:#fff;width:8.5in;height:11in;margin:0.5in;}\
 					</style>\
 					<div id="editor"><div id="preview">'
 						+html+
