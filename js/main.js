@@ -181,12 +181,10 @@ $(function(){
             
             //If this item doesn't exist yet (undefined due to no "id"), and it's checked, we add it
             if(!checkbox.attr('data-item_'+what+'_id') && checkbox.is(':checked')){
-              console.log('1')
               app().api(whatPostData,function(json){});
             }
             //Otherwise, set above, if the "what" existed, but it's now unchecked we delete it.
             if(checkbox.attr('data-item_'+what+'_id') && !checkbox.is(':checked')){
-              console.log('2')
               whatPostData.action = "delete";
               whatPostData['item_'+what+'_id'] = checkbox.attr('data-item_'+what+'_id');
               app().api(whatPostData,function(json){});
@@ -289,8 +287,6 @@ $(function(){
                           "id":dataStore('active-agenda')
                         },
                         function(json){
-                          console.log('CREATED A NEW SESSION!');
-                          console.log(json)
                           displayAgenda(dataStore('active-agenda'));
                           app().modal('close');
                         })
@@ -388,7 +384,6 @@ $(function(){
                 type:type,
                 id:id
               },function(json){
-                console.log(json)
                 app().modal({
                   content:html,
                   title:'Edit '+type.capitalize(),
@@ -433,7 +428,6 @@ $(function(){
                         }
                         modal.find('#owner-votes').append(votingHTML)
                         .find('[name=all-votes]').change(function(){
-                          console.log($(this).val())
                           modal.find('#owner-votes select').find('option[value="'+$(this).val()+'"]').attr('selected','selected');
                         });
                         
