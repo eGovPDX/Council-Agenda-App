@@ -297,7 +297,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
   text-decoration:none;
 }
 
-
+#owner-list li,#bureau-list li { height:15px; }
 #owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
 
 #item-file-upload-form [type=file] { width:200px; }
