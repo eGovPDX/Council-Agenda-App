@@ -11,7 +11,7 @@
   <head>
 	  <meta http-equiv="x-ua-compatible" content="IE=edge">
 	  <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-    <title>Agenditor - Alpha</title>
+    <title>PDXCouncilConnect - Alpha</title>
     <link rel="stylesheet" href="css/main.css">
 		<script>
 			//Removes the ugly index.cfm? in the URL that doesn't need to be there. 

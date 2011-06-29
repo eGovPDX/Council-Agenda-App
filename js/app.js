@@ -21,11 +21,11 @@ var app = function(){
    */
     resetUI: function(){
       $('#sidebar,#editor,#preview').css({
-				height:$(window).height()-$('header').outerHeight()-$('footer').outerHeight()+'px'
-			})
-			.filter('#sidebar').css({
-				top:$('header').outerHeight()+'px'
-			});
+								height:$(window).height()-$('header').outerHeight()-$('footer').outerHeight()+500+'px'
+						})
+						.filter('#sidebar').css({
+								top:$('header').outerHeight()+'px'
+						});
       //$('#preview').jScrollPane();
       return this;
     },
@@ -75,12 +75,16 @@ var app = function(){
 						console.log('Agenda template HTML loaded...');
 						//newHTML starts with the modified agenda.html template and will be modified
 						//throughout the loops below
-						
+
 						// Formatting the Session Date for the header
-						startDate = json[0].sessions[0].start_date;
-						startDate = formatDate(startDate,"mmmm dd, yyyy");
-						
-						var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_number});
+						if(json[0].sessions.length > 0){
+								startDate = json[0].sessions[0].start_date;
+								startDate = formatDate(startDate,"mmmm dd, yyyy");
+						}
+						else{
+								startDate = '';
+						}
+						var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_id});
 						//Session loop variables
 						var theSessions = json[0].sessions,
 								sessionLocation = '', //Used to check if the location is different than the last session (for display only)
@@ -497,6 +501,21 @@ var app = function(){
 					}
 				});
 				
+				
+				if(settings.disposition){
+						var itemMotionData = {
+								type:'',
+								status:'',
+								title:'',
+								item_id:settings.id,
+								item_motion_id:'' //only for update?
+						}
+						var motionVoteData = {
+								
+						}
+				}
+				
+				
 			}
 			
 			else if(settings.type == 'owner' || settings.type == 'owners'){
@@ -522,7 +541,7 @@ var app = function(){
 					complete:function(json){
 						callback.call(this,JSON.parse(json.responseText));
 					}
-				});x
+				});
 			}
 			
 			else if(settings.type == 'bureau' || settings.type == 'bureaus'){
