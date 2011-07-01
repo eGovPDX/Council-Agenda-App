@@ -224,23 +224,24 @@ var app = function(){
         settings = $.extend({},defaults,oldSettings);
         if(options == 'close'){
           $('*').unbind('click.modalClose');
-					window.onbeforeunload = null;
-          settings.onClose.call(this,$(modalWrapper))
+										$(document).unbind('keyup.modal');
+										window.onbeforeunload = null;
+          settings.onClose.call(this,$(modalWrapper));
           $(modalWrapper).fadeOut(settings.animationSpeed,function(){
-						$(modalOverlay).fadeOut(settings.animationSpeed,function(){
-							$(modalWrapper+','+modalOverlay).remove();
-							settings.afterClose();
-						})
+												$(modalOverlay).fadeOut(settings.animationSpeed,function(){
+													$(modalWrapper+','+modalOverlay).remove();
+													settings.afterClose();
+												});
           });
         }
       }
       else{
         settings = $.extend({},defaults,options);
         settings.beforeLoad();
-				window.onbeforeunload = function(){
-					return "Looks like you're in the middle of editing something.\nAre you sure you want to leave?";
-				}
-				//adding getTime() so that the modal isn't cached during development, REMOVE BEFORE PRODUCTION
+								window.onbeforeunload = function(){
+									return "Looks like you're in the middle of editing something.\nAre you sure you want to leave?";
+								}
+								//adding getTime() so that the modal isn't cached during development, REMOVE BEFORE PRODUCTION
         $.get(_settings.templatePath+'modal.html?'+new Date().getTime(),function(html){
           var newHTML = $.template(html,{"title":settings.title,"content":settings.content});
           $('body').prepend(newHTML)
@@ -263,8 +264,14 @@ var app = function(){
 							.delay(settings.animationSpeed).fadeIn(settings.animationSpeed,function(){
 								$(document).bind('keyup.modal',function(e){
 									if(e.keyCode == 27){
-										app().modal('close');
 										$(document).unbind('keyup.modal');
+										app().modal('close');
+									}
+									else if(e.keyCode == 13){
+										if($(modalWrapper).find('input:focus,textarea:focus,select:focus').length < 1){
+												$(document).unbind('keyup.modal');
+												$(modalWrapper).find('[data-default]').click();
+										}
 									}
 								});
 								

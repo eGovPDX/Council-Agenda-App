@@ -63,6 +63,7 @@ $(function(){
       }
       
       var displayAgenda = function(agendaID){
+        var sameID = true;
         app().messageBar('Loading agenda '+agendaID+' '+SMALL_LOADER).generateAgendaHTML(agendaID,function(html){
           if(html.error !== '404'){
             
@@ -75,21 +76,42 @@ $(function(){
             
             console.log('Content appended, ready for user interaction!');
             
-            dataStore('active-agenda',agendaID);
-            
-            app().makeActive($('.item:first'),$('#editor'));
-            
-            if($('.item:first').length > 0){
-              dataStore('active-item',$('.item:first').attr('id').split('-')[1]);
+            //Hides/shows relevant menu items.
+            //items
+            if($('.item:first').length > 0 && !$('.item:first').hasClass('no-items')){
+              $('[href="#!/edit/edit-item"],[href="#!/edit/delete-item"]').parent().show();
             }
             else{
-              dataStore('active-item',-1);
+              $('[href="#!/edit/edit-item"],[href="#!/edit/delete-item"]').parent().hide();
             }
+            //sessions
             if($('.session:first').length > 0){
-              dataStore('active-session',$('.session:first').attr('id').split('-')[1]);
+              $('[href="#!/edit/edit-session"],[href="#!/edit/delete-session"],[href="#!/file/new-item"]').parent().show();
             }
             else{
-              dataStore('active-session',-1);
+              $('[href="#!/edit/edit-session"],[href="#!/edit/delete-session"],[href="#!/file/new-item"]').parent().hide();
+            }
+            
+            //Updates current items, session, and agenda ids
+            if(agendaID !== dataStore('active-agenda')){
+              sameID = false;
+              dataStore('active-agenda',agendaID);
+            
+              app().makeActive($('.item:first:not(.no-items)'),$('#editor'));
+              
+              if($('.item:first').length > 0){
+                dataStore('active-item',$('.item:first').attr('id').split('-')[1]);
+              }
+              else{
+                dataStore('active-item',-1);
+                
+              }
+              if($('.session:first').length > 0){
+                dataStore('active-session',$('.session:first').attr('id').split('-')[1]);
+              }
+              else{
+                dataStore('active-session',-1);
+              } 
             }
             
             // Store sessionCount for use in "Smart Dates"
@@ -98,19 +120,18 @@ $(function(){
           		"type":'agenda',
           		"id":agendaID
           		},
-          		function(json){ 
-                  sessionCount = json[0].sessions.length;
-                  dataStore('active-item-sessions', sessionCount);
-                  var nextSession = app().getNextSession(sessionCount);
-                  dataStore('next-session', nextSession);
-                }
-              );
+          		function(json){
+              sessionCount = json[0].sessions.length;
+              dataStore('active-item-sessions', sessionCount);
+              var nextSession = app().getNextSession(sessionCount);
+              dataStore('next-session', nextSession);
+              app().makeActive($('#item-'+dataStore('active-item')),$('#editor'));
+              if(!$('#agendaNav-'+agendaID).hasClass('active')){
+                $('#inner-sidebar .active').removeClass('active');
+              }
+              app().makeActive($('#agendaNav-'+agendaID)).messageBar('Finished loading agenda '+dataStore('active-agenda'));
+            });
             
-            if(!$('#agendaNav-'+agendaID).hasClass('active')){
-              $('#inner-sidebar .active').removeClass('active');
-            }
-            
-            app().makeActive($('#agendaNav-'+agendaID)).messageBar('Finished loading agenda '+dataStore('active-agenda'));
           }
           else{
             $.get(TEMPLATE_PATH+'404.html',function(html){
@@ -534,7 +555,7 @@ $(function(){
       /**
        * Makes the selected item "active"
        */
-      $('body').delegate('.item','click',function(){
+      $('body').delegate('.item:not(.no-items)','click',function(){
         app().makeActive($(this),$('#editor'));
         dataStore('active-item',$('.item.active').attr('id').split('-')[1]);
         dataStore('active-session',$('.item.active').closest('.session').attr('id').split('-')[1]);
@@ -619,7 +640,7 @@ $(function(){
       /**
        * Allows you to double click on an item to edit it
        */
-      $('body').delegate('.item','dblclick',function(){
+      $('body').delegate('.item:not(.no-items)','dblclick',function(){
         actions.update('item',dataStore('active-item'));
       });
       
