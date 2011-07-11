@@ -30,19 +30,20 @@
   <h2 class="tab-heading">Disposition</h2>
   
   <label>Title</label>
-  <input type="text" class="disposition-title" value="ACCEPTED PREPARE CONTRACT">
+  <input type="text" class="disposition-title" name="disposition-title" value="">
   
   <label class="motion-type">Type</label>
   <select class="motion-type" name="motion-type">
     <option value="">---</option>
-    <option value="Vote on Item">Vote on Item</option>
-    <option value="Vote on Motion">Vote on Motion</option>
+    <option value="item">Vote on Item</option>
+    <option value="motion">Vote on Motion</option>
   </select>
   
-  <label class="motion-status" name="motion-status">Motion Status</label>
-  <select class="motion-status">
-    <option>Passed</option>
-    <option>Failed</option>
+  <label class="motion-status">Motion Status</label>
+  <select class="motion-status" name="motion-status">
+    <option value="">---</option>
+    <option value="passed">Passed</option>
+    <option value="failed">Failed</option>
   </select>
   
   <label class="voting">Voting</label>

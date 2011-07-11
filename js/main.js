@@ -426,7 +426,7 @@ $(function(){
                       modal.find('[name=topic]').val(json[0].topic);
                       
                       modal.find('[name=heading]').find('[value="'+json[0].heading+'"]').attr('selected','selected')
-                      
+
                       for(b in json[0].bureaus){
                         modal.find('[value="'+json[0].bureaus[b].name+'"]').attr('checked','checked').attr('data-item_bureau_id',json[0].bureaus[b].item_bureau_id);
                       }
@@ -437,6 +437,18 @@ $(function(){
                       
                       if(json[0].emergency == 1){
                         modal.find('[name=emergency-item]').attr('checked','checked');
+                      }
+                      
+                      console.log(json[0].motions);
+                      if(json[0].motions.length > 0){
+                        //for(x in json[0].motions){} //app doesn't support multiple motions yet tho...
+                        modal.append('<input type="hidden" name="motion-id" value="'+json[0].motions[0].item_motion_id+'">');
+                        if(json[0].motions[0].type == 'motion'){
+                          modal.find('.motion-status').css({display:'block !important'});
+                          modal.find('.disposition [value='+json[0].motions[0].status+']').attr('selected','selected');
+                        }
+                        modal.find('[name=disposition-title]').val(json[0].motions[0].title);
+                        modal.find('.disposition [value='+json[0].motions[0].type+']').attr('selected','selected');
                       }
                       
                       var votingHTML = '';
@@ -504,17 +516,35 @@ $(function(){
                         addRemoveBureausOwners('owner',id);
                         addRemoveBureausOwners('bureau',id);
                         
+                        
+                        var motionAction = 'create'
+                        ,   motionId = id;
+                        if(modal.find('[name=motion-id]').length > 0){
+                          motionAction = 'update';
+                          motionId = modal.find('[name=motion-id]').val();
+                        }
+                        
                         app().api({
-                          action:'update',
-                          type:type,
-                          id:id,
-                          "emergency":emergencyItem,
-                          "heading":modal.find('[name=heading]').val(),
-                          "topic":modal.find('[name=topic]').val()
-                        },function(){
-                          displayAgenda(dataStore('active-agenda'));
-                          app().modal('close');
-                        })
+                          action:motionAction,
+                          type:'motion',
+                          id:motionId,
+                          title:modal.find('[name=disposition-title]').val(),
+                          motion_type:modal.find('[name=motion-type]').val(),
+                          status:modal.find('[name=motion-status]').val()
+                        },function(json){
+                          app().api({
+                            action:'update',
+                            type:type,
+                            id:id,
+                            "emergency":emergencyItem,
+                            "heading":modal.find('[name=heading]').val(),
+                            "topic":modal.find('[name=topic]').val()
+                          },function(json){
+                            displayAgenda(dataStore('active-agenda'));
+                            app().modal('close');
+                          });
+                        
+                        });
                       }
                     });
                     
@@ -563,7 +593,7 @@ $(function(){
       
       
       $('body').delegate('select.motion-type','change',function(){
-        if($(this).val() == 'Vote on Motion'){
+        if($(this).val() == 'motion'){
           $('.motion-status').css({display:'block !important'});
         }
         else{

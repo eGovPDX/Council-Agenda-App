@@ -91,8 +91,8 @@ header, nav ol ol{
  */
 #modal-overlay {
   background:#000; /* old browsers */
-  background: -moz-radial-gradient(center 45deg, circle closest-side, #fff 0%, #000 100%);
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#FFFFFF), to(#000000)); /* webkit */
+  background: -moz-radial-gradient(center 45deg, circle closest-side, #222 0%, #000 100%);
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#FFFFFF), to(#222)); /* webkit */
 }
 
 /**
@@ -156,7 +156,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .item.last{border-bottom: none;}
 	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top;}
 	#preview .item p.item-text{width: 65%; min-width: 450px;}
-	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold;}
+	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
 	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
 	#preview .item p.position{text-align: center; font-weight: bold; margin-bottom: 10px; display: block; width: 100%;}
   #preview .item.active {background:url(../images/right-arrow.png) no-repeat left center;}
