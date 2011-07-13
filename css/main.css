@@ -98,7 +98,7 @@ header, nav ol ol{
 /**
  * @location Header
  */
-header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px solid #000; z-index: 50;}
+header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px solid #000;}
   #logo {float:right; height:20px; width: 212px;background:url('../images/pdx-cc-logo-dark.png'); background-repeat: no-repeat; margin: 6px 10px 0px 0px;}
   #menu {margin:0 0 0 5px;float:left;}
   #menu > ol > li{float:left;font-size:13px;position:relative;}
@@ -138,7 +138,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
 #editor {font-family:Times,"Times New Roman",georgia,serif;}
   #inner-editor{padding:0 0 0 223px;} /* sidebar width + sidebar border + sidebar padding (outerwidth)*/
   #preview {padding:50px 40px 0 40px;}
-  #preview div#agenda-header{background:transparent; padding: 0px; margin: 0px; position: relative; width: 100%; border-bottom: 0px;}
+  #preview div#agenda-header{background:transparent; padding: 0px; margin: 0px; position: relative; width: 100%; border-bottom: 0px; z-index: -1;}
   	#preview div#agenda-header div#meta{width: 100%; height: 26px; border-bottom: 4px solid #333; font-family: 'Arial', sans-serif; font-weight: bold; font-size: 14px;}
   	#preview div#agenda-header p#agenda-number{float: left;}
   	#preview div#agenda-header p#agenda-date{float: right;}
@@ -244,6 +244,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
   text-shadow:#fff 0 -1px 0;
   font-weight:bold;
   font-size:14px;
+  margin-bottom: 4px;
 }
 #modal-wrapper input,#modal-wrapper textarea, #modal-wrapper select {
   font-size:12px;
@@ -270,7 +271,7 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 }
 
 #modal-wrapper select { padding:1px 0; width:auto; }
-#modal-wrapper input[type=checkbox]{width:auto;margin:0;border:none;}
+#modal-wrapper input[type=checkbox]{width:auto;margin:0px 3px 0px 0px;border:none;}
 #modal-wrapper input[type=checkbox]+label{display:inline;}
 
 #modal-wrapper .col1 input,#modal-wrapper .col2 input{}
@@ -299,6 +300,10 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 
 #owner-list li,#bureau-list li { height:15px; }
 #owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
+
+#top-group{padding: 10px 0px 0px 0px; margin-bottom: 5px; border-bottom: 1px solid #bebebe;}
+#top-group .col{display:inline-block;}
+#top-group .col.right{margin-left: 46px;}
 
 #item-file-upload-form [type=file] { width:200px; }
 

@@ -1,18 +1,23 @@
 <div class="tab">
   <h2 class="tab-heading">General</h2>
   <form>
-    <label>Item Heading</label>
-    <select name="heading">
-      <option value="Regular Agenda">Regular Agenda</option>
-      <option value="Communications" selected="selected">Communications</option>
-      <option value="Times Certain">Times Certain</option>
-      <option value="Consent Agenda - No Discussion">Consent Agenda - No Discussion</option>
-      <option value="Four-Fifths Agenda">Four-Fifths Agenda</option>
-      <option value="Executive Order">Executive Order</option>
-    </select>
-    <br>
-    <input name="emergency-item" type="checkbox" value="1"> <label>Emergency Item</label>
-    <div class="clear"></div>
+  	<div id="top-group">
+	    <div class="col left">
+		    <label>Item Heading</label>
+		    <select name="heading">
+		      <option value="Regular Agenda">Regular Agenda</option>
+		      <option value="Communications" selected="selected">Communications</option>
+		      <option value="Times Certain">Times Certain</option>
+		      <option value="Consent Agenda - No Discussion">Consent Agenda - No Discussion</option>
+		      <option value="Four-Fifths Agenda">Four-Fifths Agenda</option>
+		      <option value="Executive Order">Executive Order</option>
+		    </select>
+	    </div>
+	    <div class="col right">
+	    	<input name="emergency-item" type="checkbox" value="1"> <label>Emergency Item</label>
+	    </div>
+	</div>
+	
     <div class="col1">
       <label>Bureaus</label>
       {{bureaus}}
