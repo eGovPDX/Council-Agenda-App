@@ -1,0 +1,70 @@
+<div class="tab">
+  <h2 class="tab-heading">General</h2>
+  <form>
+    <label>Item Heading</label>
+    <select name="heading">
+      <option value="Regular Agenda">Regular Agenda</option>
+      <option value="Communications" selected="selected">Communications</option>
+      <option value="Times Certain">Times Certain</option>
+      <option value="Consent Agenda - No Discussion">Consent Agenda - No Discussion</option>
+      <option value="Four-Fifths Agenda">Four-Fifths Agenda</option>
+      <option value="Executive Order">Executive Order</option>
+    </select>
+    <br>
+    <input name="emergency-item" type="checkbox" value="1"> <label>Emergency Item</label>
+    <div class="clear"></div>
+    <div class="col1">
+      <label>Bureaus</label>
+      {{bureaus}}
+    </div>
+    <div class="col2">
+      <label>Elected Officials</label>
+      {{owners}}
+    </div>
+    <div class="clear"></div>
+    <label>Item Text</label>
+    <textarea name="topic"></textarea>
+  </form>
+</div>
+<div class="tab disposition">
+  <h2 class="tab-heading">Disposition</h2>
+  
+  <label>Title</label>
+  <input type="text" class="disposition-title" name="disposition-title" value="">
+  
+  <label class="motion-type">Type</label>
+  <select class="motion-type" name="motion-type">
+    <option value="">---</option>
+    <option value="item">Vote on Item</option>
+    <option value="motion">Vote on Motion</option>
+  </select>
+  
+  <label class="motion-status">Motion Status</label>
+  <select class="motion-status" name="motion-status">
+    <option value="">---</option>
+    <option value="passed">Passed</option>
+    <option value="failed">Failed</option>
+  </select>
+  
+  <label class="voting">Voting</label>
+  <div id="owner-votes">
+    <label>All:</label><select name="all-votes"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select>
+    <hr>
+  </div>
+</div>
+<div class="tab">
+  <h2 class="tab-heading">Attachments</h2>
+    <form id="item-file-upload-form" method="post" enctype="multipart/form-data">
+    <label>Attachments</label>
+    <input type="file"><br><a class="button upload" href="#!/edit/upload">Upload</a>
+    <br class="clear">
+    <p>Files</p>
+    <ul id="item-file-list">
+      
+    </ul>
+  </form>
+</div>
+<br>
+<a class="button" href="#!/edit/save" data-default="default">Save</a>
+<a class="button" href="#!/edit/cancel">Cancel</a>
+<br class="clear">

@@ -99,7 +99,7 @@ var app = function(){
               }
               if(sessionTime !== theSessions[x].start_date){
                 sessionTime = formatDate(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
-                newHTML = newHTML+'<h3 class="session"><span>'+sessionTime+'</span></h3>';
+                newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
               }
               
               var theItems = theSessions[x].items
