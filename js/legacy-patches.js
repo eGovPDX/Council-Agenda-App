@@ -2,7 +2,7 @@
 * Stuff in here is mainly for IE8
 */
 //Fix console undefined error
-if(typeof console == 'undefined'){ var console = {log:function(){}};}
+//if(typeof console == 'undefined'){ var console = {log:function(){}};}
 
 //Fix JSON undefined error (from: https://github.com/douglascrockford/JSON-js)
 if(typeof JSON == 'undefined'){

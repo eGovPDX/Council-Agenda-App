@@ -317,7 +317,8 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
     #item-file-list li a { text-decoration:none; color:#51595c; }
     #item-file-list li a:hover { text-decoration:underline; }
 
-.motion-status {display:none !important;}
+#modal-wrapper .motion-status {display:none}
+#modal-wrapper .motion-status.visible{display:block !important}
 
 /**
  * @location About Modal

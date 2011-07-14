@@ -439,7 +439,7 @@ $(function(){
                         modal.find('[name=emergency-item]').attr('checked','checked');
                       }
                       
-                      console.log(json[0].motions);
+                      //console.log(json[0].motions);
                       if(json[0].motions.length > 0){
                         //for(x in json[0].motions){} //app doesn't support multiple motions yet tho...
                         modal.append('<input type="hidden" name="motion-id" value="'+json[0].motions[0].item_motion_id+'">');
@@ -594,10 +594,11 @@ $(function(){
       
       $('body').delegate('select.motion-type','change',function(){
         if($(this).val() == 'motion'){
-          $('.motion-status').css({display:'block !important'});
+          console.log('Motion type is MOTION');
+          $('.motion-status').addClass('visible');
         }
         else{
-          $('.motion-status').css({display:'none !important'});
+          $('.motion-status').removeClass('visible');
         }
       });
       
