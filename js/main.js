@@ -594,7 +594,6 @@ $(function(){
       
       $('body').delegate('select.motion-type','change',function(){
         if($(this).val() == 'motion'){
-          console.log('Motion type is MOTION');
           $('.motion-status').addClass('visible');
         }
         else{
