@@ -114,6 +114,7 @@ $(function(){
               } 
             }
             
+            
             // Store sessionCount for use in "Smart Dates"
             app().api({
           		"action":'get',
@@ -216,7 +217,6 @@ $(function(){
       
       displaySidebar();
       
-      //Still needs to be dynamic!
       if(window.location.hash.indexOf('agenda/') > -1){
         displayAgenda(window.location.hash.split('/')[2]);
       }
@@ -295,6 +295,7 @@ $(function(){
                         function(json){
                           displaySidebar(); //Refresh the sidebar so new the new Agenda shows up
                           displayAgenda(json.agenda_id);
+                          $(window).scrollTop(0);
                           app().modal('close');
                         });
                       }
@@ -327,7 +328,8 @@ $(function(){
                           "type":type,
                           "heading":modal.find('[name=heading]').val(),
                           "topic":modal.find('[name=topic]').val(),
-                          "id":$('.session:first').attr('id').split('-')[1]
+                          //Will need to use active session when feature req. #54 is taken care of
+                          "id":$('.session:last').attr('id').split('-')[1]
                         },
                         function(json){
                           if(!json.error){
