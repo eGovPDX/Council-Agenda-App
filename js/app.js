@@ -513,12 +513,16 @@ var app = function(){
             item_id:settings.id,
             item_motion_id:settings.id
         }
-        console.log(settings.action);
+
         if(settings.action == 'create'){
           delete itemMotionData.item_motion_id;
         }
         else if(settings.action == 'update'){
           delete itemMotionData.item_id;
+        }
+        else if(settings.action == 'delete'){
+          delete itemMotionData.item_id;
+          itemMotionData['delete'] = 'yes';
         }
         
         var motionVoteData = [];
@@ -533,6 +537,40 @@ var app = function(){
             callback.call(this,JSON.parse(json.responseText));
           }
         });
+      }
+      
+      else if(settings.type == 'vote'){
+        var itemVoteData = {
+          action:'updatemotionvote',
+          item_motion_id:settings.id,
+          motion_vote_id:settings.id,
+          vote:settings.vote,
+          owner:settings.owner
+        }
+        
+        if(settings.action == 'create'){
+          delete itemVoteData.motion_vote_id;
+        }
+        else if(settings.action == 'update'){
+          delete itemVoteData.item_motion_id;
+        }
+        else if(settings.action == 'delete'){
+          delete itemVoteData.item_motion_id;
+          itemVoteData['delete'] = 'yes';
+        }
+        
+        
+        $.ajax({
+          type:'POST',
+          url:settings.baseURL,
+          cache:false,
+          dataType:'json',
+          data:itemVoteData,
+          complete:function(json){
+            callback.call(this,JSON.parse(json.responseText));
+          }
+        });
+        
       }
       
       else if(settings.type == 'owner' || settings.type == 'owners'){
