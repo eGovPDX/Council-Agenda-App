@@ -632,10 +632,10 @@ $(function(){
       
       $('body').delegate('select.motion-type','change',function(){
         if($(this).val() == 'motion'){
-          $('.motion-status').css({display:'block !important'});
+          $('.motion-status').addClass('visible');
         }
         else{
-          $('.motion-status').css({display:'none !important'});
+          $('.motion-status').removeClass('visible');
         }
       });
       
