@@ -289,6 +289,7 @@ $(function(){
                         app().api({
                           "action":"create",
                           "type":type,
+                          "header":modal.find('[name=header]').val(),
                           "title":modal.find('[name=title]').val(),
                           "footer":modal.find('[name=footer]').val()
                         },
@@ -414,8 +415,10 @@ $(function(){
                     
                     if(type == 'agenda'){
                       modal.find('[name=title]').val(json[0].title);
+					  modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=footer]').val(json[0].footer);
                       modal.find('[name=status]').val(json[0].status);
+                      console.log('The header: ' + modal.find('[name=header]').val());
                     }
                     else if(type == 'session'){
                       modal.find('[name=datetime]').val(json[0].start_date);
@@ -484,6 +487,7 @@ $(function(){
                           action:'update',
                           type:type,
                           id:id,
+                          header:modal.find('[name=header]').val(),
                           title:modal.find('[name=title]').val(),
                           footer:modal.find('[name=footer]').val(),
                           status:modal.find('[name=status]').val()

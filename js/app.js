@@ -84,7 +84,7 @@ var app = function(){
             else{
                 startDate = '';
             }
-            var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_id});
+            var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_id, "header":json[0].header});
             //Session loop variables
             var theSessions = json[0].sessions,
                 sessionLocation = '', //Used to check if the location is different than the last session (for display only)
@@ -341,6 +341,7 @@ var app = function(){
         "title"          : "Portland City Council Agenda",
         "id"             : "",
         "baseURL"        : "io.cfm?",
+        "header"	     : "THOSE PRESENT WERE: ",
         "footer"         : "",
         "datetime "      : "1-1-1111 11:11",
         "message"        : "Due to lack of an agenda there will be no meeting",
@@ -387,6 +388,7 @@ var app = function(){
         var defaultAgendaData = {
           "action"    : urlp.action+settings.type,
           "title"     : settings.title,
+          "header"	  : settings.header,
           "footer"    : settings.footer,
           "agenda_id" : settings.id,
           "status"    : settings.status
@@ -682,7 +684,7 @@ var app = function(){
         tmp.write('\
           <style>\
             @import "http://dev.portlandonline.com/councilagenda/css/resets.css";\
-            @import "http://dev.portlandonline.com/councilagenda/css/print.css";\
+            @import "http://dev.portlandonline.com/councilagenda_eric_dev/css/print.css";\
           </style>\
           <div id="editor"><div id="preview">'
             +html+

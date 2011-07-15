@@ -151,7 +151,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   	body.published #preview h4{background-color: #e4e4e4;}
   #preview h5 {padding-top: 24px;}
   #preview h6 {padding: 20px 0px 0px 0px; text-transform: none;}
-  #preview .session{margin: 16px 0px}
+  #preview .session{margin: 0px 0px 16px 0px}
   #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 700px;}
   #preview .item.last{border-bottom: none;}
 	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
@@ -162,6 +162,8 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .item.active {background:url(../images/active_bg.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
+  
+  #preview .item.no-items{text-align: center; padding-bottom: 16px;}
 
 /**
  * @location Footer
@@ -360,6 +362,6 @@ h1 { font-size:1.8em;  /* 16x1.8=28.8 */ }
 h2 { font-size:1.5em;   /* 16x1.5=24 */ }
 h3 { font-size:1.125em; /* 16x1.125=18 */ }
 h4 { font-size:0.875em; /* 16x0.875=14 */ }
-h5 { font-size:1.5em; /* 16x0.875=24 */ }
+h5 { font-size:1.2em; /* 16x0.875=24 */ }
 h6 { font-size:1.2em; /* 16x1.2=19.2 */ }
 p  { font-size: 1em;  /* 16x1=16 */ }
