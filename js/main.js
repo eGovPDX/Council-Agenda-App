@@ -439,7 +439,6 @@ $(function(){
                         modal.find('[name=emergency-item]').attr('checked','checked');
                       }
                       
-                      console.log(json[0].motions);
                       if(json[0].motions.length > 0){
                         //for(x in json[0].motions){} //app doesn't support multiple motions yet tho...
                         modal.append('<input type="hidden" name="motion-id" value="'+json[0].motions[0].item_motion_id+'">');
@@ -455,16 +454,24 @@ $(function(){
                       app().api({
                         action:'get',
                         type:'owners'
-                      },function(json){
-                        for(x in json){
-                          votingHTML = votingHTML+'<label>'+json[x].name+'</label><select name="'+json[x].name.toLowerCase().replace(/ /g,'+')+'"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                      },function(ownerjson){
+                        for(x in ownerjson){
+                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
                         }
                         modal.find('#owner-votes').append(votingHTML)
                         .find('[name=all-votes]').change(function(){
                           modal.find('#owner-votes select').find('option[value="'+$(this).val()+'"]').attr('selected','selected');
                         });
                         
+                        if(json[0].motions[0]){
+                          var votes = json[0].motions[0].votes;
+                          for(v in votes){
+                            modal.find('[name="'+votes[v].owner+'"]').attr('data-motion_vote_id',votes[v].motion_vote_id).find('[value='+votes[v].vote+']').attr('selected','selected');
+                          }
+                        }
+                        
                       });
+                      
                       
                       app().api({
                         action:'get',
@@ -515,6 +522,21 @@ $(function(){
                         
                         addRemoveBureausOwners('owner',id);
                         addRemoveBureausOwners('bureau',id);
+
+
+                        var postItemData = function(){
+                          app().api({
+                            action:'update',
+                            type:type,
+                            id:id,
+                            "emergency":emergencyItem,
+                            "heading":modal.find('[name=heading]').val(),
+                            "topic":modal.find('[name=topic]').val()
+                          },function(json){
+                            displayAgenda(dataStore('active-agenda'));
+                            app().modal('close');
+                          });
+                        }
                         
                         
                         var motionAction = 'create'
@@ -532,19 +554,35 @@ $(function(){
                           motion_type:modal.find('[name=motion-type]').val(),
                           status:modal.find('[name=motion-status]').val()
                         },function(json){
-                          app().api({
-                            action:'update',
-                            type:type,
-                            id:id,
-                            "emergency":emergencyItem,
-                            "heading":modal.find('[name=heading]').val(),
-                            "topic":modal.find('[name=topic]').val()
-                          },function(json){
-                            displayAgenda(dataStore('active-agenda'));
-                            app().modal('close');
+                          
+                          var voteSubmitCount = 0;
+                          modal.find('#owner-votes .owner-vote').each(function(){
+                            
+                            var voteId = json.item_motion_id
+                            ,   voteAction = 'create';
+                            
+                            if($(this).attr('data-motion_vote_id') !== undefined){
+                              voteId = $(this).attr('data-motion_vote_id');
+                              voteAction = 'update';
+                            }
+                            
+                            app().api({
+                              action:voteAction,
+                              type:'vote',
+                              id:voteId,
+                              owner:$(this).attr('name'),
+                              vote:$(this).val()
+                            },function(json){
+                              voteSubmitCount++;
+                              if(voteSubmitCount == modal.find('#owner-votes .owner-vote').length){
+                                postItemData();
+                              }
+                            });
                           });
-                        
                         });
+
+                        
+                        
                       }
                     });
                     
