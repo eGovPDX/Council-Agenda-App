@@ -145,7 +145,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview h1,#preview h2,#preview h3,#preview h4,#preview h5,#preview h6 {text-align:center;font-weight:bold;text-transform:uppercase;}
   #preview h1 {padding:20px 0px 4px 0px; border-top: 1px solid #333; margin-top: 2px;}
   #preview h2 {text-transform:none;;margin-bottom: 12px;}
-  #preview h3 {margin-bottom: 20px;}
+  #preview h3 {margin-bottom: 24px;}
     #preview h3 span{border-bottom:2px solid #000;}
   #preview h4 {background-color: #EBEBEB; padding: 5px 0px}
   	body.published #preview h4{background-color: #e4e4e4;}
@@ -164,6 +164,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px;}
+  #preview .agenda-notes{padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
 
 /**
  * @location Footer
@@ -361,7 +362,7 @@ body { font-size:100%; }
 h1 { font-size:1.8em;  /* 16x1.8=28.8 */ }
 h2 { font-size:1.5em;   /* 16x1.5=24 */ }
 h3 { font-size:1.125em; /* 16x1.125=18 */ }
-h4 { font-size:0.875em; /* 16x0.875=14 */ }
+h4 { font-size:1.15em; /* 16x0.875=14 */ }
 h5 { font-size:1.2em; /* 16x0.875=24 */ }
 h6 { font-size:1.2em; /* 16x1.2=19.2 */ }
 p  { font-size: 1em;  /* 16x1=16 */ }

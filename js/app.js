@@ -102,6 +102,11 @@ var app = function(){
                 newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
               }
               
+              // Adding Agenda notes to the display...
+              if(x==0){
+              	newHTML += '<p class="agenda-notes">'+json[0].header+'</p>';     
+              }
+                       
               var theItems = theSessions[x].items
               ,    itemHeading = '' //Same as the session location and time vars
               ,    itemBureau = ''
