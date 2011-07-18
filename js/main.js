@@ -50,7 +50,13 @@ $(function(){
             if(!$('#agendaNav-'+agendaID).hasClass('active')){
               $('#inner-sidebar .active').removeClass('active');
             }
-            app().makeActive($('#agendaNav-'+agendaID));
+            
+            if(window.location.hash.indexOf('#!/agenda') > -1){
+              app().makeActive($('#agendaNav-'+window.location.hash.split('/')[2]));
+            }
+            else{
+              app().makeActive($('#agendaNav-'+json[json.length].agenda_id));
+            }
           }
           $('#inner-sidebar li').bind('click',function(){
             if(!$(this).hasClass('active')){
