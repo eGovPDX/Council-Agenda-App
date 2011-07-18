@@ -102,6 +102,11 @@ var app = function(){
                 newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
               }
               
+              // Adding Agenda notes to the display...
+              if(x==0 && json[0].header!=''){
+              	newHTML += '<p class="agenda-notes">'+json[0].header+'</p>';     
+              }
+                       
               var theItems = theSessions[x].items
               ,    itemHeading = '' //Same as the session location and time vars
               ,    itemBureau = ''
@@ -176,6 +181,51 @@ var app = function(){
                 }
                 
                 newHTML = newHTML+'<p class="item-no">'+e+theItems[y].item_id+'</p><p class="item-text">'+theItems[y].topic+'</p><p class="disposition">'+theDisposition+'</p>';
+                
+                // Adds voting information display
+                // How do I do check for this properly?
+                                
+                if(theItems[y].motions[0] !== undefined){
+                
+                	var itemVotes = theItems[y].motions[0].votes;
+                	                	
+                	itemVotes.blank = 0;
+                	itemVotes.yea = 0;
+                	itemVotes.nay = 0;
+                	itemVotes.absent = 0;
+                	
+                	for(v in itemVotes){
+						switch(itemVotes[v].vote){
+							case '-' : 
+								itemVotes.blank ++;
+								break;
+							case 'Yea' : 
+								itemVotes.yea ++;
+								break;
+							case 'Nay' :
+								itemVotes.nay ++;
+								break;
+							case 'Absent' : 
+								itemVotes.absent ++;
+								break;
+						}
+
+                	}
+                	
+                	// Display votes if less than 5 records are blank.
+                	if(itemVotes.blank < 5) {
+                	
+                		newHTML += '<div class="voting-record"><b>Votes:</b> ';
+                			if(itemVotes.yea > 0){ newHTML += 'Yea - '+itemVotes.yea }
+                			if(itemVotes.nay > 0){ newHTML += ', Nay - '+itemVotes.nay }
+                			if(itemVotes.absent > 0){ newHTML += ', Absent - '+itemVotes.absent }
+                		
+                		newHTML += '</div>'; // closes voting record
+                	
+                	}
+                	
+                } // ends loop
+                
                 newHTML = newHTML+'</div>'; //Closes <div class="item">
               }
               newHTML = newHTML+'</div>'; //Closes <div class="session">
@@ -359,6 +409,7 @@ var app = function(){
         "motion_type"    : "",
         "item_motion_id" : 0,
         "motion_vote_id" : 0
+     
         
       }
       //The default url params
@@ -427,7 +478,7 @@ var app = function(){
           "session_id" : settings.id,
           "message"    : settings.message,
           "location"   : settings.location,
-          "start_date"  : settings.datetime
+          "start_date" : settings.datetime
         }
         
         if(defaultSessionData.agenda_id == ""){ delete defaultSessionData.agenda_id; }

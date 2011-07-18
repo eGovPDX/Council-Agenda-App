@@ -291,8 +291,8 @@ $(function(){
                         app().api({
                           "action":"create",
                           "type":type,
-                          "header":modal.find('[name=header]').val(),
                           "title":modal.find('[name=title]').val(),
+                          "header":modal.find('[name=header]').val(),
                           "footer":modal.find('[name=footer]').val()
                         },
                         function(json){
@@ -418,12 +418,12 @@ $(function(){
                     
                     if(type == 'agenda'){
                       modal.find('[name=title]').val(json[0].title);
-					  modal.find('[name=header]').val(json[0].header);
+ 					  modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=footer]').val(json[0].footer);
                       modal.find('[name=status]').val(json[0].status);
-                      console.log('The header: ' + modal.find('[name=header]').val());
                     }
                     else if(type == 'session'){
+                   	console.log(json[0]);
                       modal.find('[name=datetime]').val(json[0].start_date);
                       modal.find('[name=location]').val(json[0].location);
                       modal.find('[name=empty-session]').val(json[0].message);
@@ -462,7 +462,7 @@ $(function(){
                         type:'owners'
                       },function(ownerjson){
                         for(x in ownerjson){
-                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="-">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
                         }
                         modal.find('#owner-votes').append(votingHTML)
                         .find('[name=all-votes]').change(function(){
@@ -497,8 +497,8 @@ $(function(){
                           action:'update',
                           type:type,
                           id:id,
-                          header:modal.find('[name=header]').val(),
                           title:modal.find('[name=title]').val(),
+                          header:modal.find('[name=header]').val(),
                           footer:modal.find('[name=footer]').val(),
                           status:modal.find('[name=status]').val()
                         },function(){
