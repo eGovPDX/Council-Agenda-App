@@ -188,9 +188,7 @@ var app = function(){
                 if(theItems[y].motions[0] !== undefined){
                 
                 	var itemVotes = theItems[y].motions[0].votes;
-                	
-                	console.log(itemVotes);
-                	
+                	                	
                 	itemVotes.blank = 0;
                 	itemVotes.yea = 0;
                 	itemVotes.nay = 0;
@@ -480,7 +478,7 @@ var app = function(){
           "session_id" : settings.id,
           "message"    : settings.message,
           "location"   : settings.location,
-          "start_date"  : settings.datetime
+          "start_date" : settings.datetime
         }
         
         if(defaultSessionData.agenda_id == ""){ delete defaultSessionData.agenda_id; }

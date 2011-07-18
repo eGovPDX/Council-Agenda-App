@@ -302,12 +302,15 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
   text-decoration:none;
 }
 
-#owner-list li,#bureau-list li { height:15px; }
+#officials-col, #bureaus-col{margin-top: 7px; border-bottom: 1px solid #BEBEBE;}
+#bureaus-col{margin-bottom: 8px}
+
+#owner-list li,#bureau-list li { height: 14px; display: inline-block !important; width: 250px; }
 #owner-list label,#bureau-list label{ font-weight:normal; font-size:12px; color:#313131; }
 
-#top-group{padding: 10px 0px 0px 0px; margin-bottom: 5px; border-bottom: 1px solid #bebebe;}
+#top-group{padding: 0px 0px 0px 0px; margin-bottom: 5px; border-bottom: 1px solid #bebebe;}
 #top-group .col{display:inline-block;}
-#top-group .col.right{margin-left: 46px;}
+#top-group .col.right{margin-left: 37px;}
 
 #item-file-upload-form [type=file] { width:200px; }
 
