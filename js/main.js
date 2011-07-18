@@ -249,9 +249,14 @@ $(function(){
                 onLoad: function(modal){
                   
                     // Handling for Session "Smart Dates"
-                	if(type=='session'){
-               		 	modal.find('[name=datetime]').val(dataStore('next-session'));
-               		}
+                  if(type=='session'){
+                    modal.find('[name=datetime]').val(dataStore('next-session'));
+                  }
+                  
+                  if(type=='item'){
+                    //Dispositions don't need to be there for new items!
+                    modal.find('.tab-1').hide();
+                  }
                   
                   //If there are items, but not the dummy "Due to lack of an agenda there will be no meeting." item...
                   //NOTE: needs to be changed as per ticket #37
@@ -272,9 +277,6 @@ $(function(){
                         modal.find('[value="'+json[0].owners[o].name+'"]').attr('checked','checked');
                       }
                     });
-                    
-                    //Dispositions don't need to be there for new items!
-                    modal.find('.tab-1').hide();
                   }
 
                   //Find the buttons
@@ -316,7 +318,6 @@ $(function(){
                       }
                       
                       else if(type == 'item'){
-                        
                         var emergencyItem = 0;
                         
                         if(modal.find('[name=emergency-item]').is(':checked')){
