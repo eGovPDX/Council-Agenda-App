@@ -461,7 +461,7 @@ $(function(){
                         type:'owners'
                       },function(ownerjson){
                         for(x in ownerjson){
-                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="-">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
                         }
                         modal.find('#owner-votes').append(votingHTML)
                         .find('[name=all-votes]').change(function(){
