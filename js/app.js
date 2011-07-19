@@ -115,10 +115,10 @@ var app = function(){
               }
               else{ console.log('Looping through the '+theSessions[x].items.length+' items...') 
               
-	              // Adding Agenda notes to the display...
-	              if(theItems.header!=''){
-	              	newHTML += '<p class="session-notes">'+theSessions[x].header+'</p>';     
-	              }
+                // Adding Agenda notes to the display...
+                if(theItems.header!=''){
+                  newHTML += '<p class="session-notes">'+theSessions[x].header+'</p>';     
+                }
               
               }
               
@@ -191,43 +191,43 @@ var app = function(){
                                 
                 if(theItems[y].motions[0] !== undefined){
                 
-                	var itemVotes = theItems[y].motions[0].votes;
-                	                	
-                	itemVotes.blank = 0;
-                	itemVotes.yea = 0;
-                	itemVotes.nay = 0;
-                	itemVotes.absent = 0;
-                	
-                	for(v in itemVotes){
-						switch(itemVotes[v].vote){
-							case '-' : 
-								itemVotes.blank ++;
-								break;
-							case 'Yea' : 
-								itemVotes.yea ++;
-								break;
-							case 'Nay' :
-								itemVotes.nay ++;
-								break;
-							case 'Absent' : 
-								itemVotes.absent ++;
-								break;
-						}
+                  var itemVotes = theItems[y].motions[0].votes;
+                                    
+                  itemVotes.blank = 0;
+                  itemVotes.yea = 0;
+                  itemVotes.nay = 0;
+                  itemVotes.absent = 0;
+                  
+                  for(v in itemVotes){
+            switch(itemVotes[v].vote){
+              case '-' : 
+                itemVotes.blank ++;
+                break;
+              case 'Yea' : 
+                itemVotes.yea ++;
+                break;
+              case 'Nay' :
+                itemVotes.nay ++;
+                break;
+              case 'Absent' : 
+                itemVotes.absent ++;
+                break;
+            }
 
-                	}
-                	
-                	// Display votes if less than 5 records are blank.
-                	if(itemVotes.blank < 5) {
-                	
-                		newHTML += '<div class="voting-record"><b>Votes:</b> ';
-                			if(itemVotes.yea > 0){ newHTML += 'Yea - '+itemVotes.yea }
-                			if(itemVotes.nay > 0){ newHTML += ', Nay - '+itemVotes.nay }
-                			if(itemVotes.absent > 0){ newHTML += ', Absent - '+itemVotes.absent }
-                		
-                		newHTML += '</div>'; // closes voting record
-                	
-                	}
-                	
+                  }
+                  
+                  // Display votes if less than 5 records are blank.
+                  if(itemVotes.blank < 5) {
+                  
+                    newHTML += '<div class="voting-record"><b>Votes:</b> ';
+                      if(itemVotes.yea > 0){ newHTML += 'Yea - '+itemVotes.yea }
+                      if(itemVotes.nay > 0){ newHTML += ', Nay - '+itemVotes.nay }
+                      if(itemVotes.absent > 0){ newHTML += ', Absent - '+itemVotes.absent }
+                    
+                    newHTML += '</div>'; // closes voting record
+                  
+                  }
+                  
                 } // ends loop
                 
                 newHTML = newHTML+'</div>'; //Closes <div class="item">
@@ -395,7 +395,7 @@ var app = function(){
         "title"          : "Portland City Council Agenda",
         "id"             : "",
         "baseURL"        : "io.cfm?",
-        "header"	     : "THOSE PRESENT WERE: ",
+        "header"       : "THOSE PRESENT WERE: ",
         "footer"         : "",
         "datetime "      : "1-1-1111 11:11",
         "message"        : "Due to lack of an agenda there will be no meeting",
@@ -407,6 +407,7 @@ var app = function(){
         "name"           : "",
         "item_owner_id"  : "",
         "item_bureau_id" : "",
+        "published"      : "",
         "status"         : "",
         "vote"           : "",
         "owner"          : "",
@@ -443,10 +444,10 @@ var app = function(){
         var defaultAgendaData = {
           "action"    : urlp.action+settings.type,
           "title"     : settings.title,
-          "header"	  : settings.header,
+          "header"    : settings.header,
           "footer"    : settings.footer,
           "agenda_id" : settings.id,
-          "status"    : settings.status
+          "status"    : settings.publish
         }
         
         if(defaultAgendaData.agenda_id == ""){ delete defaultAgendaData.agenda_id; }
@@ -482,7 +483,7 @@ var app = function(){
           "session_id" : settings.id,
           "message"    : settings.message,
           "location"   : settings.location,
-          "header"	   : settings.header,
+          "header"     : settings.header,
           "start_date" : settings.datetime
         }
         

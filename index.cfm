@@ -51,7 +51,8 @@
 														<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
 														<li><a href="#!/edit/delete-session">Delete Session</a></li>
 														<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
-														<li class="new-nav-group"><a href="#!/menu/edit/unpublish-agenda">Unpublish Agenda</a></li>
+														<li class="new-nav-group"><a href="#!/edit/publish-agenda">Publish Agenda</a></li>
+														<li class="new-nav-group"><a href="#!/edit/unpublish-agenda">Unpublish Agenda</a></li>
             </ol>
           </li>
 					<li>

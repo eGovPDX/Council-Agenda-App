@@ -95,9 +95,21 @@ $(function(){
               $('[href="#!/edit/edit-session"],[href="#!/edit/delete-session"],[href="#!/file/new-item"]').parent().hide();
             }
             
+            //shows both unpublish and publish
+            $('[href*="publish-agenda"]').parent().show();
+            
+            //Then we pick which one to hide
+            if(!$('body').hasClass('published')){
+              $('[href="#!/edit/unpublish-agenda"]').parent().hide();
+            }
+            else{
+              $('[href="#!/edit/publish-agenda"]').parent().hide();
+            }
+            
             //Updates current items, session, and agenda ids
             if(agendaID !== dataStore('active-agenda')){
               sameID = false;
+              $(window).scrollTop(0);
               dataStore('active-agenda',agendaID);
             
               app().makeActive($('.item:first:not(.no-items)'),$('#editor'));
@@ -755,6 +767,39 @@ $(function(){
           });
         }
       });
+      
+      
+      /**
+       * Publish agenda
+       */
+      $('body').delegate('[href="#!/edit/publish-agenda"]','click',function(){
+        console.log('clicked');
+        app().api({
+          type:'agenda',
+          action:'update',
+          id:dataStore('active-agenda'),
+          publish:'2'
+        },function(){
+          displaySidebar();
+          displayAgenda(dataStore('active-agenda'))
+        })
+      });
+      
+      /**
+       * Unpublish agenda
+       */
+      $('body').delegate('[href="#!/edit/unpublish-agenda"]','click',function(){
+        app().api({
+          type:'agenda',
+          action:'update',
+          id:dataStore('active-agenda'),
+          publish:'0'
+        },function(){
+          displaySidebar();
+          displayAgenda(dataStore('active-agenda'));  
+        })
+      });
+      
       
       /**
        * Simple URL bookmarking function. If the hash is changed (like, going back/forward, entering in a URL manually, etc)
