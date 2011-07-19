@@ -41,9 +41,15 @@ $(function(){
               selector = '#published-agendas';
             }
             agendaID = json[x].agenda_id;
+            
+            var dateDisplay = json[x].created_date;
+            if(json[x].sessions && json[x].sessions.length > 0){
+              dateDisplay = json[x].sessions[0].start_date
+            }
+            
             itemHTML = $.template($('#sidebar-item-template').html(),{
               "agendaID":agendaID,
-              "createdDate":formatDate(json[x].created_date,"mmmm dd, yyyy")
+              "createdDate":formatDate(dateDisplay,"mmmm dd, yyyy")
             })
             $(selector).append(itemHTML);
             
