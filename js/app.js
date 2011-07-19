@@ -101,8 +101,8 @@ var app = function(){
                 sessionTime = formatDate(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
                 newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
                 
-                newHTML += '<div class="session-notes">' + theSessions[x].header + '</div>';
               }
+              
                        
               var theItems = theSessions[x].items
               ,    itemHeading = '' //Same as the session location and time vars
@@ -116,8 +116,8 @@ var app = function(){
               else{ console.log('Looping through the '+theSessions[x].items.length+' items...') 
               
 	              // Adding Agenda notes to the display...
-	              if(theItems.header!=''){
-	              	newHTML += '<p class="session-notes">'+theSessions[x].header+'</p>';     
+	              if(theSessions[x].header != ''){
+	              	newHTML += '<div class="session-notes">'+theSessions[x].header+'</div>';     
 	              }
               
               }
