@@ -290,7 +290,6 @@ $(function(){
                           "action":"create",
                           "type":type,
                           "title":modal.find('[name=title]').val(),
-                          "header":modal.find('[name=header]').val(),
                           "footer":modal.find('[name=footer]').val()
                         },
                         function(json){
@@ -304,6 +303,7 @@ $(function(){
                         app().api({
                           "action":'create',
                           "type":type,
+                          "header":modal.find('[name=header]').val(),
                           "datetime":modal.find('[name=datetime]').val(),
                           "location":modal.find('[name=location]').val(),
                           "message":modal.find('[name=empty-session]').val(),
@@ -417,13 +417,13 @@ $(function(){
                     
                     if(type == 'agenda'){
                       modal.find('[name=title]').val(json[0].title);
- 					  modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=footer]').val(json[0].footer);
                       modal.find('[name=status]').val(json[0].status);
                     }
                     else if(type == 'session'){
                    	console.log(json[0]);
                       modal.find('[name=datetime]').val(json[0].start_date);
+  					  modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=location]').val(json[0].location);
                       modal.find('[name=empty-session]').val(json[0].message);
                     }
@@ -497,7 +497,6 @@ $(function(){
                           type:type,
                           id:id,
                           title:modal.find('[name=title]').val(),
-                          header:modal.find('[name=header]').val(),
                           footer:modal.find('[name=footer]').val(),
                           status:modal.find('[name=status]').val()
                         },function(){
@@ -510,6 +509,7 @@ $(function(){
                           action:'update',
                           type:type,
                           id:id,
+                          header:modal.find('[name=header]').val(),
                           start_date: modal.find('[name=datetime]').val(),
                           location:modal.find('[name=location]').val(),
                           message:modal.find('[name=empty-session]').val()

@@ -84,7 +84,7 @@ var app = function(){
             else{
                 startDate = '';
             }
-            var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_id, "header":json[0].header});
+            var newHTML = $.template(html,{"title":json[0].title, "date":startDate, "agenda-number":json[0].agenda_id});
             //Session loop variables
             var theSessions = json[0].sessions,
                 sessionLocation = '', //Used to check if the location is different than the last session (for display only)
@@ -100,11 +100,8 @@ var app = function(){
               if(sessionTime !== theSessions[x].start_date){
                 sessionTime = formatDate(theSessions[x].start_date,"dddd, h:MM TT, mmmm dd, yyyy");
                 newHTML = newHTML+'<h3><span>'+sessionTime+'</span></h3>';
-              }
-              
-              // Adding Agenda notes to the display...
-              if(x==0 && json[0].header!=''){
-              	newHTML += '<p class="agenda-notes">'+json[0].header+'</p>';     
+                
+                newHTML += '<div class="session-notes">' + theSessions[x].header + '</div>';
               }
                        
               var theItems = theSessions[x].items
@@ -116,7 +113,14 @@ var app = function(){
               if(theSessions[x].items.length < 1){
                 newHTML = newHTML + '<div class="item no-items">'+theSessions[x].message+'</div>';
               }
-              else{ console.log('Looping through the '+theSessions[x].items.length+' items...') }
+              else{ console.log('Looping through the '+theSessions[x].items.length+' items...') 
+              
+	              // Adding Agenda notes to the display...
+	              if(theItems.header!=''){
+	              	newHTML += '<p class="session-notes">'+theSessions[x].header+'</p>';     
+	              }
+              
+              }
               
               for(y in theItems){
                 var e = '' //Emergency item. If 1 will be replaced with *
@@ -478,6 +482,7 @@ var app = function(){
           "session_id" : settings.id,
           "message"    : settings.message,
           "location"   : settings.location,
+          "header"	   : settings.header,
           "start_date" : settings.datetime
         }
         

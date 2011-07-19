@@ -163,7 +163,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px;}
-  #preview .agenda-notes{padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
+  #preview .session-notes{padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
 
 /**
  * @location Footer
