@@ -176,7 +176,7 @@ var app = function(){
                   newHTML = newHTML+itemBureau;
                 }
                 
-                if(theItems[y].emergency == 1){ e = '*'; }
+                if(theItems[y].emergency == 1){ e = '*'; itemClass = 'item-no emergency'; } else { itemClass = 'item-no'; }
                 
                 
                 var theDisposition = '';
@@ -184,7 +184,17 @@ var app = function(){
                   theDisposition = theItems[y].motions[0].title;
                 }
                 
-                newHTML = newHTML+'<p class="item-no">'+e+theItems[y].item_id+'</p><p class="item-text">'+theItems[y].topic+'</p><p class="disposition">'+theDisposition+'</p>';
+                newHTML = newHTML+'<p class="'+itemClass+'">'+e+theItems[y].item_id;
+                // Add attachment icons
+                if(theItems[y].files != ""){
+                	if(theItems[y].files.length > 1){
+                		newHTML += '<br><img class="attachments" src="images/icon_files.png" title="This item has attachments.">';
+                	} else {
+                		newHTML += '<br><img class="attachments" src="images/icon_file.png" title="This item has an attachment.">';
+                	}
+                }
+                newHTML += '</p>'; // closes item-no                
+                newHTML += '<p class="item-text">'+theItems[y].topic+'</p><p class="disposition">'+theDisposition+'</p>';
                 
                 // Adds voting information display                                
                 if(theItems[y].motions[0] !== undefined){

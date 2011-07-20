@@ -158,7 +158,11 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
 	#preview .item p.item-text{width: 65%; min-width: 450px;}
 	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
 	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
+	#preview .item p.item-no.emergency{margin-left: 26px; margin-right: 2px;}
 	#preview .item p.position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
+	#preview .item p.item-no img.attachments{margin: 4px 0px 0px 4px;}
+	#preview .item p.item-no.emergency img.attachments{margin: 4px 0px 0px 13px;}
+
   #preview .item.active {background:url(../images/active_bg.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
