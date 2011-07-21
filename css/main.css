@@ -62,6 +62,15 @@ header, nav ol ol{
   background: linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* W3C */
 }
 
+#menu span.menu-item, #menu span.hint{display:inline-block;}
+#menu span.menu-item{width:114px;}
+#menu span.hint{width: 75px; color:#adadad; text-align: right;}
+
+ol.edit.menu{width: 222px !important;}
+ol.edit.menu a{width: 212px !important;}
+ol.edit.menu span.menu-item{width: 113px !important;}
+ol.edit.menu span.hint{width:98px !important;}
+
 /**
  * Add selector the list to add a gradient with the gray gradient 
  */

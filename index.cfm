@@ -25,44 +25,44 @@
       <h1 id="logo"></h1>
       <nav id="menu">
         <ol>
-										<li>
-												<a href="#!/file" class="button file">CouncilConnect</a>
-												<ol>
-													<li><a href="#!/councilconnect/about">About CouncilConnect</a></li>
-													<!--<li><a href="#!/councilconnect/preferences" class="new-nav-group">Preferences</a></li>-->
-													<li><a href="/index.cfm?logoff=1" class="new-nav-group">Logout</a></li>
-												</ol>
-										</li>
+			<li>
+				<a href="#!/file" class="button file">CouncilConnect</a>
+				<ol>
+					<li><a href="#!/councilconnect/about">About CouncilConnect</a></li>
+					<!--<li><a href="#!/councilconnect/preferences" class="new-nav-group">Preferences</a></li>-->
+					<li><a href="/index.cfm?logoff=1" class="new-nav-group">Logout</a></li>
+				</ol>
+			</li>
           <li>
             <a href="#!/file" class="button file">File</a>
-            <ol>
-														<li><a href="#!/file/new-agenda">New Agenda</a></li>
-														<li><a href="#!/file/new-session">New Session</a></li>
-														<li><a href="#!/file/new-item">New Item</a></li>
-														<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
+            <ol class="file menu">
+				<li><a href="#!/file/new-agenda"><span class="menu-item">New Agenda</span><span class="hint">Alt+Shift+A</span></a></li>
+				<li><a href="#!/file/new-session"><span class="menu-item">New Session</span><span class="hint">Alt+Shift+S</span></a></li>
+				<li><a href="#!/file/new-item"><span class="menu-item">New Item</span><span class="hint">Alt+Shift+I</span></a></li>
+				<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
             </ol>
           </li>
           <li>
             <a href="#!/edit" class="button edit">Edit</a>
-            <ol>
-														<li><a href="#!/edit/edit-item">Edit Item</a></li>
-														<li><a href="#!/edit/edit-session">Edit Session</a></li>
-														<li><a href="#!/edit/edit-agenda">Edit Agenda</a></li>
-														<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
-														<li><a href="#!/edit/delete-session">Delete Session</a></li>
-														<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
-														<li class="new-nav-group"><a href="#!/edit/publish-agenda">Publish Agenda</a></li>
-														<li class="new-nav-group"><a href="#!/edit/unpublish-agenda">Unpublish Agenda</a></li>
+            <ol class="edit menu">
+				<li><a href="#!/edit/edit-item"><span class="menu-item">Edit Item</span><span class="hint">Alt+Shift+Ctrl+I</span></a></li>
+				<li><a href="#!/edit/edit-session"><span class="menu-item">Edit Session</span><span class="hint">Alt+Shift+Ctrl+S</span></a></li>
+				<li><a href="#!/edit/edit-agenda"><span class="menu-item">Edit Agenda</span><span class="hint">Alt+Shift+Ctrl+A</span></a></li>
+				<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
+				<li><a href="#!/edit/delete-session">Delete Session</a></li>
+				<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
+				<li class="new-nav-group"><a href="#!/edit/publish-agenda">Publish Agenda</a></li>
+				<li class="new-nav-group"><a href="#!/edit/unpublish-agenda">Unpublish Agenda</a></li>
             </ol>
           </li>
-					<li>
-						<a href="#!/help" class="button help">Help</a>
-						<ol>
-							 <li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
-							 <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
-						</ol>
-					</li>
-					<li class="icon"><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
+			<li>
+				<a href="#!/help" class="button help">Help</a>
+				<ol class="help menu">
+					 <li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
+					 <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
+				</ol>
+			</li>
+			<li class="icon"><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
         </ol>
       </nav>
       <br class="clear">
