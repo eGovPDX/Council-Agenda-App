@@ -117,7 +117,7 @@ var app = function(){
               
 	              // Adding Agenda notes to the display...
 	              if(theSessions[x].header != ''){
-	              	newHTML += '<div class="session-notes">'+theSessions[x].header+'</div>';     
+	              	newHTML += '<div class="session-header"><p class="session-notes">'+theSessions[x].header+'</p><p class="disposition-title">Dispositions:</p></div>';     
 	              }
               
               }

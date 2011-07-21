@@ -152,11 +152,11 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview h5 {padding-top: 24px;}
   #preview h6 {padding: 20px 0px 0px 0px; text-transform: none;}
   #preview .session{margin: 0px 0px 16px 0px}
-  #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 700px;}
+  #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 860px;}
   #preview .item.last{border-bottom: none;}
 	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
-	#preview .item p.item-text{width: 65%; min-width: 450px;}
-	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
+	#preview .item p.item-text{width: 72%; min-width: 450px;}
+	#preview .item p.disposition{width: 15%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
 	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
 	#preview .item p.item-no.emergency{margin-left: 26px; margin-right: 2px;}
 	#preview .item p.position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
@@ -168,9 +168,11 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px;}
-  #preview .session-notes{padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
+  #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
   #preview .voting-record{margin-left: 70px; padding: 0px 0px 10px 0px; font-size: 0.825em;}
-
+  
+  p.disposition-title{width: 92px; display: inline-block; margin-left: 46px; vertical-align: bottom; margin-bottom: 12px; font-weight: bold}
+  div.session-header{min-width:860px;}
 /**
  * @location Footer
  */
