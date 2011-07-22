@@ -186,33 +186,43 @@ var app = function(){
                 
                 newHTML = newHTML+'<p class="item-no">'+e+theItems[y].item_id+'</p><p class="item-text">'+theItems[y].topic+'</p><p class="disposition">'+theDisposition+'</p>';
                 
-                // Adds voting information display
-                // How do I do check for this properly?
-                                
+                // Adds voting information display                                
                 if(theItems[y].motions[0] !== undefined){
-                
                   var itemVotes = theItems[y].motions[0].votes;
-                                    
                   itemVotes.blank = 0;
-                  itemVotes.yea = 0;
-                  itemVotes.nay = 0;
-                  itemVotes.absent = 0;
                   
+                  //Holders...
+                  itemVotes.yeaTally = 0;
+                  itemVotes.yeaNames = '';
+                  
+                  itemVotes.nayTally = 0;
+                  itemVotes.nayNames = '';
+
+                  itemVotes.absentTally = 0;
+                  itemVotes.absentNames = '';                  
+                  
+                  // Tally the votes...
                   for(v in itemVotes){
-            switch(itemVotes[v].vote){
-              case '-' : 
-                itemVotes.blank ++;
-                break;
-              case 'Yea' : 
-                itemVotes.yea ++;
-                break;
-              case 'Nay' :
-                itemVotes.nay ++;
-                break;
-              case 'Absent' : 
-                itemVotes.absent ++;
-                break;
-            }
+		            switch(itemVotes[v].vote){
+		              case '-' : 
+		                itemVotes.blank ++;
+		                break;
+		              case 'Yea' : 
+		                itemVotes.yeaTally ++;
+		                if(itemVotes.yeaTally > 1){itemVotes.yeaNames += ', ';}
+		                itemVotes.yeaNames += getLastName(itemVotes[v].owner);
+		                break;
+		              case 'Nay' :
+		                itemVotes.nayTally ++;
+		                if(itemVotes.nayTally > 1){itemVotes.nayNames += ', ';}
+  		                itemVotes.nayNames += getLastName(itemVotes[v].owner);
+		                break;
+		              case 'Absent' : 
+		                itemVotes.absentTally ++;
+		                if(itemVotes.absentTally > 1){itemVotes.absentNames += ', ';}
+   		                itemVotes.absentNames += getLastName(itemVotes[v].owner);
+		                break;
+		            }
 
                   }
                   
@@ -220,9 +230,9 @@ var app = function(){
                   if(itemVotes.blank < 5) {
                   
                     newHTML += '<div class="voting-record"><b>Votes:</b> ';
-                      if(itemVotes.yea > 0){ newHTML += 'Yea - '+itemVotes.yea }
-                      if(itemVotes.nay > 0){ newHTML += ', Nay - '+itemVotes.nay }
-                      if(itemVotes.absent > 0){ newHTML += ', Absent - '+itemVotes.absent }
+                      if(itemVotes.yeaTally > 0){ newHTML += '&nbsp;&nbsp;&nbsp;<b>Yea - '+itemVotes.yeaTally + '</b> (<i>'+itemVotes.yeaNames+'</i>)'}
+                      if(itemVotes.nayTally > 0){ newHTML += ',  &nbsp;&nbsp;&nbsp;<b>Nay - '+itemVotes.nayTally + '</b> (<i>'+itemVotes.nayNames+'</i>)' }
+                      if(itemVotes.absentTally > 0){ newHTML += ', &nbsp;&nbsp;&nbsp;<b>Absent - '+itemVotes.absentTally + '</b> (<i>'+itemVotes.absentNames+'</i>)'}
                     
                     newHTML += '</div>'; // closes voting record
                   
@@ -477,7 +487,6 @@ var app = function(){
         });
       }
       else if(settings.type == 'session'){
-        console.log('session type')
         var defaultSessionData = {
           "action"     : urlp.action+settings.type,
           "session_id" : settings.id,
@@ -511,7 +520,6 @@ var app = function(){
           dataType:'json',
           data:sessionData,
           complete:function(json){
-            console.log(json)
             callback.call(this,JSON.parse(json.responseText));
           }
         });
@@ -891,4 +899,12 @@ Object.size = function(obj) {
  */
 var formatDate = function(date,mask){
   return dateFormat(new Date(date.split('.')[0].replace(/-/g,'/')),mask);
+}
+
+/**
+ * Proxy function to reutrn the last name of a council member for Voting record display
+ */
+var getLastName = function(string){
+	fullName = string.split(" ");
+	return fullName[fullName.length-1];
 }

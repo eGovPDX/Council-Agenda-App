@@ -10,6 +10,8 @@ $(function(){
   ,   API_PATH = 'io.cfm'
   ,   SMALL_LOADER = '<img class="small-loader" src="'+BASE_URL+'/images/small-loader.gif">';
   
+  var initialLoad = 0;
+  
   //NOTE: see ticket #37
   var dataStore = function(key,value){
     key = key || '';
@@ -71,7 +73,8 @@ $(function(){
         });
       }
       
-      var displayAgenda = function(agendaID){
+      var displayAgenda = function(agendaID,callback){
+        callback = callback || function(){};
         var sameID = true;
         app().messageBar('Loading agenda '+agendaID+' '+SMALL_LOADER).generateAgendaHTML(agendaID,function(html){
           if(html.error !== '404'){
@@ -132,9 +135,8 @@ $(function(){
               }
               else{
                 dataStore('active-session',-1);
-              } 
+              }
             }
-            
             
             // Store sessionCount for use in "Smart Dates"
             app().api({
@@ -152,6 +154,9 @@ $(function(){
                 $('#inner-sidebar .active').removeClass('active');
               }
               app().makeActive($('#agendaNav-'+agendaID)).messageBar('Finished loading agenda '+dataStore('active-agenda'));
+              
+              callback.call(this,$('#editor'));
+              
             });
             
           }
@@ -334,6 +339,7 @@ $(function(){
                         },
                         function(json){
                           displayAgenda(dataStore('active-agenda'));
+                          dataStore('active-session',json.session_id);
                           app().modal('close');
                         })
                       }
@@ -356,10 +362,12 @@ $(function(){
                         },
                         function(json){
                           if(!json.error){
+                            //Needs fix for displaying before item is done saving
                             addRemoveBureausOwners('owner',json.item_id);
                             addRemoveBureausOwners('bureau',json.item_id);
+                            dataStore('active-item',json.item_id);
                             displayAgenda(dataStore('active-agenda'));
-                            app().modal('close')
+                            app().modal('close');
                           }
                           else{
                             alert('Error: '+json.error);
@@ -410,7 +418,20 @@ $(function(){
                       sidebarAgendaLink.remove();
                     }
                     else{
-                      displayAgenda(dataStore('active-agenda'));
+                      var newActiveItem = '';
+                      if(type == 'item'){
+                        if($('#item-'+id).prev('.item').length > 0){
+                          newActiveItem = $('#item-'+id).prev('.item').attr('id');
+                        }
+                        else{
+                          newActiveItem = $('#item-'+id).next('.item').attr('id');
+                        }
+                      }
+                      displayAgenda(dataStore('active-agenda'),function(){
+                        if(newActiveItem !== ''){
+                          app().makeActive($('#'+newActiveItem),this);
+                        }
+                      });
                     }
                     app().modal('close');
                   });
@@ -445,7 +466,7 @@ $(function(){
                     else if(type == 'session'){
                    	console.log(json[0]);
                       modal.find('[name=datetime]').val(json[0].start_date);
-  					  modal.find('[name=header]').val(json[0].header);
+                      modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=location]').val(json[0].location);
                       modal.find('[name=empty-session]').val(json[0].message);
                     }
@@ -483,7 +504,9 @@ $(function(){
                         type:'owners'
                       },function(ownerjson){
                         for(x in ownerjson){
-                          votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="-">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                          if(ownerjson[x].name !== 'City Auditor LaVonne Griffin-Valade'){
+                            votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="-">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                          }
                         }
                         modal.find('#owner-votes').append(votingHTML)
                         .find('[name=all-votes]').change(function(){
@@ -699,6 +722,8 @@ $(function(){
        */
       $('[href^="#!/edit/edit-"]').click(function(){
         var type = $(this).attr('href').split('-')[1];
+          console.log(type);
+          console.log(dataStore('active-'+type))
         if(dataStore('active-'+type) !== -1){
           actions.update(type,dataStore('active-'+type));
         }
@@ -822,6 +847,78 @@ $(function(){
           }
         }
       }
+      
+      
+      /**
+       * Here are all the key commands
+       */
+      
+      var isInView = function(elem){
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+    
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+        
+        //Completely outside
+        //return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+        
+        //Partially outside
+        return ((docViewTop < elemTop) && (docViewBottom > elemBottom));
+      }
+      
+      //kbs=keyboardshortcut
+      var kbs = {
+        create:'alt+shit+',
+        update:'ctrl+alt+shift+'
+      }
+      
+      //alt+shift commands == NEW
+      $(document)
+      .jkey('ctrl+shift+a',function(){
+        actions.create('agenda');
+      })
+      .jkey('ctrl+shift+s',function(){
+        actions.create('session');
+      })
+      .jkey('ctrl+shift+i',function(){
+        actions.create('item');
+      })
+      //ctrl+shift commands == EDIT
+      .jkey('alt+shift+a',function(){
+        actions.update('agenda',dataStore('active-agenda'));
+      })
+      .jkey('alt+shift+s',function(){
+        actions.update('session',dataStore('active-session'));
+      })
+      .jkey('alt+shift+i',function(){
+        actions.update('item',dataStore('active-item'));
+      })
+      .jkey('up,down',function(key){
+        if(key == 'down'){
+          if($('.item.active').next('.item').length > 0){
+            app().makeActive($('.item.active').next(),$('#editor'));
+            if(!isInView('.item.active')){
+              $("html,body").animate({scrollTop:$('.item.active').offset().top-250+'px'},200);
+            }
+          }
+        }
+        else{
+          if($('.item.active').prev('.item').length > 0){
+            app().makeActive($('.item.active').prev(),$('#editor'));
+            if(!isInView('.item.active')){
+              $("html,body").animate({scrollTop:$('.item.active').offset().top-350+'px'},200);
+            }
+          }
+        }
+        dataStore('active-item',$('.item.active').attr('id').split('-')[1]);
+        dataStore('active-session',$('.item.active').closest('.session').attr('id').split('-')[1]);
+      })
+      .jkey('enter',function(){
+        if($('#modal-wrapper').length == 0){ //If the modal isn't open (modal, on enter, saves and closes)
+          actions.update('item',dataStore('active-item'));
+        }
+      });
       
     }
     else{ //If you don't have creds to the app...

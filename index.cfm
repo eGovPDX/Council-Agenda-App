@@ -106,9 +106,10 @@
 			</li>
 		</script>
 
-    <script src="js/jquery-1.4.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+				<script src="js/jquery.jkey.js"></script>
     <script src="js/jquery.rightclick.js"></script>
-		<script src="js/date.format.js"></script>
+				<script src="js/date.format.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
