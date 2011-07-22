@@ -62,6 +62,15 @@ header, nav ol ol{
   background: linear-gradient(top, #499bea 0%,#207ce5 100%) !important; /* W3C */
 }
 
+#menu span.menu-item, #menu span.hint{display:inline-block;}
+#menu span.menu-item{width:114px;}
+#menu span.hint{width: 75px; color:#adadad; text-align: right;}
+
+ol.edit.menu{width: 222px !important;}
+ol.edit.menu a{width: 212px !important;}
+ol.edit.menu span.menu-item{width: 113px !important;}
+ol.edit.menu span.hint{width:98px !important;}
+
 /**
  * Add selector the list to add a gradient with the gray gradient 
  */
@@ -152,21 +161,27 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview h5 {padding-top: 24px;}
   #preview h6 {padding: 20px 0px 0px 0px; text-transform: none;}
   #preview .session{margin: 0px 0px 16px 0px}
-  #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 700px;}
+  #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 860px;}
   #preview .item.last{border-bottom: none;}
 	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
-	#preview .item p.item-text{width: 65%; min-width: 450px;}
-	#preview .item p.disposition{width: 19%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
+	#preview .item p.item-text{width: 72%; min-width: 450px;}
+	#preview .item p.disposition{font-size: 0.9em; width: 15%; min-width: 130px; margin-left: 40px; font-weight: bold; text-transform:uppercase; }
 	#preview .item p.item-no{width: 40px; font-weight: bold; margin-left: 30px;}
+	#preview .item p.item-no.emergency{margin-left: 26px; margin-right: 2px;}
 	#preview .item p.position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
+	#preview .item p.item-no img.attachments{margin: 4px 0px 0px 4px;}
+	#preview .item p.item-no.emergency img.attachments{margin: 4px 0px 0px 13px;}
+
   #preview .item.active {background:url(../images/active_bg.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px;}
-  #preview .session-notes{padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
-  #preview .voting-record{margin-left: 70px; padding: 0px 0px 10px 0px; font-size: 0.825em;}
-
+  #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
+  #preview .voting-record{margin-left: 85px; padding: 0px 0px 10px 0px; font-size: 0.825em;}
+  
+  p.disposition-title{width: 92px; display: inline-block; margin-left: 46px; vertical-align: bottom; margin-bottom: 12px; font-weight: bold}
+  div.session-header{min-width:860px;}
 /**
  * @location Footer
  */
