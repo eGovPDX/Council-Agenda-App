@@ -36,18 +36,18 @@
           <li>
             <a href="#!/file" class="button file">File</a>
             <ol class="file menu">
-				<li><a href="#!/file/new-agenda"><span class="menu-item">New Agenda</span><span class="hint">Alt+Shift+A</span></a></li>
-				<li><a href="#!/file/new-session"><span class="menu-item">New Session</span><span class="hint">Alt+Shift+S</span></a></li>
-				<li><a href="#!/file/new-item"><span class="menu-item">New Item</span><span class="hint">Alt+Shift+I</span></a></li>
+				<li><a href="#!/file/new-agenda"><span class="menu-item">New Agenda</span><span class="hint">Ctrl+Shift+A</span></a></li>
+				<li><a href="#!/file/new-session"><span class="menu-item">New Session</span><span class="hint">Ctrl+Shift+S</span></a></li>
+				<li><a href="#!/file/new-item"><span class="menu-item">New Item</span><span class="hint">Ctrl+Shift+I</span></a></li>
 				<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
             </ol>
           </li>
           <li>
             <a href="#!/edit" class="button edit">Edit</a>
             <ol class="edit menu">
-				<li><a href="#!/edit/edit-item"><span class="menu-item">Edit Item</span><span class="hint">Alt+Shift+Ctrl+I</span></a></li>
-				<li><a href="#!/edit/edit-session"><span class="menu-item">Edit Session</span><span class="hint">Alt+Shift+Ctrl+S</span></a></li>
-				<li><a href="#!/edit/edit-agenda"><span class="menu-item">Edit Agenda</span><span class="hint">Alt+Shift+Ctrl+A</span></a></li>
+				<li><a href="#!/edit/edit-item"><span class="menu-item">Edit Item</span><span class="hint">Alt+Shift+I</span></a></li>
+				<li><a href="#!/edit/edit-session"><span class="menu-item">Edit Session</span><span class="hint">Alt+Shift+S</span></a></li>
+				<li><a href="#!/edit/edit-agenda"><span class="menu-item">Edit Agenda</span><span class="hint">Alt+Shift+A</span></a></li>
 				<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
 				<li><a href="#!/edit/delete-session">Delete Session</a></li>
 				<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
