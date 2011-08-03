@@ -415,7 +415,7 @@ var app = function(){
         "title"          : "Portland City Council Agenda",
         "id"             : "",
         "baseURL"        : "io.cfm?",
-        "header"       : "THOSE PRESENT WERE: ",
+        "header"         : "",
         "footer"         : "",
         "datetime "      : "1-1-1111 11:11",
         "message"        : "Due to lack of an agenda there will be no meeting",

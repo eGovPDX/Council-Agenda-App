@@ -277,6 +277,8 @@ $(function(){
                     // Handling for Session "Smart Dates"
                   if(type=='session'){
                     modal.find('[name=datetime]').val(dataStore('next-session'));
+                    //Hide the session notes on create
+                    modal.find('.session-notes').remove();
                   }
                   
                   if(type=='item'){
@@ -505,7 +507,7 @@ $(function(){
                       },function(ownerjson){
                         for(x in ownerjson){
                           if(ownerjson[x].name !== 'City Auditor LaVonne Griffin-Valade'){
-                            votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="-">---</option><option value="Yea">Yea</option><option value="Nay">Nay</option><option value="Absent">Absent</option></select><br class="clear">';
+                            votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="">---</option><option value="Aye">Aye</option><option value="No">No</option><option value="Absent">Absent</option><option value="Recuse">Recuse</option><option value="Abstain">Abstain</option></select><br class="clear">';
                           }
                         }
                         modal.find('#owner-votes').append(votingHTML)

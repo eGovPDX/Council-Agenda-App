@@ -176,7 +176,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
   	#preview .regular-agenda:first-child{margin-top: 0px; padding-top: 0px;}
   
-  #preview .item.no-items{text-align: center; padding-bottom: 16px;}
+  #preview .item.no-items{text-align: center; padding-bottom: 16px; text-transform:uppercase; font-weight:bold; font-size:18px;}
   #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
   #preview .voting-record{margin-left: 85px; padding: 0px 0px 10px 0px; font-size: 0.825em;}
   
