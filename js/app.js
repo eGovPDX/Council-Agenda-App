@@ -117,7 +117,7 @@ var app = function(){
               
 	              // Adding Agenda notes to the display...
 	              if(theSessions[x].header != ''){
-	              	newHTML += '<div class="session-header"><p class="session-notes">'+theSessions[x].header+'</p><p class="disposition-title">Dispositions:</p></div>';     
+	              	newHTML += '<div class="session-header"><p class="session-notes">'+theSessions[x].header+'</p><p class="disposition-title">Disposition:</p></div>';     
 	              }
               
               }
@@ -176,7 +176,7 @@ var app = function(){
                   newHTML = newHTML+itemBureau;
                 }
                 
-                if(theItems[y].emergency == 1){ e = '*'; itemClass = 'item-no emergency'; } else { itemClass = 'item-no'; }
+                if(theItems[y].emergency == 1){ e = '* '; itemClass = 'item-no emergency'; } else { itemClass = 'item-no'; }
                 
                 
                 var theDisposition = '';
