@@ -165,7 +165,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .item.last{border-bottom: none;}
 	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
 	#preview .item p.item-text{width: 72%; min-width: 450px;}
-	#preview .item p.disposition{ text-align:center; font-size: 1em; width: 15%; min-width: 130px; margin-left: 30px; font-weight: bold; text-transform:uppercase; }
+	#preview .item p.disposition{ text-align:center; font-size: 1em; width: 15%; min-width: 130px; margin-left: 20px; font-weight: bold; text-transform:uppercase; }
 	#preview .item p.item-no{width: 60px; font-weight: bold; margin-left: 30px;}
 	#preview .item p.item-no.emergency{margin-left: 26px; margin-right: 2px;}
 	#preview .item p.position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
