@@ -676,10 +676,15 @@ $(function(){
       /**
        * Makes the selected item "active"
        */
-      $('body').delegate('.item:not(.no-items)','click',function(){
+      $('body').delegate('.item','click',function(){
+        if(!$(this).hasClass('no-items')){
+          dataStore('active-item',$(this).attr('id').split('-')[1]);
+        }
+        else{
+          dataStore('active-item',-1);
+        }
+        dataStore('active-session',$(this).closest('.session').attr('id').split('-')[1]);
         app().makeActive($(this),$('#editor'));
-        dataStore('active-item',$('.item.active').attr('id').split('-')[1]);
-        dataStore('active-session',$('.item.active').closest('.session').attr('id').split('-')[1]);
       });
       
       
@@ -763,8 +768,13 @@ $(function(){
       /**
        * Allows you to double click on an item to edit it
        */
-      $('body').delegate('.item:not(.no-items)','dblclick',function(){
-        actions.update('item',dataStore('active-item'));
+      $('body').delegate('.item','dblclick',function(){
+        if(!$(this).hasClass('no-items')){
+          actions.update('item',dataStore('active-item'));
+        }
+        else{
+          actions.update('session',dataStore('active-session'));
+        }
       });
       
       /**
@@ -898,16 +908,26 @@ $(function(){
       })
       .jkey('up,down',function(key){
         if(key == 'down'){
-          if($('.item.active').next('.item').length > 0){
-            app().makeActive($('.item.active').next(),$('#editor'));
+          if($('.item.active').next('.item').length > 0 || $('.item.active').parent().next('.session').find('.item:first').length > 0){
+            if($('.item.active').next('.item').length > 0){
+              app().makeActive($('.item.active').next('.item'),$('#editor'));
+            }
+            else{
+              app().makeActive($('.item.active').parent().next('.session').find('.item:first'));
+            }
             if(!isInView('.item.active')){
               $("html,body").animate({scrollTop:$('.item.active').offset().top-250+'px'},200);
             }
           }
         }
         else{
-          if($('.item.active').prev('.item').length > 0){
-            app().makeActive($('.item.active').prev(),$('#editor'));
+          if($('.item.active').prev('.item').length > 0 || $('.item.active').parent().prev('.session').find('.item:last').length){
+            if($('.item.active').prev('.item').length > 0){
+              app().makeActive($('.item.active').prev('.item'),$('#editor'));
+            }
+            else{
+              app().makeActive($('.item.active').parent().prev('.session').find('.item:last'));
+            }
             if(!isInView('.item.active')){
               $("html,body").animate({scrollTop:$('.item.active').offset().top-350+'px'},200);
             }
