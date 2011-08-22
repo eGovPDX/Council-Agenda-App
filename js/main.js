@@ -283,7 +283,7 @@ $(function(){
                   
                   if(type=='item'){
                     //Dispositions don't need to be there for new items!
-                    modal.find('.tab-1').hide();
+                    modal.find('.tab-1,.tab-2').hide();
                   }
                   
                   //If there are items, but not the dummy "Due to lack of an agenda there will be no meeting." item...
@@ -604,6 +604,7 @@ $(function(){
                           type:'motion',
                           id:motionId,
                           title:modal.find('[name=disposition-title]').val(),
+                          header:modal.find('[name=disposition-header]').val(),
                           motion_type:modal.find('[name=motion-type]').val(),
                           status:modal.find('[name=motion-status]').val()
                         },function(json){
@@ -843,6 +844,25 @@ $(function(){
         })
       });
       
+      /**
+       * Show/hide sidebar
+       */
+      $('#inner-editor').attr('data-original-padding',$('#inner-editor').css('padding-left'));
+      $('#sidebar').attr('data-visible','true')
+      $('body').delegate('[href="#!/view/show-hide-sidebar"]','click',function(){
+        var sidebar = $('#sidebar')
+        ,   editor = $('#inner-editor');
+        if(sidebar.attr('data-visible') == 'true'){
+          sidebar.attr('data-visible','false').animate({left:'-'+sidebar.outerWidth()+'px'},250);
+          editor.animate({paddingLeft:'0'},250)
+          $(this).text('Show Sidebar');
+        }
+        else{
+          sidebar.attr('data-visible','true').animate({left:'0px'},250);
+          editor.animate({paddingLeft:editor.attr('data-original-padding')},250);
+          $(this).text('Hide Sidebar');
+        }
+      });
       
       /**
        * Simple URL bookmarking function. If the hash is changed (like, going back/forward, entering in a URL manually, etc)
@@ -936,9 +956,19 @@ $(function(){
         dataStore('active-item',$('.item.active').attr('id').split('-')[1]);
         dataStore('active-session',$('.item.active').closest('.session').attr('id').split('-')[1]);
       })
-      .jkey('enter',function(){
+      .jkey('enter',true,function(){
         if($('#modal-wrapper').length == 0){ //If the modal isn't open (modal, on enter, saves and closes)
           actions.update('item',dataStore('active-item'));
+        }
+      })
+      .jkey('ctrl+down',true,function(){
+        if($('#sidebar .active').next().length > 0){
+          actions.display('agenda',$('#sidebar .active').next().attr('id').split('-')[1]);
+        }
+      })
+      .jkey('ctrl+up',true,function(){
+        if($('#sidebar .active').prev().length > 0){
+          actions.display('agenda',$('#sidebar .active').prev().attr('id').split('-')[1]);
         }
       });
       

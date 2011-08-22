@@ -20,6 +20,8 @@ a:focus { outline:1px dotted #5AD7FF; }
  * Global classes for specific uses, e.g., .clear to clear floats, .bold to bold, etc
  */
 .clear {clear:both;}
+.bold { font-weight:bold; }
+.italic { font-style:italic; }
 
 /**
  * Add a selector to the list to add a gradient with the apps default colors
@@ -147,10 +149,10 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
 #editor {font-family:Times,"Times New Roman",georgia,serif;}
   #inner-editor{padding:0 0 0 223px;} /* sidebar width + sidebar border + sidebar padding (outerwidth)*/
   #preview {padding:50px 40px 0px 40px; height: 100% !important; min-width: 700px !important;}
-  #preview div#agenda-header{background:transparent; padding: 0px; margin: 0px; position: relative; width: 100%; border-bottom: 0px; z-index: -1;}
-  	#preview div#agenda-header div#meta{width: 100%; height: 26px; border-bottom: 4px solid #333; font-family: 'Arial', sans-serif; font-weight: bold;}
-  	#preview div#agenda-header p#agenda-number{float: left;}
-  	#preview div#agenda-header p#agenda-date{float: right;}
+  #preview #agenda-header{background:transparent; padding: 0px; margin: 0px; position: relative; width: 100%; border-bottom: 0px; z-index: -1;}
+  	#preview #agenda-header #meta{width: 100%; height: 26px; border-bottom: 4px solid #333; font-family: 'Arial', sans-serif; font-weight: bold;}
+  	#preview #agenda-header #agenda-number{float: left;}
+  	#preview #agenda-header #agenda-date{float: right;}
   #preview h1,#preview h2,#preview h3,#preview h4,#preview h5,#preview h6 {text-align:center;font-weight:bold;text-transform:uppercase;}
   #preview h1 {padding:20px 0px 4px 0px; border-top: 1px solid #333; margin-top: 2px;}
   #preview h2 {text-transform:none;;margin-bottom: 12px;}
@@ -163,14 +165,15 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .session{margin: 0px 0px 16px 0px}
   #preview .item {border-bottom:1px solid #dadada;cursor:default; min-width: 860px;}
   #preview .item.last{border-bottom: none;}
-	#preview .item p, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
-	#preview .item p.item-text{width: 72%; min-width: 450px;}
-	#preview .item p.disposition{ text-align:center; font-size: 1em; width: 15%; min-width: 130px; margin-left: 20px; font-weight: bold; text-transform:uppercase; }
-	#preview .item p.item-no{width: 60px; font-weight: bold; margin-left: 30px;}
-	#preview .item p.item-no.emergency{margin-left: 26px; margin-right: 2px;}
-	#preview .item p.position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
-	#preview .item p.item-no img.attachments{margin: 4px 0px 0px 4px;}
-	#preview .item p.item-no.emergency img.attachments{margin: 4px 0px 0px 13px;}
+	#preview .item p,#preview .item div, #preview .item p.disposition {line-height:21px; display:inline-block; vertical-align: top; margin: 16px 0px;}
+	#preview .item .item-text{width: 72%; min-width: 450px; padding:0; margin:0;}
+  #preview .item .item-text p { margin:5 0 5px 0; display:block; }
+	#preview .item .disposition{ text-align:center; font-size: 1em; width: 15%; min-width: 130px; margin-left: 20px; font-weight: bold; text-transform:uppercase; }
+	#preview .item .item-no{width: 60px; font-weight: bold; margin-left: 30px;}
+	#preview .item .item-no.emergency{margin-left: 26px; margin-right: 2px;}
+	#preview .item .position{text-align: center; font-weight: bold; margin: 0px !important; display: block; width: 100%;}
+	#preview .item .item-no img.attachments{margin: 4px 0px 0px 4px;}
+	#preview .item .item-no.emergency img.attachments{margin: 4px 0px 0px 13px;}
 
   #preview .item.active {background:url(../images/active_bg.png) no-repeat left center;}
   #preview .item.regular-agenda { background-color:#fffece;background-color:rgba(255,254,206,0.75);}
@@ -178,7 +181,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px; text-transform:uppercase; font-weight:bold; font-size:18px;}
   #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
-  #preview .voting-record{margin-left: 85px; padding: 0px 0px 10px 0px; font-size: 0.825em;}
+  #preview .voting-record{margin-left: 89px !important; padding: 0px 0px 10px 0px; font-size: 0.825em;}
   
   p.disposition-title{width: 92px; display: inline-block; margin-left: 46px; vertical-align: bottom; margin-bottom: 12px; font-weight: bold}
   div.session-header{min-width:860px;}

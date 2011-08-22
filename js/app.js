@@ -139,36 +139,31 @@ var app = function(){
                   newHTML = newHTML+'<h4>'+itemHeading+'</h4>';
                 }
                 
-                var tempOwnerHTML = '';
+																
+																var tempOwnerHTML = '';
                 if(theItems[y].owners.length > 0){
-                  tempOwnerHTML = '<h5>';
-                  for(z in theItems[y].owners){
-                    var dash = ' - ';
-                    if(z == 0){ dash = ''; }
-                    tempOwnerHTML = tempOwnerHTML+dash+theItems[y].owners[z].name;
-                  }
-                  tempOwnerHTML = tempOwnerHTML+'</h5>';
-                  
-                  // Checking for owner, addding Position Number if it exists
-                  if(theItems[y].owners[z].position_number !== ''){
-                    tempOwnerHTML = tempOwnerHTML + '<p class=\"position\">Position No. '+theItems[y].owners[z].position_number+'</p>';
-                  }
+																		if(theItems[y].owners.length > 1){
+																				tempOwnerHTML = '';
+																		}
+																		else{
+																				tempOwnerHTML = '<h5>'+theItems[y].owners[0].name+'</h5>';
+																		}
                 }
-                
-                if(tempOwnerHTML !== itemOwner){
+																
+																if(tempOwnerHTML !== itemOwner){
                   itemOwner = tempOwnerHTML;
                   newHTML = newHTML+itemOwner;
                 }
-                
-                var tempBureauHTML = '';
+																
+																
+																var tempBureauHTML = '';
                 if(theItems[y].bureaus.length > 0){
-                  tempBureauHTML = '<h6>';
-                  for(z in theItems[y].bureaus){
-                    var dash = ' - ';
-                    if(z == 0){ dash = ''; }
-                    tempBureauHTML = tempBureauHTML+dash+theItems[y].bureaus[z].name;
-                  }
-                  tempBureauHTML = tempBureauHTML+'</h6>';
+																		if(theItems[y].bureaus.length > 1){
+																				tempBureauHTML = '';
+																		}
+																		else{
+																				tempBureauHTML = '<h6>'+theItems[y].bureaus[0].name+'</h6>';
+																		}
                 }
                 
                 if(tempBureauHTML !== itemBureau){
@@ -182,6 +177,9 @@ var app = function(){
                 var theDisposition = '';
                 if(theItems[y].motions.length > 0){
                   theDisposition = theItems[y].motions[0].title;
+																		//if(theItems[y].motions.header && theItems[y].motions.header !== ''){
+																				theDisposition = theItems[y].motions[0].header+'<br>'+theDisposition;
+																		//}
                 }
                 
                 newHTML = newHTML+'<p class="'+itemClass+'">'+e+theItems[y].item_id;
@@ -194,7 +192,7 @@ var app = function(){
                 	}
                 }
                 newHTML += '</p>'; // closes item-no                
-                newHTML += '<p class="item-text">'+theItems[y].topic+'</p><p class="disposition">'+theDisposition+'</p>';
+                newHTML += '<div class="item-text">'+convertReturnsToParagraphs(theItems[y].topic)+'</div><p class="disposition">'+theDisposition+'</p><br class="clear">';
                 
                 // Adds voting information display                                
                 if(theItems[y].motions[0] !== undefined){
@@ -239,10 +237,10 @@ var app = function(){
                   // Display votes if less than 5 records are blank.
                   if(itemVotes.blank < 5) {
                   
-                    newHTML += '<div class="voting-record"><b>Votes:</b> ';
-                      if(itemVotes.yeaTally > 0){ newHTML += '&nbsp;&nbsp;&nbsp;<b>Yea - '+itemVotes.yeaTally + '</b> (<i>'+itemVotes.yeaNames+'</i>)'}
-                      if(itemVotes.nayTally > 0){ newHTML += ',  &nbsp;&nbsp;&nbsp;<b>Nay - '+itemVotes.nayTally + '</b> (<i>'+itemVotes.nayNames+'</i>)' }
-                      if(itemVotes.absentTally > 0){ newHTML += ', &nbsp;&nbsp;&nbsp;<b>Absent - '+itemVotes.absentTally + '</b> (<i>'+itemVotes.absentNames+'</i>)'}
+                    newHTML += '<div class="voting-record"><span class="bold">Votes:</span> ';
+                      if(itemVotes.yeaTally > 0){ newHTML += '&nbsp;&nbsp;&nbsp;<span class="bold">Yea - '+itemVotes.yeaTally + '</span> (<span class="italic">'+itemVotes.yeaNames+'</span>)'}
+                      if(itemVotes.nayTally > 0){ newHTML += ',  &nbsp;&nbsp;&nbsp;<span class="bold">Nay - '+itemVotes.nayTally + '</span> (<span class="italic">'+itemVotes.nayNames+'</span>)' }
+                      if(itemVotes.absentTally > 0){ newHTML += ', &nbsp;&nbsp;&nbsp;<span class="bold">Absent - '+itemVotes.absentTally + '</span> (<span class="italic">'+itemVotes.absentNames+'</span>)'}
                     
                     newHTML += '</div>'; // closes voting record
                   
@@ -586,7 +584,8 @@ var app = function(){
             status:settings.status,
             title:settings.title,
             item_id:settings.id,
-            item_motion_id:settings.id
+            item_motion_id:settings.id,
+												header:settings.header
         }
 
         if(settings.action == 'create'){
@@ -917,4 +916,8 @@ var formatDate = function(date,mask){
 var getLastName = function(string){
 	fullName = string.split(" ");
 	return fullName[fullName.length-1];
+}
+
+var convertReturnsToParagraphs = function(str){
+		return '<p>'+str.replace(/\n\n/g,"</p><p>").replace(/\n/g,'<br>')+'</p>'
 }
