@@ -182,7 +182,8 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   #preview .item.no-items{text-align: center; padding-bottom: 16px; text-transform:uppercase; font-weight:bold; font-size:18px;}
   #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
   #preview .voting-record{margin-left: 89px !important; padding: 0px 0px 10px 0px; font-size: 0.825em;}
-  
+  #preview .motion-display { display:block !important;}
+  #preview .motion-display p { margin:0; }
   p.disposition-title{width: 92px; display: inline-block; margin-left: 46px; vertical-align: bottom; margin-bottom: 12px; font-weight: bold}
   div.session-header{min-width:860px;}
 /**
@@ -342,8 +343,44 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
     #item-file-list li a { text-decoration:none; color:#51595c; }
     #item-file-list li a:hover { text-decoration:underline; }
 
-#modal-wrapper .motion-status {display:none}
+#modal-wrapper .motion-wrapper { margin:15px 0 0 0; padding:5px; background:#dedede; border-radius:3px; border:1px solid #ccc; }
+#modal-wrapper .motion-wrapper [type=text]{ width:97.5%; }
+#modal-wrapper .motion-status-wrapper, #modal-wrapper .motion-type-wrapper { float:left; }
+#modal-wrapper .motion-type-wrapper { margin:-4px 15px 0 0; }
+
+#modal-wrapper .motion-status {display:none;}
 #modal-wrapper .motion-status.visible{display:block !important}
+
+#modal-wrapper .remove-motion {
+  background: #ad0000; /* Old browsers */
+  background: -moz-linear-gradient(top, #ad0000 0%, #7c1818 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ad0000), color-stop(100%,#7c1818)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ad0000 0%,#7c1818 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ad0000 0%,#7c1818 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #ad0000 0%,#7c1818 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ad0000', endColorstr='#7c1818',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #ad0000 0%,#7c1818 100%); /* W3C */
+  color:#fff;
+  text-shadow:#7c1818 0 -1px 0;
+  padding:3px 6px;
+  float:right;
+  display:block;
+  display:inline-block;
+  text-decoration:none;
+  border-radius:3px;
+}
+
+#modal-wrapper .remove-motion:active {
+  background: #7c1818; /* Old browsers */
+  background: -moz-linear-gradient(top, #7c1818 0%, #ad0000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7c1818), color-stop(100%,#ad0000)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #7c1818 0%,#ad0000 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #7c1818 0%,#ad0000 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #7c1818 0%,#ad0000 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c1818', endColorstr='#ad0000',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #7c1818 0%,#ad0000 100%); /* W3C */
+  text-shadow:#7c1818 0 1px 0;
+}
 
 /**
  * @location About Modal
@@ -355,9 +392,9 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 .about-modal li {font-size:14px;}
 
 label.voting { margin-bottom:12px; }
-#owner-votes label { display:block; width:275px; float:left; color:#000; font-weight:normal; }
-#owner-votes select { float:left; top:-7px; position:relative; }
-#owner-votes hr { clear:both; position:relative; top:-7px; display:block; border:0; border-top:1px solid #fff;border-bottom:1px solid #333; }
+.owner-votes label { display:block; width:275px; float:left; color:#000; font-weight:normal; }
+.owner-votes select { float:left; top:-7px; position:relative; }
+.owner-votes hr { clear:both; position:relative; top:-7px; display:block; border:0; border-top:1px solid #fff;border-bottom:1px solid #333; }
 
 /**
  * @location Right Click Menu

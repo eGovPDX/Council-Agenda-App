@@ -4,71 +4,71 @@
 <!--- Force POL Login --->
 <cf_udf_isUserAuthenticated>
 <cfif not Request.udf_isUserAuthenticated()>
-	<cf_polwrapper site_id="7" c="25777" force="yes" nt_tip="no"></cf_polwrapper>
+  <cf_polwrapper site_id="7" c="25777" force="yes" nt_tip="no"></cf_polwrapper>
 </cfif>
 <!DOCTYPE html>
 <html>
   <head>
-	  <meta http-equiv="x-ua-compatible" content="IE=edge">
-	  <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
     <title>PDXCouncilConnect - Alpha</title>
     <link rel="stylesheet" href="css/main.css">
-		<script>
-			//Removes the ugly index.cfm? in the URL that doesn't need to be there. 
-			if(window.location.href.indexOf('index.cfm?') > -1){
-				window.location = window.location.href.replace('index.cfm?','');
-			}
-		</script>
+    <script>
+      //Removes the ugly index.cfm? in the URL that doesn't need to be there. 
+      if(window.location.href.indexOf('index.cfm?') > -1){
+        window.location = window.location.href.replace('index.cfm?','');
+      }
+    </script>
   </head>
   <body>
     <header>
       <h1 id="logo"></h1>
       <nav id="menu">
       <ol>
-								<li>
-									<a href="#!/file" class="button file">CouncilConnect</a>
-									<ol>
-										<li><a href="#!/councilconnect/about">About CouncilConnect</a></li>
-										<!--<li><a href="#!/councilconnect/preferences" class="new-nav-group">Preferences</a></li>-->
-										<li><a href="/index.cfm?logoff=1" class="new-nav-group">Logout</a></li>
-									</ol>
-								</li>
-								<li>
-										<a href="#!/file" class="button file">File</a>
-										<ol class="file menu">
-												<li><a href="#!/file/new-agenda"><span class="menu-item">New Agenda</span><span class="hint">Ctrl+Shift+A</span></a></li>
-												<li><a href="#!/file/new-session"><span class="menu-item">New Session</span><span class="hint">Ctrl+Shift+S</span></a></li>
-												<li><a href="#!/file/new-item"><span class="menu-item">New Item</span><span class="hint">Ctrl+Shift+I</span></a></li>
-												<li class="new-nav-group"><a href="#!/file/print">Print</a></li>
-										</ol>
-								</li>
-								<li>
-										<a href="#!/edit" class="button edit">Edit</a>
-										<ol class="edit menu">
-												<li><a href="#!/edit/edit-item"><span class="menu-item">Edit Item</span><span class="hint">Alt+Shift+I</span></a></li>
-												<li><a href="#!/edit/edit-session"><span class="menu-item">Edit Session</span><span class="hint">Alt+Shift+S</span></a></li>
-												<li><a href="#!/edit/edit-agenda"><span class="menu-item">Edit Agenda</span><span class="hint">Alt+Shift+A</span></a></li>
-												<li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
-												<li><a href="#!/edit/delete-session">Delete Session</a></li>
-												<li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
-												<li class="new-nav-group"><a href="#!/edit/publish-agenda">Publish Agenda</a></li>
-												<li class="new-nav-group"><a href="#!/edit/unpublish-agenda">Unpublish Agenda</a></li>
-										</ol>
-								</li>
-								<li>
-										<a href="#!/view" class="button view">View</a>
-										<ol class="view menu">
-												<li><a href="#!/view/show-hide-sidebar">Hide Sidebar</a></li>
-										</ol>
-								</li>
-								<li>
-										<a href="#!/help" class="button help">Help</a>
-										<ol class="help menu">
-												<li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
-												<li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
-										</ol>
-								</li>
-								<li class="icon"><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
+        <li>
+          <a href="#!/file" class="button file">CouncilConnect</a>
+          <ol>
+            <li><a href="#!/councilconnect/about">About CouncilConnect</a></li>
+            <!--<li><a href="#!/councilconnect/preferences" class="new-nav-group">Preferences</a></li>-->
+            <li><a href="/index.cfm?logoff=1" class="new-nav-group">Logout</a></li>
+          </ol>
+        </li>
+        <li>
+            <a href="#!/file" class="button file">File</a>
+            <ol class="file menu">
+                <li><a href="#!/file/new-agenda"><span class="menu-item">New Agenda</span><span class="hint">Ctrl+Shift+A</span></a></li>
+                <li><a href="#!/file/new-session"><span class="menu-item">New Session</span><span class="hint">Ctrl+Shift+S</span></a></li>
+                <li><a href="#!/file/new-item"><span class="menu-item">New Item</span><span class="hint">Ctrl+Shift+I</span></a></li>
+                <li class="new-nav-group"><a href="#!/file/print">Print</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#!/edit" class="button edit">Edit</a>
+            <ol class="edit menu">
+                <li><a href="#!/edit/edit-item"><span class="menu-item">Edit Item</span><span class="hint">Alt+Shift+I</span></a></li>
+                <li><a href="#!/edit/edit-session"><span class="menu-item">Edit Session</span><span class="hint">Alt+Shift+S</span></a></li>
+                <li><a href="#!/edit/edit-agenda"><span class="menu-item">Edit Agenda</span><span class="hint">Alt+Shift+A</span></a></li>
+                <li class="new-nav-group"><a href="#!/edit/delete-item">Delete Item</a></li>
+                <li><a href="#!/edit/delete-session">Delete Session</a></li>
+                <li><a href="#!/edit/delete-agenda">Delete Agenda</a></li>
+                <li class="new-nav-group"><a href="#!/edit/publish-agenda">Publish Agenda</a></li>
+                <li class="new-nav-group"><a href="#!/edit/unpublish-agenda">Unpublish Agenda</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#!/view" class="button view">View</a>
+            <ol class="view menu">
+                <li><a href="#!/view/show-hide-sidebar">Hide Sidebar</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#!/help" class="button help">Help</a>
+            <ol class="help menu">
+                <li><a href="https://github.com/eGovPDX/Council-Agenda-App/wiki" target="_blank">Documentation</a></li>
+                <li class="new-nav-group"><a href="https://github.com/eGovPDX/Council-Agenda-App/issues/new" target="_blank">Report an Issue</a></li>
+            </ol>
+        </li>
+        <li class="icon"><img src="http://cdn2.iconfinder.com/data/icons/fugue/bonus/icons-24/printer.png" href="#!/file/print"></li>
       </ol>
       </nav>
       <br class="clear">
@@ -87,8 +87,8 @@
     </section>
     <section id="editor">
       <div id="inner-editor"> <!-- extra div to get rid of the scrollbars when the outermost element is 100% of the window + padding -->
-				 <div id="preview">
-				 </div>
+         <div id="preview">
+         </div>
       </div>
     </section>
     <br class="clear">
@@ -98,24 +98,60 @@
       </div>
     </footer>
 
-		<!-- This script includes code so the rest of the code works on older browsers -->
-		<script src="js/legacy-patches.js"></script>
+    <!-- This script includes code so the rest of the code works on older browsers -->
+    <script src="js/legacy-patches.js"></script>
 
-		<!-- Below are some mini JS templates that are too small to be considered an include -->
-		<script type="js-template" id="sidebar-item-template">
-			<li id="agendaNav-{{agendaID}}">{{createdDate}}</li>
-		</script>
+    <!-- Below are some mini JS templates that are too small to be considered an include -->
+    <script type="js-template" id="sidebar-item-template">
+      <li id="agendaNav-{{agendaID}}">{{createdDate}}</li>
+    </script>
 
-		<script type="js-template" id="item-file-list-template">
-			<li id="item-{{id}}">
-				 <a target="_blank" href="io.cfm?action=getitemfile&item_file_id={{id}}">{{name}}</a> <span class="delete-item">[x]</span>
-			</li>
-		</script>
+    <script type="js-template" id="item-file-list-template">
+      <li id="item-{{id}}">
+         <a target="_blank" href="io.cfm?action=getitemfile&item_file_id={{id}}">{{name}}</a> <span class="delete-item">[x]</span>
+      </li>
+    </script>
+    
+    <script type="js-template" id="item-voting-html">
+      <div class="motion-wrapper" data-motion-id="{{id}}" data-motion-type="{{type}}">
+        <a class="remove-motion" href="#!/removevote">x</a><br>
+        <label class="motion-text">Motion Text</label>
+        <input class="motion-text" type="text" name="motion-text">
+        <div class="motion-type-wrapper">
+          <label class="motion-type">Type</label>
+          <select class="motion-type" name="motion-type">
+            <option value="">---</option>
+            <option value="item">Vote on Item</option>
+            <option value="motion">Vote on Motion</option>
+          </select>
+        </div>
+        <div class="motion-status-wrapper">
+          <label class="motion-status">Status</label>
+          <select class="motion-status" name="motion-status">
+            <option value="">---</option>
+            <option value="passed">Passed</option>
+            <option value="failed">Failed</option>
+          </select>
+        </div>
+        <div class="clear"></div>
+        <label class="voting">Voting</label>
+        <div class="owner-votes">
+          <label>All:</label><select name="all-votes"><option value="">---</option><option value="Aye">Aye</option><option value="No">No</option><option value="Absent">Absent</option><option value="Recuse">Recuse</option><option value="Abstain">Abstain</option></select>
+          <hr>
+          {{owners}}
+        </div>
+        <br class="clear">
+      </div>
+    </script>
+    
+    <script type="js-template" id="single-vote-html">
+      <label>{{owner}}:</label><select data-vote-id="{{id}}" data-vote-type="{{type}}" name="vote-{{owner}}"><option value="">---</option><option value="Aye">Aye</option><option value="No">No</option><option value="Absent">Absent</option><option value="Recuse">Recuse</option><option value="Abstain">Abstain</option></select>
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
-				<script src="js/jquery.jkey.js"></script>
+        <script src="js/jquery.jkey.js"></script>
     <script src="js/jquery.rightclick.js"></script>
-				<script src="js/date.format.js"></script>
+        <script src="js/date.format.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>

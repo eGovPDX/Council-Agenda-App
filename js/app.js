@@ -140,30 +140,30 @@ var app = function(){
                 }
                 
 																
-																var tempOwnerHTML = '';
+								var tempOwnerHTML = '';
                 if(theItems[y].owners.length > 0){
-																		if(theItems[y].owners.length > 1){
-																				tempOwnerHTML = '';
-																		}
-																		else{
-																				tempOwnerHTML = '<h5>'+theItems[y].owners[0].name+'</h5>';
-																		}
+  								if(theItems[y].owners.length > 1){
+  										tempOwnerHTML = '';
+  								}
+  								else{
+  										tempOwnerHTML = '<h5>'+theItems[y].owners[0].name+'</h5>';
+  								}
                 }
 																
-																if(tempOwnerHTML !== itemOwner){
+								if(tempOwnerHTML !== itemOwner){
                   itemOwner = tempOwnerHTML;
                   newHTML = newHTML+itemOwner;
                 }
 																
 																
-																var tempBureauHTML = '';
+								var tempBureauHTML = '';
                 if(theItems[y].bureaus.length > 0){
-																		if(theItems[y].bureaus.length > 1){
-																				tempBureauHTML = '';
-																		}
-																		else{
-																				tempBureauHTML = '<h6>'+theItems[y].bureaus[0].name+'</h6>';
-																		}
+  								if(theItems[y].bureaus.length > 1){
+  										tempBureauHTML = '';
+  								}
+  								else{
+  										tempBureauHTML = '<h6>'+theItems[y].bureaus[0].name+'</h6>';
+  								}
                 }
                 
                 if(tempBureauHTML !== itemBureau){
@@ -172,18 +172,14 @@ var app = function(){
                 }
                 
                 if(theItems[y].emergency == 1){ e = '* '; itemClass = 'item-no emergency'; } else { itemClass = 'item-no'; }
-                
-                
+
                 var theDisposition = '';
-                if(theItems[y].motions.length > 0){
-                  theDisposition = theItems[y].motions[0].title;
-																		//if(theItems[y].motions.header && theItems[y].motions.header !== ''){
-																				theDisposition = theItems[y].motions[0].header+'<br>'+theDisposition;
-																		//}
-                }
+                theDisposition = theItems[y].disposition;
+                theDisposition = theItems[y].disposition_header+'<br>'+theDisposition;
                 
                 newHTML = newHTML+'<p class="'+itemClass+'">'+e+theItems[y].item_id;
                 // Add attachment icons
+
                 if(theItems[y].files != ""){
                 	if(theItems[y].files.length > 1){
                 		newHTML += '<br><img class="attachments" src="images/icon_files.png" title="This item has attachments.">';
@@ -194,60 +190,69 @@ var app = function(){
                 newHTML += '</p>'; // closes item-no                
                 newHTML += '<div class="item-text">'+convertReturnsToParagraphs(theItems[y].topic)+'</div><p class="disposition">'+theDisposition+'</p><br class="clear">';
                 
-                // Adds voting information display                                
+
+                var votingOptions = {
+                  'Aye':'Aye',
+                  'false':'No', //I hate CF with a passion.
+                  'Absent':'Absent',
+                  'Recuse':'Recuse',
+                  'Abstain':'Abstain'
+                };
+
+                //Prepare to blow your mind...
+                //this loop will scare you
+                var voteWrapper = '<div class="voting-record">';
                 if(theItems[y].motions[0] !== undefined){
-                  var itemVotes = theItems[y].motions[0].votes;
-                  itemVotes.blank = 0;
-                  
-                  //Holders...
-                  itemVotes.yeaTally = 0;
-                  itemVotes.yeaNames = '';
-                  
-                  itemVotes.nayTally = 0;
-                  itemVotes.nayNames = '';
-
-                  itemVotes.absentTally = 0;
-                  itemVotes.absentNames = '';                  
-                  
-                  // Tally the votes...
-                  for(v in itemVotes){
-		            switch(itemVotes[v].vote){
-		              case '-' : 
-		                itemVotes.blank ++;
-		                break;
-		              case 'Yea' : 
-		                itemVotes.yeaTally ++;
-		                if(itemVotes.yeaTally > 1){itemVotes.yeaNames += ', ';}
-		                itemVotes.yeaNames += getLastName(itemVotes[v].owner);
-		                break;
-		              case 'Nay' :
-		                itemVotes.nayTally ++;
-		                if(itemVotes.nayTally > 1){itemVotes.nayNames += ', ';}
-  		                itemVotes.nayNames += getLastName(itemVotes[v].owner);
-		                break;
-		              case 'Absent' : 
-		                itemVotes.absentTally ++;
-		                if(itemVotes.absentTally > 1){itemVotes.absentNames += ', ';}
-   		                itemVotes.absentNames += getLastName(itemVotes[v].owner);
-		                break;
-		            }
-
+                  var motions = theItems[y].motions;
+                  for(m in motions){
+                    voteWrapper = voteWrapper + '<div class="motion-display">';
+                    var motion = motions[m]
+                    ,   ifIsntFirstVote = '';
+                    if(motion.type == 'motion'){
+                      voteWrapper = voteWrapper + '<p class="motion-text"><span class="bold">Motion:</span> ' + motion.header+'</p><br>';
+                    }
+                    if(motion.votes !== undefined){
+                      voteWrapper = voteWrapper + '<p class="vote-display"><span class="bold">Vote on '+motion.type.charAt(0).toUpperCase() + motion.type.slice(1)+':</span> ';
+                      for(o in votingOptions){
+                        voteWrapper = voteWrapper + '<span class="vote-type">';
+                        var tally = 0
+                        ,   wasChecked = false
+                        ,   nameList = ''
+                        ,   ifIsntFirstPerson = '';
+                        for(v in motion.votes){
+                          //We match the keys, NOT the value of the keys because of the issue where No is converted to false
+                          //We also need to convert the boolean to a string so we can compare them
+                          if(motion.votes[v].vote.toString() == o){
+                            tally++;
+                            nameList = nameList + ifIsntFirstPerson + getLastName(motion.votes[v].owner);
+                            //adds a comma and a space after the first one (there has to be a better way to do this)
+                            if(ifIsntFirstPerson == ''){
+                              ifIsntFirstPerson = ', ';
+                            }
+                            if(!wasChecked){
+                              wasChecked = true;
+                              voteWrapper = voteWrapper + ifIsntFirstVote + '<span class="bold">' + votingOptions[o] + '</span> - ';
+                              //Same as above with the comma
+                              if(ifIsntFirstVote == ''){
+                                ifIsntFirstVote = ', ';
+                              }
+                            }
+                          }
+                        }
+                        if(tally > 0){
+                          voteWrapper = voteWrapper + tally + ' ('+nameList+')';
+                        }
+                        voteWrapper = voteWrapper + '</span>'; // /vote type
+                      }
+                      voteWrapper = voteWrapper + '</p>'; // /vote-display
+                    }
+                    voteWrapper = voteWrapper + '</div>'; // /motion-display
                   }
-                  
-                  // Display votes if less than 5 records are blank.
-                  if(itemVotes.blank < 5) {
-                  
-                    newHTML += '<div class="voting-record"><span class="bold">Votes:</span> ';
-                      if(itemVotes.yeaTally > 0){ newHTML += '&nbsp;&nbsp;&nbsp;<span class="bold">Yea - '+itemVotes.yeaTally + '</span> (<span class="italic">'+itemVotes.yeaNames+'</span>)'}
-                      if(itemVotes.nayTally > 0){ newHTML += ',  &nbsp;&nbsp;&nbsp;<span class="bold">Nay - '+itemVotes.nayTally + '</span> (<span class="italic">'+itemVotes.nayNames+'</span>)' }
-                      if(itemVotes.absentTally > 0){ newHTML += ', &nbsp;&nbsp;&nbsp;<span class="bold">Absent - '+itemVotes.absentTally + '</span> (<span class="italic">'+itemVotes.absentNames+'</span>)'}
-                    
-                    newHTML += '</div>'; // closes voting record
-                  
-                  }
-                  
-                } // ends loop
-                
+                }
+                voteWrapper = voteWrapper + '</div>'; // /voting-record
+
+                newHTML = newHTML + voteWrapper;
+
                 newHTML = newHTML+'</div>'; //Closes <div class="item">
               }
               newHTML = newHTML+'</div>'; //Closes <div class="session">
@@ -408,30 +413,32 @@ var app = function(){
     api: function(options,callback){
       callback = callback || function(){};
       var defaults = {
-        "action"         : "get",
-        "type"           : "agenda",
-        "title"          : "Portland City Council Agenda",
-        "id"             : "",
-        "baseURL"        : "io.cfm?",
-        "header"         : "",
-        "footer"         : "",
-        "datetime "      : "1-1-1111 11:11",
-        "message"        : "Due to lack of an agenda there will be no meeting",
-        "location"       : "City Hall - 1221 SW Fourth Avenue",
-        "itemNumber"     : "",
-        "emergency"      : 0,
-        "topic"          : "",
-        "status"         : 0,
-        "name"           : "",
-        "item_owner_id"  : "",
-        "item_bureau_id" : "",
-        "published"      : "",
-        "status"         : "",
-        "vote"           : "",
-        "owner"          : "",
-        "motion_type"    : "",
-        "item_motion_id" : 0,
-        "motion_vote_id" : 0
+        "action"             : "get",
+        "type"               : "agenda",
+        "title"              : "Portland City Council Agenda",
+        "id"                 : "",
+        "baseURL"            : "io.cfm?",
+        "header"             : "",
+        "footer"             : "",
+        "datetime "          : "1-1-1111 11:11",
+        "message"            : "Due to lack of an agenda there will be no meeting",
+        "location"           : "City Hall - 1221 SW Fourth Avenue",
+        "itemNumber"         : "", 
+        "emergency"          : 0, 
+        "topic"              : "", 
+        "status"             : 0, 
+        "name"               : "", 
+        "item_owner_id"      : "", 
+        "item_bureau_id"     : "", 
+        "published"          : "", 
+        "status"             : "", 
+        "vote"               : "", 
+        "owner"              : "",
+        "motion_type"        : "",
+        "item_motion_id"     : 0,
+        "motion_vote_id"     : 0,
+        "disposition"        : "",
+        "disposition_header" : ""
      
         
       }
@@ -542,7 +549,9 @@ var app = function(){
           "title"             : settings.title,
           "heading"           : settings.heading,
           "emergency"         : settings.emergency,
-          "topic"             : settings.topic
+          "topic"             : settings.topic,
+          "disposition"       : settings.disposition,
+          "disposition_header": settings.disposition_header
         }
         
         if(defaultItemData.agenda_id == ""){ delete defaultItemData.agenda_id; }
@@ -585,7 +594,7 @@ var app = function(){
             title:settings.title,
             item_id:settings.id,
             item_motion_id:settings.id,
-												header:settings.header
+						header:settings.header
         }
 
         if(settings.action == 'create'){
@@ -621,7 +630,7 @@ var app = function(){
           vote:settings.vote,
           owner:settings.owner
         }
-        
+
         if(settings.action == 'create'){
           delete itemVoteData.motion_vote_id;
         }
@@ -911,7 +920,7 @@ var formatDate = function(date,mask){
 }
 
 /**
- * Proxy function to reutrn the last name of a council member for Voting record display
+ * Function to reutrn the last name of a council member for Voting record display
  */
 var getLastName = function(string){
 	fullName = string.split(" ");
@@ -919,5 +928,8 @@ var getLastName = function(string){
 }
 
 var convertReturnsToParagraphs = function(str){
+    //Make sure it's a string, first
+    str = str.toString();
+    //then return the breaks and paragraphs
 		return '<p>'+str.replace(/\n\n/g,"</p><p>").replace(/\n/g,'<br>')+'</p>'
 }

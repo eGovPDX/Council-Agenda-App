@@ -22,7 +22,6 @@ $(function(){
       return $.data(document.body,key);
     }
   }
-  
   app().permissions(function(json){
     if(json.admin == 1){
       
@@ -123,7 +122,7 @@ $(function(){
             
               app().makeActive($('.item:first:not(.no-items)'),$('#editor'));
               
-              if($('.item:first').length > 0){
+              if($('.item:first:not(.no-items)').length > 0){
                 dataStore('active-item',$('.item:first').attr('id').split('-')[1]);
               }
               else{
@@ -466,13 +465,63 @@ $(function(){
                       modal.find('[name=status]').val(json[0].status);
                     }
                     else if(type == 'session'){
-                   	console.log(json[0]);
                       modal.find('[name=datetime]').val(json[0].start_date);
                       modal.find('[name=header]').val(json[0].header);
                       modal.find('[name=location]').val(json[0].location);
                       modal.find('[name=empty-session]').val(json[0].message);
                     }
                     else if(type=='item'){
+
+                    var ownerListCache = undefined;
+                    /**
+                     * If you set type to create itll grab the current owner list.
+                     * if you set it to update itll use the owner list you give it
+                     */
+                    var addMotionForm = function(type,owners,motion_id){
+                      type = type || 'create';
+                      owners = owners || [];
+                      motion_id = motion_id || 'NULL';
+                      var appendVoteHTML = function(ownerHTML){
+                        modal.find('.vote-wrapper').prepend($.template($('#item-voting-html').html(), {id:motion_id, type:type, owners:ownerHTML}));
+                      }
+                      
+                      var loopAndAppendOwners = function(json){
+                        var html = '';
+                        for(o in json){
+                          //Change a couple fields for motion owners
+                          if(json[o].can_vote === undefined){
+                            json[o].can_vote = 1;
+                            json[o].name = json[o].owner;
+                          }
+                          if(json[o].motion_vote_id === undefined){
+                            json[o].motion_vote_id = 'NULL';
+                          }
+                          if(json[o].can_vote !== 0){ //the Auditor would be false
+                            html = html+$.template($('#single-vote-html').html(),{type:type,id:json[o].motion_vote_id,owner:json[o].name}) 
+                          }
+                        }
+                        return html;
+                      }
+                      if(type == 'create'){
+                        if(!ownerListCache){
+                          app().api({
+                            action:'get',
+                            type:'owners'
+                          },function(json){
+                            ownerListCache = loopAndAppendOwners(json);
+                            appendVoteHTML(ownerListCache);
+                          }); 
+                        }
+                        else{
+                          appendVoteHTML(ownerListCache);
+                        }
+                      }
+                      else if(type == 'update'){
+                        appendVoteHTML(loopAndAppendOwners(owners));
+                      }
+                    }
+
+
                       modal.find('[name=topic]').val(json[0].topic);
                       
                       modal.find('[name=heading]').find('[value="'+json[0].heading+'"]').attr('selected','selected')
@@ -488,16 +537,38 @@ $(function(){
                       if(json[0].emergency == 1){
                         modal.find('[name=emergency-item]').attr('checked','checked');
                       }
-                      
+
+                      if(json[0].disposition.length > 0){
+                        modal.find('[name=disposition-title]').val(json[0].disposition);
+                      }
+
+                      if(json[0].disposition_header.length > 0){
+                        modal.find('[name="disposition-header"] [value="'+json[0].disposition_header+'"]').attr('selected','selected');
+                      }
+
                       if(json[0].motions.length > 0){
                         //for(x in json[0].motions){} //app doesn't support multiple motions yet tho...
-                        modal.append('<input type="hidden" name="motion-id" value="'+json[0].motions[0].item_motion_id+'">');
-                        if(json[0].motions[0].type == 'motion'){
-                          modal.find('.motion-status').css({display:'block !important'});
-                          modal.find('.disposition [value='+json[0].motions[0].status+']').attr('selected','selected');
+                        for(m in json[0].motions){
+                          //HERE IS WHERE WE PUT THE LOOP FOR VOTING
+                          addMotionForm('update',json[0].motions[m].votes,json[0].motions[m].item_motion_id);
+
+                          //ADD LOOP HERE TO GET THE DEFAULTS IN THERE
+
+                          //Because these are being appended, we keep it at 0, or, the first element
+                          var theMotionHtml = $('.motion-wrapper').eq(0);
+
+                          theMotionHtml.find('[name="motion-text"]').val(json[0].motions[m].header);
+                          theMotionHtml.find('[name="motion-type"] [value="'+json[0].motions[m].type+'"]').attr('selected','selected');
+                          if(json[0].motions[m].type == 'motion'){
+                            $('.motion-status-wrapper [value="'+json[0].motions[m].status+'"]').attr('selected','selected');
+                            $('.motion-status-wrapper *').addClass('visible');
+                          }
+                          var theVotes = json[0].motions[m].votes;
+                          for(vv in theVotes){
+                            if(theVotes[vv].vote === false) { theVotes[vv].vote = 'No'; }
+                            theMotionHtml.find('select[name="vote-'+theVotes[vv].owner+'"] [value="'+theVotes[vv].vote+'"]').attr('selected','selected');
+                          }
                         }
-                        modal.find('[name=disposition-title]').val(json[0].motions[0].title);
-                        modal.find('.disposition [value='+json[0].motions[0].type+']').attr('selected','selected');
                       }
                       
                       var votingHTML = '';
@@ -506,15 +577,12 @@ $(function(){
                         type:'owners'
                       },function(ownerjson){
                         for(x in ownerjson){
-                          if(ownerjson[x].name !== 'City Auditor LaVonne Griffin-Valade'){
+                          if(ownerjson[x].position_number !== ''){ //auditor
                             votingHTML = votingHTML+'<label>'+ownerjson[x].name+'</label><select class="owner-vote" name="'+ownerjson[x].name+'"><option value="">---</option><option value="Aye">Aye</option><option value="No">No</option><option value="Absent">Absent</option><option value="Recuse">Recuse</option><option value="Abstain">Abstain</option></select><br class="clear">';
                           }
                         }
-                        modal.find('#owner-votes').append(votingHTML)
-                        .find('[name=all-votes]').change(function(){
-                          modal.find('#owner-votes select').find('option[value="'+$(this).val()+'"]').attr('selected','selected');
-                        });
-                        
+                        modal.find('#owner-votes').append(votingHTML);
+
                         if(json[0].motions[0]){
                           var votes = json[0].motions[0].votes;
                           for(v in votes){
@@ -523,7 +591,6 @@ $(function(){
                         }
                         
                       });
-                      
                       
                       app().api({
                         action:'get',
@@ -536,6 +603,10 @@ $(function(){
                         }
                       });
                     }
+                    
+                    modal.find('[href="#!/newvote"]').click(function(){
+                      addMotionForm();
+                    });
                     
                     modal.find('[href="#!/edit/save"]').click(function(){
                       if(type == 'agenda'){
@@ -557,7 +628,7 @@ $(function(){
                           type:type,
                           id:id,
                           header:modal.find('[name=header]').val(),
-                          start_date: modal.find('[name=datetime]').val(),
+                          datetime:modal.find('[name=datetime]').val(),
                           location:modal.find('[name=location]').val(),
                           message:modal.find('[name=empty-session]').val()
                         },function(){
@@ -576,12 +647,13 @@ $(function(){
                         addRemoveBureausOwners('owner',id);
                         addRemoveBureausOwners('bureau',id);
 
-
                         var postItemData = function(){
                           app().api({
-                            action:'update',
-                            type:type,
-                            id:id,
+                            "action":'update',
+                            "type":type,
+                            "id":id,
+                            "disposition":modal.find('[name=disposition-title]').val(),
+                            "disposition_header": modal.find('[name=disposition-header]').val(),
                             "emergency":emergencyItem,
                             "heading":modal.find('[name=heading]').val(),
                             "topic":modal.find('[name=topic]').val()
@@ -590,53 +662,59 @@ $(function(){
                             app().modal('close');
                           });
                         }
-                        
-                        
-                        var motionAction = 'create'
-                        ,   motionId = id;
-                        if(modal.find('[name=motion-id]').length > 0){
-                          motionAction = 'update';
-                          motionId = modal.find('[name=motion-id]').val();
+
+                        //Dispositions shouldnt be in motions (disposition header should be out side of it)
+                        var votesProcessed = 0
+                        ,   motionsProcessed = 0;
+                        if($('[data-motion-id]').length < 1){
+                          postItemData();
                         }
-                        
-                        app().api({
-                          action:motionAction,
-                          type:'motion',
-                          id:motionId,
-                          title:modal.find('[name=disposition-title]').val(),
-                          header:modal.find('[name=disposition-header]').val(),
-                          motion_type:modal.find('[name=motion-type]').val(),
-                          status:modal.find('[name=motion-status]').val()
-                        },function(json){
-                          
-                          var voteSubmitCount = 0;
-                          modal.find('#owner-votes .owner-vote').each(function(){
-                            
-                            var voteId = json.item_motion_id
-                            ,   voteAction = 'create';
-                            
-                            if($(this).attr('data-motion_vote_id') !== undefined){
-                              voteId = $(this).attr('data-motion_vote_id');
-                              voteAction = 'update';
+                        else{
+                          $('[data-motion-id]').each(function(i){
+
+                            var motionAction = 'create'
+                            ,   motionId = id
+                            ,   motionEle = $(this);
+
+                            if($(this).attr('data-motion-type') == 'update'){
+                              motionAction = 'update';
+                              motionId = $(this).attr('data-motion-id');
                             }
-                            
+
                             app().api({
-                              action:voteAction,
-                              type:'vote',
-                              id:voteId,
-                              owner:$(this).attr('name'),
-                              vote:$(this).val()
+                              action:motionAction,
+                              type:'motion',
+                              id:motionId,
+                              header:$(this).find('[name=motion-text]').val(),
+                              motion_type:$(this).find('[name=motion-type]').val(),
+                              status:$(this).find('[name=motion-status]').val()
                             },function(json){
-                              voteSubmitCount++;
-                              if(voteSubmitCount == modal.find('#owner-votes .owner-vote').length){
-                                postItemData();
-                              }
+                              motionsProcessed++;
+                              motionEle.find('.owner-votes select:not([name="all-votes"])').each(function(){
+
+                                var voteAction = 'create'
+                                ,   voteId = json.item_motion_id;
+
+                                if($(this).attr('data-vote-type') == 'update'){
+                                  voteAction = 'update';
+                                  voteId = $(this).attr('data-vote-id');
+                                }
+                                app().api({
+                                  action:voteAction,
+                                  type:'vote',
+                                  id:voteId,
+                                  owner:$(this).attr('name').split('-')[1],
+                                  vote:$(this).val()
+                                },function(){
+                                  votesProcessed++;
+                                  if(votesProcessed == ($('.motion-wrapper [name^="vote-"]').length)){
+                                    postItemData();
+                                  }
+                                });
+                              });
                             });
                           });
-                        });
-
-                        
-                        
+                        }
                       }
                     });
                     
@@ -691,13 +769,37 @@ $(function(){
       
       $('body').delegate('select.motion-type','change',function(){
         if($(this).val() == 'motion'){
-          $('.motion-status').addClass('visible');
+          $(this).parent().parent().find('.motion-status').addClass('visible');
         }
         else{
-          $('.motion-status').removeClass('visible');
+          $(this).parent().parent().find('.motion-status').removeClass('visible');
         }
       });
       
+      
+      $('body').delegate('[name=all-votes]','change',function(){
+        $(this).parent().find('select[name^="vote-"]').find('option[value="'+$(this).val()+'"]').attr('selected','selected');
+      });
+      
+
+      $('body').delegate('[href="#!/removevote"]', 'click', function(){
+        $this = $(this);
+        if($this.parent().attr('data-motion-type') == 'update'){
+          if(confirm("Are you sure you want to delete this motion?\nAll votes within this motion will also be deleted!")){
+            app().api({
+              type:'motion',
+              action:'delete',
+              id:$this.parent().attr('data-motion-id')
+            },function(){
+              $this.parent().remove();
+            });
+          }
+        }
+        else{
+          $this.parent().remove();
+        }
+      });
+
       /**
        * When a user clicks on a menu item in File > New X this runs which
        * splits the new-X and grabs what it is, which would be agenda, session, etc
