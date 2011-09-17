@@ -177,7 +177,7 @@ var app = function(){
                 theDisposition = theItems[y].disposition;
                 theDisposition = theItems[y].disposition_header+'<br>'+theDisposition;
                 
-                newHTML = newHTML+'<p class="'+itemClass+'">'+e+theItems[y].item_id;
+                newHTML = newHTML+'<p class="'+itemClass+'">'+e+theItems[y].item_number_string;
                 // Add attachment icons
 
                 if(theItems[y].files != ""){
@@ -423,7 +423,7 @@ var app = function(){
         "datetime "          : "1-1-1111 11:11",
         "message"            : "Due to lack of an agenda there will be no meeting",
         "location"           : "City Hall - 1221 SW Fourth Avenue",
-        "itemNumber"         : "", 
+        "item_number_string" : "", 
         "emergency"          : 0, 
         "topic"              : "", 
         "status"             : 0, 
@@ -438,8 +438,8 @@ var app = function(){
         "item_motion_id"     : 0,
         "motion_vote_id"     : 0,
         "disposition"        : "",
-        "disposition_header" : ""
-     
+        "disposition_header" : "",
+        "include_items"       :0
         
       }
       //The default url params
@@ -467,12 +467,13 @@ var app = function(){
       if(settings.type == 'agenda'){
         
         var defaultAgendaData = {
-          "action"    : urlp.action+settings.type,
-          "title"     : settings.title,
-          "header"    : settings.header,
-          "footer"    : settings.footer,
-          "agenda_id" : settings.id,
-          "status"    : settings.publish
+          "action"       : urlp.action+settings.type,
+          "title"        : settings.title,
+          "header"       : settings.header,
+          "footer"       : settings.footer,
+          "agenda_id"    : settings.id,
+          "status"       : settings.publish,
+          "include_items": settings.include_items
         }
         
         if(defaultAgendaData.agenda_id == ""){ delete defaultAgendaData.agenda_id; }
@@ -490,6 +491,7 @@ var app = function(){
         var newAgendaData = {}
         ,    agendaData = $.extend({},defaultAgendaData,newAgendaData);
         
+
         $.ajax({
           type:'POST',
           url:settings.baseURL,
@@ -545,7 +547,7 @@ var app = function(){
         var defaultItemData = {
           "action"            : urlp.action+settings.type,
           "item_id"           : settings.id,
-          "item_number_string": settings.itemNumber,
+          "item_number_string": settings.item_number,
           "title"             : settings.title,
           "heading"           : settings.heading,
           "emergency"         : settings.emergency,

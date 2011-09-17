@@ -356,6 +356,7 @@ $(function(){
                           "action":"create",
                           "emergency":emergencyItem,
                           "type":type,
+                          "item_number":modal.find('[name=item-number]').val(),
                           "heading":modal.find('[name=heading]').val(),
                           "topic":modal.find('[name=topic]').val(),
                           //Will need to use active session when feature req. #54 is taken care of
@@ -384,9 +385,44 @@ $(function(){
             }
             
             if(type == 'item'){
+              /**
+               * THIS NEEDS TO CHANGE!!!
+               * IT NEEDS A CALL FOR THE LAST ITEM!
+               * the current method is extremely slow!
+               */
               generateOwnersAndBureaus(function(owners,bureaus){
-                html = $.template(html,{bureaus:bureaus,owners:owners});
-                initModal();
+                app().api({include_items:1},function(json){
+                  //last item number
+                  
+                  //Finds all items and saves them
+                  var arrayOfItems = [];
+                  for(j in json){
+                    for(s in json[j].sessions){
+                      for(i in json[j].sessions[s].items){
+                        arrayOfItems.push(json[j].sessions[s].items);
+                      }
+                    }
+                  }
+                  var last_item = arrayOfItems.pop().pop();
+                  var last_item_number;
+                  
+                  //If the last item was blank OR its a new year
+                  if(last_item.item_number_string == '' || last_item.created_date.split('-')[0] < new Date().getFullYear()){
+                    last_item_number = '1';
+                  }
+                  //Otherwise just increment by 1
+                  else{
+                    //If the last item had a - in it
+                    
+                    if(last_item.item_number_string.toString().indexOf('-') > -1){
+                      last_item_number = last_item.item_number_string.split('-')[0];
+                    }
+                    
+                    last_item_number = parseInt(last_item.item_number_string)+1
+                  }
+                  html = $.template(html,{bureaus:bureaus,owners:owners,number:last_item_number});
+                  initModal();
+                });
               });
             }
             else {
@@ -472,55 +508,57 @@ $(function(){
                     }
                     else if(type=='item'){
 
-                    var ownerListCache = undefined;
-                    /**
-                     * If you set type to create itll grab the current owner list.
-                     * if you set it to update itll use the owner list you give it
-                     */
-                    var addMotionForm = function(type,owners,motion_id){
-                      type = type || 'create';
-                      owners = owners || [];
-                      motion_id = motion_id || 'NULL';
-                      var appendVoteHTML = function(ownerHTML){
-                        modal.find('.vote-wrapper').prepend($.template($('#item-voting-html').html(), {id:motion_id, type:type, owners:ownerHTML}));
-                      }
-                      
-                      var loopAndAppendOwners = function(json){
-                        var html = '';
-                        for(o in json){
-                          //Change a couple fields for motion owners
-                          if(json[o].can_vote === undefined){
-                            json[o].can_vote = 1;
-                            json[o].name = json[o].owner;
-                          }
-                          if(json[o].motion_vote_id === undefined){
-                            json[o].motion_vote_id = 'NULL';
-                          }
-                          if(json[o].can_vote !== 0){ //the Auditor would be false
-                            html = html+$.template($('#single-vote-html').html(),{type:type,id:json[o].motion_vote_id,owner:json[o].name}) 
-                          }
+                      var ownerListCache = undefined;
+                      /**
+                       * If you set type to create itll grab the current owner list.
+                       * if you set it to update itll use the owner list you give it
+                       */
+                      var addMotionForm = function(type,owners,motion_id){
+                        type = type || 'create';
+                        owners = owners || [];
+                        motion_id = motion_id || 'NULL';
+                        var appendVoteHTML = function(ownerHTML){
+                          modal.find('.vote-wrapper').prepend($.template($('#item-voting-html').html(), {id:motion_id, type:type, owners:ownerHTML}));
                         }
-                        return html;
-                      }
-                      if(type == 'create'){
-                        if(!ownerListCache){
-                          app().api({
-                            action:'get',
-                            type:'owners'
-                          },function(json){
-                            ownerListCache = loopAndAppendOwners(json);
+                        
+                        var loopAndAppendOwners = function(json){
+                          var html = '';
+                          for(o in json){
+                            //Change a couple fields for motion owners
+                            if(json[o].can_vote === undefined){
+                              json[o].can_vote = 1;
+                              json[o].name = json[o].owner;
+                            }
+                            if(json[o].motion_vote_id === undefined){
+                              json[o].motion_vote_id = 'NULL';
+                            }
+                            if(json[o].can_vote !== 0){ //the Auditor would be false
+                              html = html+$.template($('#single-vote-html').html(),{type:type,id:json[o].motion_vote_id,owner:json[o].name}) 
+                            }
+                          }
+                          return html;
+                        }
+                        if(type == 'create'){
+                          if(!ownerListCache){
+                            app().api({
+                              action:'get',
+                              type:'owners'
+                            },function(json){
+                              ownerListCache = loopAndAppendOwners(json);
+                              appendVoteHTML(ownerListCache);
+                            }); 
+                          }
+                          else{
                             appendVoteHTML(ownerListCache);
-                          }); 
+                          }
                         }
-                        else{
-                          appendVoteHTML(ownerListCache);
+                        else if(type == 'update'){
+                          appendVoteHTML(loopAndAppendOwners(owners));
                         }
                       }
-                      else if(type == 'update'){
-                        appendVoteHTML(loopAndAppendOwners(owners));
-                      }
-                    }
 
+
+                      modal.find('[name=item-number]').val(json[0].item_number_string)
 
                       modal.find('[name=topic]').val(json[0].topic);
                       
@@ -656,7 +694,8 @@ $(function(){
                             "disposition_header": modal.find('[name=disposition-header]').val(),
                             "emergency":emergencyItem,
                             "heading":modal.find('[name=heading]').val(),
-                            "topic":modal.find('[name=topic]').val()
+                            "topic":modal.find('[name=topic]').val(),
+                            "item_number":modal.find('[name=item-number]').val()
                           },function(json){
                             displayAgenda(dataStore('active-agenda'));
                             app().modal('close');
