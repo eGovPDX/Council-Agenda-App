@@ -115,8 +115,6 @@
     <script type="js-template" id="item-voting-html">
       <div class="motion-wrapper" data-motion-id="{{id}}" data-motion-type="{{type}}">
         <a class="remove-motion" href="#!/removevote">x</a><br>
-        <label class="motion-text">Motion Text</label>
-        <input class="motion-text" type="text" name="motion-text">
         <div class="motion-type-wrapper">
           <label class="motion-type">Type</label>
           <select class="motion-type" name="motion-type">
@@ -125,13 +123,18 @@
             <option value="motion">Vote on Motion</option>
           </select>
         </div>
-        <div class="motion-status-wrapper">
+        <div class="motion-status-wrapper first">
           <label class="motion-status">Status</label>
           <select class="motion-status" name="motion-status">
             <option value="">---</option>
             <option value="passed">Passed</option>
             <option value="failed">Failed</option>
           </select>
+        </div>
+        <div class="clear"></div>
+        <div class="motion-status-wrapper last">
+          <label class="motion-text">Motion Text</label>
+          <input class="motion-text" type="text" name="motion-text">
         </div>
         <div class="clear"></div>
         <label class="voting">Voting</label>

@@ -113,18 +113,25 @@ var app = function(){
               if(theSessions[x].items.length < 1){
                 newHTML = newHTML + '<div class="item no-items">'+theSessions[x].message+'</div>';
               }
-              else{ console.log('Looping through the '+theSessions[x].items.length+' items...') 
+              else{ 
+                console.log('Looping through the '+theSessions[x].items.length+' items...') 
               
 	              // Adding Agenda notes to the display...
-	              if(theSessions[x].header != ''){
-	              	newHTML += '<div class="session-header"><p class="session-notes">'+theSessions[x].header+'</p><p class="disposition-title">Disposition:</p></div>';     
-	              }
               
+                newHTML += '<div class="session-header">';     
+
+                var emptySessionHeaderClass = ''
+                if(theSessions[x].header == ''){
+                  emptySessionHeaderClass = 'empty';
+                }
+
+                newHTML += '<p class="session-notes '+emptySessionHeaderClass+'">'+theSessions[x].header+'</p><p class="disposition-title">Disposition:</p></div>';
+
               }
-              
+
               for(y in theItems){
                 var e = '' //Emergency item. If 1 will be replaced with *
-                ,    isLastClass = ' ';
+                ,   isLastClass = ' ';
                 
                 //If the upcoming item is the last of it's kind, mark the current item as the "last"
                 var n = parseInt(y) + 1;

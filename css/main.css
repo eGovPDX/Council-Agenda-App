@@ -181,6 +181,7 @@ header {padding:0 10px 0 0;position:fixed;top:0;width:100%;border-bottom:1px sol
   
   #preview .item.no-items{text-align: center; padding-bottom: 16px; text-transform:uppercase; font-weight:bold; font-size:18px;}
   #preview .session-notes{width: 72%; margin-right: 40px; min-width: 450px; display: inline-block;padding: 10px; margin-bottom: 10px; border: 1px solid #dadada; font-style:italic}
+  #preview .session-notes.empty { border:0; }
   #preview .voting-record{margin-left: 89px !important; padding: 0px 0px 10px 0px; font-size: 0.825em;}
   #preview .motion-display { display:block !important;}
   #preview .motion-display p { margin:0; }
@@ -346,10 +347,11 @@ footer {height:25px;position:fixed;bottom:0;width:100%;border-top:1px solid #000
 #modal-wrapper .motion-wrapper { margin:15px 0 0 0; padding:5px; background:#dedede; border-radius:3px; border:1px solid #ccc; }
 #modal-wrapper .motion-wrapper [type=text]{ width:97.5%; }
 #modal-wrapper .motion-status-wrapper, #modal-wrapper .motion-type-wrapper { float:left; }
-#modal-wrapper .motion-type-wrapper { margin:-4px 15px 0 0; }
+#modal-wrapper .motion-status-wrapper.last { float:none; }
+#modal-wrapper .motion-type-wrapper { margin:0 15px 0 0; }
 
-#modal-wrapper .motion-status {display:none;}
-#modal-wrapper .motion-status.visible{display:block !important}
+#modal-wrapper .motion-status-wrapper {display:none;}
+#modal-wrapper .motion-status-wrapper.visible{display:block !important}
 
 #modal-wrapper .remove-motion {
   background: #ad0000; /* Old browsers */

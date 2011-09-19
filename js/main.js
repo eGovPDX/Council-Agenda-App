@@ -385,26 +385,10 @@ $(function(){
             }
             
             if(type == 'item'){
-              /**
-               * THIS NEEDS TO CHANGE!!!
-               * IT NEEDS A CALL FOR THE LAST ITEM!
-               * the current method is extremely slow!
-               */
               generateOwnersAndBureaus(function(owners,bureaus){
-                app().api({include_items:1},function(json){
-                  //last item number
+                $.getJSON('io.cfm?action=getitemnumber',function(json){
                   
-                  //Finds all items and saves them
-                  var arrayOfItems = [];
-                  for(j in json){
-                    for(s in json[j].sessions){
-                      for(i in json[j].sessions[s].items){
-                        arrayOfItems.push(json[j].sessions[s].items);
-                      }
-                    }
-                  }
-                  var last_item = arrayOfItems.pop().pop();
-                  var last_item_number;
+                  var last_item = json;
                   
                   //If the last item was blank OR its a new year
                   if(last_item.item_number_string == '' || last_item.created_date.split('-')[0] < new Date().getFullYear()){
@@ -588,6 +572,7 @@ $(function(){
                         //for(x in json[0].motions){} //app doesn't support multiple motions yet tho...
                         for(m in json[0].motions){
                           //HERE IS WHERE WE PUT THE LOOP FOR VOTING
+                          console.log(json[0].motions[m].votes)
                           addMotionForm('update',json[0].motions[m].votes,json[0].motions[m].item_motion_id);
 
                           //ADD LOOP HERE TO GET THE DEFAULTS IN THERE
@@ -599,7 +584,7 @@ $(function(){
                           theMotionHtml.find('[name="motion-type"] [value="'+json[0].motions[m].type+'"]').attr('selected','selected');
                           if(json[0].motions[m].type == 'motion'){
                             $('.motion-status-wrapper [value="'+json[0].motions[m].status+'"]').attr('selected','selected');
-                            $('.motion-status-wrapper *').addClass('visible');
+                            $('.motion-status-wrapper').addClass('visible');
                           }
                           var theVotes = json[0].motions[m].votes;
                           for(vv in theVotes){
@@ -808,10 +793,10 @@ $(function(){
       
       $('body').delegate('select.motion-type','change',function(){
         if($(this).val() == 'motion'){
-          $(this).parent().parent().find('.motion-status').addClass('visible');
+          $(this).parent().parent().find('.motion-status-wrapper').addClass('visible');
         }
         else{
-          $(this).parent().parent().find('.motion-status').removeClass('visible');
+          $(this).parent().parent().find('.motion-status-wrapper').removeClass('visible');
         }
       });
       
